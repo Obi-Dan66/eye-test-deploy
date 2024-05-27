@@ -12,12 +12,12 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+         uses: actions/checkout@v3.0.2  # Replace with the latest specific version
 
       - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: [20]
+        uses: actions/setup-node@v3.1.1  # Replace with the latest specific version
+          with:
+          node-version: '20'
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
