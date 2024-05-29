@@ -68,7 +68,7 @@ const AstigmatismTest = () => {
         let imageUrl2;
         let resultText= "";
         if (correctAnswersCase0 === 1 && correctAnswersCase2 === 1) {
-          imageUrl1 = '/greenface.svg';
+          imageUrl1 = './greenface.svg';
           imageUrl2 = './greenface.svg';
           resultText = "Zdá se, že nevykazujete příznaky astigmatismu.";
         } else if (correctAnswersCase0 === 0 && correctAnswersCase2 === 1) {
