@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import './index.css'
 import InstructionsSharpTest from './components/instructionsSharpTest.jsx';
@@ -22,7 +22,7 @@ import InfoContrasttest from './infoPages/infoContrasttest.jsx';
 
 const App = () => {
   return (
-    <Router basename="/eye-test-deploy/">
+    <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/instrukce-test-kontrastniho-videni" element={<InstructionsContrastTest />} />
