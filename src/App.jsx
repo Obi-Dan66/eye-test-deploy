@@ -22,7 +22,7 @@ import InfoContrasttest from './infoPages/infoContrasttest.jsx';
 
 const App = () => {
   return (
-    <Router basename="/eye-test-deploy">
+    <Router basename="/">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/instrukce-test-kontrastniho-videni" element={<InstructionsContrastTest />} />
