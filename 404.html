@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="refresh" content="0; URL='/eye-test-deploy/#'+location.pathname.slice(1)">
+</head>
+<body>
+  <script>
+    localStorage.setItem('redirect', location.pathname);
+    window.location.replace('/eye-test-deploy/#' + location.pathname.slice(1));
+  </script>
+</body>
+</html>
