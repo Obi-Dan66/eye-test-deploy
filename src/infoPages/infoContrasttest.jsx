@@ -1,7 +1,11 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const InfoContrasttest = () => {
+  const navigate = useNavigate();
+
   const [dividerPosition, setDividerPosition] = useState(50); // Initial position of the divider
   const containerRef = useRef(null);
 
@@ -30,7 +34,7 @@ const InfoContrasttest = () => {
       <h2><b>Zjistěte rozdíly.</b></h2>
         <p>Naše vyšetření kontrastního vidění zjistí, jak dobře vidíte rozdíly.</p>
         
-      <button className='defaultButton' onClick={() => window.location.href='/instrukce-test-kontrastniho-videni'}>Spustit test kontrastního vidění</button>
+      <button className='defaultButton' onClick={() => navigate('/instrukce-test-kontrastniho-videni')}>Spustit test kontrastního vidění</button>
       <div className='info-sharp-decription'>
       <h2><b>Proč si otestovat Kontrastní vidění?</b></h2>
       <p>Kontrastní vidění &#40;schopnost rozpoznat různé odstíny šedé&#41; je důležité z mnoha důvodů, včetně dobrého vidění ve tmě. Může se postupně měnit, což znamená, že si nemusíte všimnout malých změn svého zraku. Proto je důležité pravidelně si kontrolovat zrak. Zrak si můžete kontrolovat s pomocí našich vyšetření a následné konzultace s optikem, který provede kompletní vyšetření.</p>

@@ -1,7 +1,11 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const InfoAstigmatismtest = () => {
+  const navigate = useNavigate();
+
   const [dividerPosition, setDividerPosition] = useState(50); // Initial position of the divider
   const containerRef = useRef(null);
 
@@ -30,7 +34,7 @@ const InfoAstigmatismtest = () => {
       <h2><b>Vypořádejte se s rozostřeným viděním.</b></h2>
         <p>Zkontrolujte příznaky astigmatismu.</p>
         
-      <button className='defaultButton' onClick={() => window.location.href='/instrukce-test-astigmatismu'}>Spustit test astigmatismu</button>
+      <button className='defaultButton' onClick={() => navigate('/instrukce-test-astigmatismu')}>Spustit test astigmatismu</button>
       <div className='info-sharp-decription'>
       <h2><b>Proč kontrolovat příznaky astigmatismu?</b></h2>
       <p>AStigmatismus je vada zakřivení oční rohovky nebo čočky. Jedná se o běžný stav, který způsobuje rozmazané nebo zkreslené vidění, a s přibývajícím věkem se může zhoršovat. Astigmatismus může způsobovat také únavu očí, bolesti hlavy a špatné vidění ve tmě. Lze ho napravit správně osazenými brýlemi nebo kontaktními čočkami.</p>

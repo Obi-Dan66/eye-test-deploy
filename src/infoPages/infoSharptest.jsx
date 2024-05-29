@@ -1,7 +1,11 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const InfoSharptest = () => {
+  const navigate = useNavigate();
+
   const [dividerPosition, setDividerPosition] = useState(50); // Initial position of the divider
   const containerRef = useRef(null);
 
@@ -30,7 +34,7 @@ const InfoSharptest = () => {
       <h2><b>Nalezněte mezeru</b></h2>
         <p>Zkontrolujte, jak ostrý máte zrak pomocí našeho testu ostrosti zraku.</p>
         
-      <button className='defaultButton' onClick={() => window.location.href='/instrukce-test-ostrosti'}>Spuštění kontroly ostrosti zraku</button>
+      <button className='defaultButton' onClick={() => navigate('/instrukce-test-ostrosti')}>Spuštění kontroly ostrosti zraku</button>
       <div className='info-sharp-decription'>
       <h2><b>Proč kontrolovat ostrost svého zraku?</b></h2>
       <p>Zraková ostrost &#40;schopnost rozpoznat malé detaily&#41; se může postupně měnit, což znamená, že si nemusíte malých změn ve svém zraku všimnout. Proto je důležité pravidelně si kontrolovat zrak. Zrak si můžete kontrolovat s pomocí našich vyšetření a následné konzultace s optikem, který provede kompletní vyšetření.</p>

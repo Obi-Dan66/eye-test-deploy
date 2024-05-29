@@ -1,7 +1,10 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const InfoColortest = () => {
+  const navigate = useNavigate();
+
   const [dividerPosition, setDividerPosition] = useState(50); // Initial position of the divider
   const containerRef = useRef(null);
 
@@ -30,7 +33,7 @@ const InfoColortest = () => {
       <h2><b>Podívejte se na duhu.</b></h2>
         <p>Dokážete bez problémů vyjmenovat jednotlivé barvy? Náš test barevného vidění prověří, jak jste na tom.</p>
         
-      <button className='defaultButton' onClick={() => window.location.href='/instrukce-test-barevneho-videni'}>Spuštění testu barevného vidění</button>
+      <button className='defaultButton' onClick={() => navigate('/instrukce-test-barevneho-videni')}>Spuštění testu barevného vidění</button>
       <div className='info-sharp-decription'>
       <h2><b>Proč byste měli kontrolovat své barevné vidění?</b></h2>
       <p>Barevné vidění &#40;schopnost rozpoznat různé barvy a odstíny&#41; patří mezi nejdůležitější principy lidského vidění. "Barvoslepost" je termínem často používaným k popisu nedostatků barevného vidění. Pozvolné změny barevného vidění jsou často dědičné. Dobré barevné vidění je důležité a může mít dopad na mnoho každodenních aspektů, jako je vzdělání, výsledky zkoušek a volba kariéry.</p>

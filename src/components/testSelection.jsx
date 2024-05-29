@@ -1,7 +1,11 @@
 // testSelection.jsx
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const TestSelection = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <h1>Všechny testy zraku</h1>
@@ -14,7 +18,7 @@ const TestSelection = () => {
         <h2><b>Nalezněte mezeru</b></h2>
         <p>Zkontrolujte, jak ostrý máte zrak pomocí našeho testu ostrosti zraku.</p>
         <a href='/info-test-zrakove-ostrosti'>Podrobné informace</a>
-      <button className='defaultButton' onClick={() => window.location.href='/instrukce-test-ostrosti'}>Spuštění kontroly ostrosti zraku</button>
+      <button className='defaultButton' onClick={() => navigate('/instrukce-test-ostrosti')}>Spuštění kontroly ostrosti zraku</button>
 
       </div>
         <div className='test-selection'>
@@ -22,7 +26,7 @@ const TestSelection = () => {
         <h2><b>Zjistěte rozdíly.</b></h2>
         <p>Naše vyšetření kontrastního vidění zjistí, jak dobře vidíte rozdíly.</p>
         <a href='/info-test-kontrastniho-videni'>Podrobné informace</a>
-      <button className='defaultButton' onClick={() => window.location.href='/instrukce-test-kontrastniho-videni'}>Spustit test kontrastního vidění</button>
+      <button className='defaultButton' onClick={() => navigate('/instrukce-test-kontrastniho-videni')}>Spustit test kontrastního vidění</button>
       </div>
 
       <div className='test-selection'>
@@ -30,7 +34,7 @@ const TestSelection = () => {
         <h2><b>Podívejte se na duhu.</b></h2>
         <p>Dokážete bez problémů vyjmenovat jednotlivé barvy? Náš test barevného vidění prověří, jak jste na tom.</p>
         <a href='/info-test-barevneho-videni'>Podrobné informace</a>
-      <button className='defaultButton' onClick={() => window.location.href='/instrukce-test-barevneho-videni'}>Spustit test barevného vidění</button>
+      <button className='defaultButton' onClick={() => navigate('/instrukce-test-barevneho-videni')}>Spustit test barevného vidění</button>
       </div>
 
       <div className='test-selection'>
@@ -38,7 +42,7 @@ const TestSelection = () => {
         <h2><b>Vypořádejte se s rozostřeným viděním.</b></h2>
         <p>Zkontrolujte přáznaky astigmatismu.</p>
         <a href = '/info-test-astigmatismu'>Podrobné informace</a>
-      <button className='defaultButton' onClick={() => window.location.href='/instrukce-test-astigmatismu'}>Spustit test astigmatismu</button>
+      <button className='defaultButton' onClick={() => navigate('/instrukce-test-astigmatismu')}>Spustit test astigmatismu</button>
       </div>
 
       <div className='test-selection'>
@@ -46,7 +50,7 @@ const TestSelection = () => {
         <h2><b>Sledujte bod.</b></h2>
         <p>Tato kontrola zorného pole může objevit problémy vašeho zorného pole.</p>
         <a href='/info-test-zorneho-pole'>Podrobné informace</a>
-      <button className='defaultButton' onClick={() => window.location.href='/instrukce-test-zorneho-pole'}>Spustit kontrolu zorného pole</button>
+      <button className='defaultButton' onClick={() => navigate('/instrukce-test-zorneho-pole')}>Spustit kontrolu zorného pole</button>
       </div>
       
     </div>

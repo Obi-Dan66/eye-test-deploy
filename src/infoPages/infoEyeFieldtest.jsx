@@ -1,7 +1,10 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const InfoEyeFieldtest = () => {
+  const navigate = useNavigate();
+
   const [dividerPosition, setDividerPosition] = useState(50); // Initial position of the divider
   const containerRef = useRef(null);
 
@@ -30,7 +33,7 @@ const InfoEyeFieldtest = () => {
       <h2><b>Sledujte bod.</b></h2>
         <p>Tato kontrola zorného pole může objevit problémy vašeho zorného pole.</p>
         
-      <button className='defaultButton' onClick={() => window.location.href='/instrukce-test-zorneho-pole'}>Spustit kontrolu zorného pole</button>
+      <button className='defaultButton' onClick={() => navigate('/instrukce-test-zorneho-pole')}>Spustit kontrolu zorného pole</button>
       <div className='info-sharp-decription'>
       <h2><b>Proč je třeba, abych si kontroloval/a zorného pole?</b></h2>
       <p>Zorné pole je definováno jako prostor, ve kterém vnímáme světlo a rozpoznáváme předměty. Tento prostor může být omezený různými očními onemocněními nebo neurologickými příčinami a v průběhu času se může zhoršovat. Normální centrální zorní pole je důležité při provádění mnoha každodenních činností, jako je čtení nebo práce v kanceláři. Naše periferní zorné pole nám poskytuje důležité vjemy, pokud se díváme do dálky a řídíme například automobil.</p>
