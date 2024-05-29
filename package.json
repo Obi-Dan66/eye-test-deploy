@@ -11,14 +11,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "env": "^0.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router": "^6.23.1",
     "react-router-dom": "^6.23.1"
   },
   "devDependencies": {
-    "@types/node": "^20.12.13",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
