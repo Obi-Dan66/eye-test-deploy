@@ -32,7 +32,7 @@ const AstigmatismTest = () => {
                 <p>2 - Zařízení držte na <b>délku paže</b>.</p>
                 <p>3 - Zaměřte se na střed půlkruhu. <b>Vidíte všechny čáry ve stejném odstínu černé?</b> </p>
                 <div className='colorTestCard' style={{backgroundColor:'white'}}>
-                <img className= "astigmatism-image" src='src\assets\astigmatismus.svg' width={200} height={200} alt="color test"></img>
+                <img className= "astigmatism-image" src={`${process.env.PUBLIC_URL}/astigmatismus.svg`} width={200} height={200} alt="color test"></img>
                 <div>
                 <button className='colorTestBtn correct' onClick={() => handleClick(true, 0)}>Ano</button>
                 <button className='colorTestBtn' onClick={() => handleClick(false, 0)}>Ne</button>
@@ -56,7 +56,7 @@ const AstigmatismTest = () => {
                 <p>2 - Zařízení držte na <b>délku paže</b>.</p>
                 <p>3 - Zaměřte se na střed půlkruhu. <b>Vidíte všechny čáry ve stejném odstínu černé?</b> </p>
                 <div className='colorTestCard' style={{backgroundColor:'white'}}>
-                <img className= "astigmatism-image" src='src\assets\astigmatismus.svg' width={200} height={200} alt="color test"></img>
+                <img className= "astigmatism-image" src={`${process.env.PUBLIC_URL}/astigmatismus.svg`} width={200} height={200} alt="color test"></img>
                 <div>
                 <button className='colorTestBtn correct' onClick={() => handleClick(true, 2)}>Ano</button>
                 <button className='colorTestBtn' onClick={() => handleClick(false, 2)}>Ne</button>

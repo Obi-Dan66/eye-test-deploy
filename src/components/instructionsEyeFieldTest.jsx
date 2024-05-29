@@ -93,7 +93,7 @@ const InstructionsEyeFieldTest = () => {
         return (
           <div className='be-ready'>
             <div>
-            <img className= "eyeAndLenses" src='src\assets\imageCase3.svg' width={200} height={200} alt="circle"></img>
+            <img className= "eyeAndLenses" src={`${process.env.PUBLIC_URL}/imageCase3.svg`} width={200} height={200} alt="circle"></img>
             </div>
               <h1><b>Budte připraveni.</b></h1>
               <p>Nasadte si brýle nebo kontaktní čočky (pokud nějaké nosíte).</p>

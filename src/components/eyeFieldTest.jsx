@@ -40,7 +40,7 @@ const EyeFieldTest = () => {
                 <p>2 - Posuňte své zařízení trochu blíže - <b>na půl délky paže nebo na vzdálenost 30 cm.</b></p>
                 <p>3 - <b>Soustřeďte se na černou tečku uprostřed. Vypadají všechny čáry a čtverce stejně a pravidelně?</b> </p>
                 <div className='colorTestCard' style={{backgroundColor:'white'}}>
-                <img className= "astigmatism-image" src='src\assets\imageEyeFieldTest.svg' width={200} height={200} alt="color test"></img>
+                <img className= "astigmatism-image" src={`${process.env.PUBLIC_URL}/imageEyeFieldTest.svg`} width={200} height={200} alt="color test"></img>
                 <div>
                 <button className='colorTestBtn correct' onClick={() => handleClick(true, 0)}>Ano</button>
                 <button className='colorTestBtn' onClick={() => handleClick(false, 0)}>Ne</button>
@@ -55,7 +55,7 @@ const EyeFieldTest = () => {
                 <p>2 - Posuňte své zařízení trochu blíže - <b>na půl délky paže nebo na vzdálenost 30 cm.</b></p>
                 <p>3 - <b>Soustřeďte se na černou tečku uprostřed. Chybí některé části mřížky nebo jsou některé části zkreslené nebo tmavší než ostatní?</b> </p>
                 <div className='colorTestCard' style={{backgroundColor:'white'}}>
-                <img className= "astigmatism-image" src='src\assets\imageEyeFieldTest.svg' width={200} height={200} alt="color test"></img>
+                <img className= "astigmatism-image" src={`${process.env.PUBLIC_URL}/imageEyeFieldTest.svg`} width={200} height={200} alt="color test"></img>
                 <div>
                 <button className='colorTestBtn' onClick={() => handleClick(false, 1)}>Ano</button>
                 <button className='colorTestBtn correct' onClick={() => handleClick(true, 1)}>Ne</button>
@@ -79,7 +79,7 @@ const EyeFieldTest = () => {
               <p>2 - Posuňte své zařízení trochu blíže - <b>na půl délky paže nebo na vzdálenost 30 cm.</b></p>
               <p>3 - <b>Soustřeďte se na černou tečku uprostřed. Vypadají všechny čáry a čtverce stejně a pravidelně?</b> </p>
               <div className='colorTestCard' style={{backgroundColor:'white'}}>
-              <img className= "astigmatism-image" src='src\assets\imageEyeFieldTest.svg' width={200} height={200} alt="color test"></img>
+              <img className= "astigmatism-image" src={`${process.env.PUBLIC_URL}/imageEyeFieldTest.svg`} width={200} height={200} alt="color test"></img>
               <div>
               <button className='colorTestBtn correct' onClick={() => handleClick(true, 3)}>Ano</button>
               <button className='colorTestBtn' onClick={() => handleClick(false, 3)}>Ne</button>
@@ -94,7 +94,7 @@ const EyeFieldTest = () => {
                 <p>2 - Posuňte své zařízení trochu blíže - <b>na půl délky paže nebo na vzdálenost 30 cm.</b></p>
                 <p>3 - <b>Soustřeďte se na černou tečku uprostřed. Chybí některé části mřížky nebo jsou některé části zkreslené nebo tmavší než ostatní?</b> </p>
                 <div className='colorTestCard' style={{backgroundColor:'white'}}>
-                <img className= "astigmatism-image" src='src\assets\imageEyeFieldTest.svg' width={200} height={200} alt="color test"></img>
+                <img className= "astigmatism-image" src={`${process.env.PUBLIC_URL}/imageEyeFieldTest.svg`} width={200} height={200} alt="color test"></img>
                 <div>
                 <button className='colorTestBtn' onClick={() => handleClick(false, 4)}>Ano</button>
                 <button className='colorTestBtn correct' onClick={() => handleClick(true, 4)}>Ne</button>
