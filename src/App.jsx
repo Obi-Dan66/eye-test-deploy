@@ -52,7 +52,7 @@ const HomePage = () => {
       <img src='src\assets\logo-prvni-optika.jpg' width={200} height={150} alt="Logo"></img>
       <h1>Online oční test od První Optiky</h1>
       <button className='testBegin homePage' onClick={() => window.location.href='/instrukce-test-ostrosti'}>Zkontrolujte si svůj zrak</button>
-      <button className='selectTest homePage' onClick={() => window.location.href='/vyber-testu'}>Nebo si vyberte určitý test</button>
+      <button className='selectTest homePage' onClick={() => window.location.href='/eye-test-deploy/vyber-testu'}>Nebo si vyberte určitý test</button>
     </div>
   );
 }
