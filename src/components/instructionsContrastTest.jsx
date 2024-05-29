@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const InstructionsSharpTest = () => {
+  const navigate = useNavigate();
+
   const [currentContent, setCurrentContent] = useState(0);
   const [sliderValue, setSliderValue] = useState(50); // Define sliderValue here
   const [sliderChanged, setSliderChanged] = useState(false);
@@ -29,7 +33,7 @@ const InstructionsSharpTest = () => {
   
   const startTest = () => {
     // Redirect to '/another-page' when a button is clicked
-    window.location.href = '/test-kontrastniho-videni';
+    navigate('/test-kontrastniho-videni');
   };
 
   const handleSliderChange = (e) => {

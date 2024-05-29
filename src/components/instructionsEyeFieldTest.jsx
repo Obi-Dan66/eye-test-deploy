@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const InstructionsEyeFieldTest = () => {
+  const navigate = useNavigate();
+
   const [currentContent, setCurrentContent] = useState(0);
   const [sliderValue, setSliderValue] = useState(50); // Define sliderValue here
   const [sliderChanged, setSliderChanged] = useState(false);
@@ -14,7 +18,7 @@ const InstructionsEyeFieldTest = () => {
   
   const startTest = () => {
     // Redirect to '/another-page' when a button is clicked
-    window.location.href = '/test-zorneho-pole';
+    navigate('/test-zorneho-pole');
   };
 
   const handleSliderChange = (e) => {
