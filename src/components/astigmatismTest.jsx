@@ -32,7 +32,7 @@ const AstigmatismTest = () => {
                 <p>2 - Zařízení držte na <b>délku paže</b>.</p>
                 <p>3 - Zaměřte se na střed půlkruhu. <b>Vidíte všechny čáry ve stejném odstínu černé?</b> </p>
                 <div className='colorTestCard' style={{backgroundColor:'white'}}>
-                <img className= "astigmatism-image" src={`${process.env.PUBLIC_URL}/astigmatismus.svg`} width={200} height={200} alt="color test"></img>
+                <img className= "astigmatism-image" src="./astigmatismus.svg" width={200} height={200} alt="color test"></img>
                 <div>
                 <button className='colorTestBtn correct' onClick={() => handleClick(true, 0)}>Ano</button>
                 <button className='colorTestBtn' onClick={() => handleClick(false, 0)}>Ne</button>
@@ -56,7 +56,7 @@ const AstigmatismTest = () => {
                 <p>2 - Zařízení držte na <b>délku paže</b>.</p>
                 <p>3 - Zaměřte se na střed půlkruhu. <b>Vidíte všechny čáry ve stejném odstínu černé?</b> </p>
                 <div className='colorTestCard' style={{backgroundColor:'white'}}>
-                <img className= "astigmatism-image" src={`${process.env.PUBLIC_URL}/astigmatismus.svg`} width={200} height={200} alt="color test"></img>
+                <img className= "astigmatism-image" src="./astigmatismus.svg" width={200} height={200} alt="color test"></img>
                 <div>
                 <button className='colorTestBtn correct' onClick={() => handleClick(true, 2)}>Ano</button>
                 <button className='colorTestBtn' onClick={() => handleClick(false, 2)}>Ne</button>
@@ -68,20 +68,20 @@ const AstigmatismTest = () => {
         let imageUrl2;
         let resultText= "";
         if (correctAnswersCase0 === 1 && correctAnswersCase2 === 1) {
-          imageUrl1 = 'src/assets/greenface.svg';
-          imageUrl2 = 'src/assets/greenface.svg';
+          imageUrl1 = '/greenface.svg';
+          imageUrl2 = './greenface.svg';
           resultText = "Zdá se, že nevykazujete příznaky astigmatismu.";
         } else if (correctAnswersCase0 === 0 && correctAnswersCase2 === 1) {
-          imageUrl1 = 'src/assets/greenface.svg';
-          imageUrl2 = 'src/assets/redface.svg';
+          imageUrl1 = './greenface.svg';
+          imageUrl2 = './redface.svg';
           resultText = "Zdá se, že rozdíly mezi řádky vidíte jedním okem.";
         } else if (correctAnswersCase0 === 1 && correctAnswersCase2 === 0) {
-          imageUrl1 = 'src/assets/redface.svg';
-          imageUrl2 = 'src/assets/greenface.svg';
+          imageUrl1 = './redface.svg';
+          imageUrl2 = './greenface.svg';
           resultText = "Zdá se, že rozdíly mezi řádky vidíte jedním okem.";
         } else {
-          imageUrl1 = 'src/assets/redface.svg';
-          imageUrl2 = 'src/assets/redface.svg';
+          imageUrl1 = './redface.svg';
+          imageUrl2 = './redface.svg';
           resultText = "Zdá se, že rozdíly mezi řádky vidíte oběma očima.";
         }
       
@@ -108,7 +108,7 @@ const AstigmatismTest = () => {
             </div>
           </div>
           <div className='result-map'>
-          <img src="src/assets/resultMap.svg" alt="ResultMap" />
+          <img src="./resultMap.svg" alt="ResultMap" />
           <p><b>Vyhledejte optika společnosti Erste Optik ve své blízkosti.</b> Pro kompletní vyšetření zraku vždy vyhledejte profesionálního očního lékaře.</p>
           <button className='defaultButton'>Zobrazit specialisty v mé blízkosti</button>
           </div>

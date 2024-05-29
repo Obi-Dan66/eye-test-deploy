@@ -39,8 +39,8 @@ const InfoEyeFieldtest = () => {
       <p>Zorné pole je definováno jako prostor, ve kterém vnímáme světlo a rozpoznáváme předměty. Tento prostor může být omezený různými očními onemocněními nebo neurologickými příčinami a v průběhu času se může zhoršovat. Normální centrální zorní pole je důležité při provádění mnoha každodenních činností, jako je čtení nebo práce v kanceláři. Naše periferní zorné pole nám poskytuje důležité vjemy, pokud se díváme do dálky a řídíme například automobil.</p>
       
       <div className="image-comparison-container" style={{ position: 'relative', width: '100%', height: '425px' }}>
-        <img src='src/assets/infoEyeField1.jpg' style={{ position: 'absolute', width: '100%', height: '100%', zIndex: 1 }} alt="Normální vidění" />
-        <img src='src/assets/infoEyeField2.jpg' style={{ position: 'absolute', width: '100%', height: '100%', clipPath: `inset(0 ${100 - dividerPosition}% 0 0)`, zIndex: 2 }} alt="Vidění s vadou zorného pole" />
+        <img src='./infoEyeField1.jpg' style={{ position: 'absolute', width: '100%', height: '100%', zIndex: 1 }} alt="Normální vidění" />
+        <img src='./infoEyeField2.jpg' style={{ position: 'absolute', width: '100%', height: '100%', clipPath: `inset(0 ${100 - dividerPosition}% 0 0)`, zIndex: 2 }} alt="Vidění s vadou zorného pole" />
         <div className="divider" style={{ position: 'absolute', left: `${dividerPosition}%`, top: 0, bottom: 0, width: '2px', background: '#FFF', cursor: 'ew-resize', zIndex: 3 }} onMouseDown={startDrag}>
           <div style={{ position: 'absolute', top: '50%', left: '-12px', width: '25px', height: '25px', background: '#FFF', borderRadius: '50%', transform: 'translateY(-50%)' }}></div>
     </div>

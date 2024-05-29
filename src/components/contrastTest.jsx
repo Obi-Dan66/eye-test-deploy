@@ -127,10 +127,10 @@ const ContrastTest = () => {
       </div>
       <div className='circle1'>
       {iconType === 'checkmark' && (
-           <img src='src/assets/checkmark.svg' className="tick-animation" alt="Tick" />
+           <img src='./checkmark.svg' className="tick-animation" alt="Tick" />
          )}
          {iconType === 'cross' && (
-           <img src='src/assets/cross.svg' className="tick-animation" alt="Cross" />
+           <img src='./cross.svg' className="tick-animation" alt="Cross" />
          )}
       <svg viewBox="0 0 100% 100%" xmlns="http://www.w3.org/2000/svg">
       <path id="TOP" onClick={() => handleClick('TOP')} style={{ opacity: clickedButton === 'TOP' ? 0 : 1 }} d="M158.934 57.545a77.47 77.47 0 00-13.211-3.957 78.642 78.642 0 00-31.437 0 77.47 77.47 0 00-13.211 3.957l-19.9-48.059a130.162 130.162 0 0197.674 0z"></path>
@@ -164,10 +164,10 @@ const renderSvgContainer2 = (clickedButton, handleClick, transformStyle, colorSt
   </div>
   <div className='circle1'>
   {iconType === 'checkmark' && (
-           <img src='src/assets/checkmark.svg' className="tick-animation" alt="Tick" />
+           <img src='./checkmark.svg' className="tick-animation" alt="Tick" />
          )}
          {iconType === 'cross' && (
-           <img src='src/assets/cross.svg' className="tick-animation" alt="Cross" />
+           <img src='./cross.svg' className="tick-animation" alt="Cross" />
          )}
   <svg viewBox="0 0 100% 100%" xmlns="http://www.w3.org/2000/svg">
   <path id="TOP" onClick={() => handleClick('TOP')} style={{ opacity: clickedButton === 'TOP' ? 0 : 1 }} d="M158.934 57.545a77.47 77.47 0 00-13.211-3.957 78.642 78.642 0 00-31.437 0 77.47 77.47 0 00-13.211 3.957l-19.9-48.059a130.162 130.162 0 0197.674 0z"></path>
@@ -229,32 +229,32 @@ switch (currentContent) {
     
       // Determine imageUrl2 based on correctAnswersRange1
       if (correctAnswersRange1 >= 7) {
-        imageUrl2 = 'src/assets/greenface.svg';
+        imageUrl2 = './greenface.svg';
       } else if (correctAnswersRange1 >= 5 && correctAnswersRange1 <= 6) {
-        imageUrl2 = 'src/assets/yellowface.svg';
+        imageUrl2 = './yellowface.svg';
       } else {
-        imageUrl2 = 'src/assets/redface.svg';
+        imageUrl2 = './redface.svg';
       }
     
       // Determine imageUrl1 based on correctAnswersRange2
       if (correctAnswersRange2 >= 7) {
-        imageUrl1 = 'src/assets/greenface.svg';
+        imageUrl1 = './greenface.svg';
       } else if (correctAnswersRange2 >= 5 && correctAnswersRange1 <= 6) {
-        imageUrl1 = 'src/assets/yellowface.svg';
+        imageUrl1 = './yellowface.svg';
       } else {
-        imageUrl1 = 'src/assets/redface.svg';
+        imageUrl1 = './redface.svg';
       }
     
       // Determine resultText based on the combination of imageUrl1 and imageUrl2
-      if (imageUrl1 === 'src/assets/greenface.svg' && imageUrl2 === 'src/assets/greenface.svg') {
+      if (imageUrl1 === './greenface.svg' && imageUrl2 === './greenface.svg') {
         resultText = "Vaše kontrastní vidění obou očí se zdá být vynikající."; // Both are green
-      } else if (imageUrl1 === 'src/assets/redface.svg' && imageUrl2 === 'src/assets/redface.svg') {
+      } else if (imageUrl1 === './redface.svg' && imageUrl2 === './redface.svg') {
         resultText = "Vaše kontrastní vidění obou očí se zdá být omezené."; // Both are red
-      } else if (imageUrl1 === 'src/assets/yellowface.svg' && imageUrl2 === 'src/assets/yellowface.svg') {
+      } else if (imageUrl1 === './yellowface.svg' && imageUrl2 === './yellowface.svg') {
         resultText = "Vaše kontrastní vidění obou očí se zdá být v pořádku."; // Both are yellow
-      } else if (imageUrl1 === 'src/assets/redface.svg' || imageUrl2 === 'src/assets/redface.svg') {
+      } else if (imageUrl1 === './redface.svg' || imageUrl2 === './redface.svg') {
         resultText = "Vaše kontrastní vidění jednoho oka se zdá být omezené."; // At least one is red
-      } else if (imageUrl1 === 'src/assets/yellowface.svg' || imageUrl2 === 'src/assets/yellowface.svg') {
+      } else if (imageUrl1 === './yellowface.svg' || imageUrl2 === './yellowface.svg') {
         resultText = "Vaše kontrastní vidění jednoho oka se zdá být v pořádku."; // At least one is yellow
       }
     
@@ -281,7 +281,7 @@ switch (currentContent) {
           </div>
         </div>
         <div className='result-map'>
-        <img src="src/assets/resultMap.svg" alt="ResultMap" />
+        <img src="./resultMap.svg" alt="ResultMap" />
         <p><b>Vyhledejte optika společnosti Erste Optik ve své blízkosti.</b> Pro kompletní vyšetření zraku vždy vyhledejte profesionálního očního lékaře.</p>
         <button className='defaultButton'>Zobrazit specialisty v mé blízkosti</button>
         </div>

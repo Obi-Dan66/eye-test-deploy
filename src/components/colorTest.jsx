@@ -34,7 +34,7 @@ const ColorTest = () => {
                 <p>2 - Zařízení držte na délku paže.</p>
                 <p>3 - Vyberte číslo, které vidíte v kruhu.</p>
                 <div className='colorTestCard' style={{backgroundColor:'white'}}>
-                <img className= "color-image" src={`${process.env.PUBLIC_URL}/12.svg`} width={200} height={200} alt="color test"></img>
+                <img className= "color-image" src="./12.svg" width={200} height={200} alt="color test"></img>
                 <div>
                 <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>31</button>
                 <button className={`colorTestBtn ${correctClicked ? 'correct' : ''}`} onClick={() => handleClick('correct', true)}>12</button>
@@ -51,7 +51,7 @@ const ColorTest = () => {
           <p>2 - Zařízení držte na délku paže.</p>
           <p>3 - Vyberte číslo, které vidíte v kruhu.</p>
           <div className='colorTestCard' style={{backgroundColor:'white'}}>
-          <img className= "color-image" src={`${process.env.PUBLIC_URL}/8.svg`} width={200} height={200} alt="color test"></img>
+          <img className= "color-image" src="./8.svg" width={200} height={200} alt="color test"></img>
           <div>
           <button className={`colorTestBtn ${correctClicked ? 'correct' : ''}`} onClick={() => handleClick('correct', true)}>8</button>
           <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>3</button>
@@ -68,7 +68,7 @@ const ColorTest = () => {
           <p>2 - Zařízení držte na délku paže.</p>
           <p>3 - Vyberte číslo, které vidíte v kruhu.</p>
           <div className='colorTestCard' style={{backgroundColor:'white'}}>
-          <img className= "color-image" src={`${process.env.PUBLIC_URL}/3.svg`} width={200} height={200} alt="color test"></img>
+          <img className= "color-image" src="./3.svg" width={200} height={200} alt="color test"></img>
           <div>
           <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>5</button>
           <button className={`colorTestBtn ${correctClicked ? 'correct' : ''}`} onClick={() => handleClick('correct', true)}>3</button>
@@ -85,7 +85,7 @@ const ColorTest = () => {
           <p>2 - Zařízení držte na délku paže.</p>
           <p>3 - Vyberte číslo, které vidíte v kruhu.</p>
           <div className='colorTestCard' style={{backgroundColor:'white'}}>
-          <img className= "color-image" src={`${process.env.PUBLIC_URL}/45.svg`} width={200} height={200} alt="color test"></img>
+          <img className= "color-image" src="./45.svg" width={200} height={200} alt="color test"></img>
           <div>
           <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>36</button>
           <button className={`colorTestBtn ${correctClicked ? 'correct' : ''}`} onClick={() => handleClick('correct', true)}>45</button>
@@ -102,7 +102,7 @@ const ColorTest = () => {
           <p>2 - Zařízení držte na délku paže.</p>
           <p>3 - Vyberte číslo, které vidíte v kruhu.</p>
           <div className='colorTestCard' style={{backgroundColor:'white'}}>
-          <img className= "color-image" src={`${process.env.PUBLIC_URL}/5.svg`} width={200} height={200} alt="color test"></img>
+          <img className= "color-image" src="./5.svg" width={200} height={200} alt="color test"></img>
           <div>
           <button className={`colorTestBtn ${correctClicked ? 'correct' : ''}`} onClick={() => handleClick('correct', true)}>5</button>
           <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>57</button>
@@ -119,7 +119,7 @@ const ColorTest = () => {
           <p>2 - Zařízení držte na délku paže.</p>
           <p>3 - Vyberte číslo, které vidíte v kruhu.</p>
           <div className='colorTestCard' style={{backgroundColor:'white'}}>
-            <img className= "color-image" src={`${process.env.PUBLIC_URL}/nic.svg`} width={200} height={200} alt="color test"></img>
+            <img className= "color-image" src="./nic.svg" width={200} height={200} alt="color test"></img>
             <div>
             <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>45</button>
             <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>70</button>
@@ -132,13 +132,13 @@ const ColorTest = () => {
         let imageUrl;
         let resultText= "";
         if (correctAnswersCount === 6) {
-          imageUrl = 'src/assets/greenface.svg';
+          imageUrl = './greenface.svg';
           resultText = "Vaše barevné vidění se zdá být vynikající.";
         } else if (correctAnswersCount === 4 || correctAnswersCount === 5) {
-          imageUrl = 'src/assets/yellowface.svg';
+          imageUrl = './yellowface.svg';
           resultText = "Vaše barevné vidění se zdá být v pořádku.";
         } else {
-          imageUrl = 'src/assets/redface.svg';
+          imageUrl = './redface.svg';
           resultText = "Vaše barevné vidění se zdá být omezené.";
         }
       
@@ -165,7 +165,7 @@ const ColorTest = () => {
             </div>
           </div>
           <div className='result-map'>
-          <img src="src/assets/resultMap.svg" alt="ResultMap" />
+          <img src="./resultMap.svg" alt="ResultMap" />
           <p><b>Vyhledejte optika společnosti Erste Optik ve své blízkosti.</b> Pro kompletní vyšetření zraku vždy vyhledejte profesionálního očního lékaře.</p>
           <button className='defaultButton'>Zobrazit specialisty v mé blízkosti</button>
           </div>

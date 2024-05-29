@@ -40,8 +40,8 @@ const InfoContrasttest = () => {
       <p>Kontrastní vidění &#40;schopnost rozpoznat různé odstíny šedé&#41; je důležité z mnoha důvodů, včetně dobrého vidění ve tmě. Může se postupně měnit, což znamená, že si nemusíte všimnout malých změn svého zraku. Proto je důležité pravidelně si kontrolovat zrak. Zrak si můžete kontrolovat s pomocí našich vyšetření a následné konzultace s optikem, který provede kompletní vyšetření.</p>
 
       <div className="image-comparison-container" style={{ position: 'relative', width: '100%', height: '425px' }}>
-        <img src='src/assets/infoContrast1.jpg' style={{ position: 'absolute', width: '100%', height: '100%', zIndex: 1 }} alt="Normální vidění" />
-        <img src='src/assets/infoContrast2.jpg' style={{ position: 'absolute', width: '100%', height: '100%', clipPath: `inset(0 ${100 - dividerPosition}% 0 0)`, zIndex: 2 }} alt="Rozmazané vidění" />
+        <img src='./infoContrast1.jpg' style={{ position: 'absolute', width: '100%', height: '100%', zIndex: 1 }} alt="Normální vidění" />
+        <img src='./infoContrast2.jpg' style={{ position: 'absolute', width: '100%', height: '100%', clipPath: `inset(0 ${100 - dividerPosition}% 0 0)`, zIndex: 2 }} alt="Rozmazané vidění" />
         <div className="divider" style={{ position: 'absolute', left: `${dividerPosition}%`, top: 0, bottom: 0, width: '2px', background: '#FFF', cursor: 'ew-resize', zIndex: 3 }} onMouseDown={startDrag}>
           <div style={{ position: 'absolute', top: '50%', left: '-12px', width: '25px', height: '25px', background: '#FFF', borderRadius: '50%', transform: 'translateY(-50%)' }}></div>
     </div>
