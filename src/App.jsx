@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import './index.css'
 import InstructionsSharpTest from './components/instructionsSharpTest.jsx';
@@ -30,7 +30,7 @@ const App = () => {
         <Route path="/instrukce-test-astigmatismu" element={<InstructionsAstigmatismTest />} />
         <Route path="/instrukce-test-zorneho-pole" element={<InstructionsEyeFieldTest />} />
         <Route path="/instrukce-test-barevneho-videni" element={<InstructionsColorTest />} />
-        <Route path="/eye-test-deploy/vyber-testu" element={<TestSelection />} />
+        <Route path="/vyber-testu" element={<TestSelection />} />
         <Route path="/test-astigmatismu" element={<AstigmatismTest />} />
         <Route path="/test-barevneho-videni" element={<ColorTest />} />
         <Route path="/test-zorneho-pole" element={<EyeFieldTest />} />
@@ -52,7 +52,7 @@ const HomePage = () => {
       <img src='src\assets\logo-prvni-optika.jpg' width={200} height={150} alt="Logo"></img>
       <h1>Online oční test od První Optiky</h1>
       <button className='testBegin homePage' onClick={() => window.location.href='/instrukce-test-ostrosti'}>Zkontrolujte si svůj zrak</button>
-      <button className='selectTest homePage' onClick={() => window.location.href='/eye-test-deploy/vyber-testu'}>Nebo si vyberte určitý test</button>
+      <button className='selectTest homePage' onClick={() => window.location.href='/vyber-testu'}>Nebo si vyberte určitý test</button>
     </div>
   );
 }
