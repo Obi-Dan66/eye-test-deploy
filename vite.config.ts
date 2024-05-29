@@ -1,8 +1,12 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig, loadEnv, UserConfigExport, ConfigEnv } from 'vite';
+import react from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  base: "/eye-test-deploy/"
-})
+// Define the function with explicit types for parameters
+export default ({ mode }: ConfigEnv): UserConfigExport => {
+  const env = loadEnv(mode, process.cwd(), '');
+
+  return defineConfig({
+    plugins: [react()],
+    base: env.BASE_URL || '/',
+  });
+};
