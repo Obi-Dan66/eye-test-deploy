@@ -18,6 +18,8 @@ import InfoAstigmatismtest from './infoPages/infoAstigmatismtest.jsx';
 import InfoColortest from './infoPages/infoColortest.jsx';
 import InfoEyeFieldtest from './infoPages/infoEyeFieldtest.jsx';
 import InfoContrasttest from './infoPages/infoContrasttest.jsx';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const App = () => {
@@ -47,12 +49,14 @@ const App = () => {
 }
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
   return (
     <div className='home'>
       <img src='src\assets\logo-prvni-optika.jpg' width={200} height={150} alt="Logo"></img>
       <h1>Online oční test od První Optiky</h1>
-      <button className='testBegin homePage' onClick={() => window.location.href='/instrukce-test-ostrosti'}>Zkontrolujte si svůj zrak</button>
-      <button className='selectTest homePage' onClick={() => window.location.href='/vyber-testu'}>Nebo si vyberte určitý test</button>
+      <button className='testBegin homePage' onClick={() => navigate('/instrukce-test-ostrosti')}>Zkontrolujte si svůj zrak</button>
+      <button className='selectTest homePage' onClick={() => navigate('/vyber-testu')}>Nebo si vyberte určitý test</button>
     </div>
   );
 }
