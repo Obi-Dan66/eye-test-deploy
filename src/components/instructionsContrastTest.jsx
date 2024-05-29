@@ -108,7 +108,7 @@ const InstructionsSharpTest = () => {
         return (
             <div className='be-ready'>
               <div>
-              <img className= "eyeAndLenses" src="./imageCase3.svg`} width={200} height={200} alt="circle"></img>
+              <img className= "eyeAndLenses" src="./imageCase3.svg" width={200} height={200} alt="circle"></img>
               </div>
                 <h1><b>Budte připraveni.</b></h1>
                 <p>Nasadte si brýle nebo kontaktní čočky (pokud nějaké nosíte).</p>
@@ -135,7 +135,7 @@ const InstructionsSharpTest = () => {
           return (
               <div>
           <div>
-          <img className= "circle-image" src="./instructionscontrasttest.svg`} width={200} height={200} alt="circle"></img>
+          <img className= "circle-image" src="./instructionscontrasttest.svg" width={200} height={200} alt="circle"></img>
           </div>
                   <h1><b>Označte bod.</b></h1>
                   <p>Vidite horní kruh? Označte příslušný bod na spodním kruhu.</p>
