@@ -1,0 +1,6 @@
+react
+vite
+react-router-dom
+react-router
+react-dom
+@vitejs/plugin-react
