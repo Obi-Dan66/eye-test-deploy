@@ -7,13 +7,13 @@ The goal is to make similar Eye - testing app, in Czech Republic.
 ### You can check live here: https://obi-dan66.github.io/eye-test-deploy/
 
 This project is made by "npm create vite@latest --template react". 
-You can also see high use of  "case" for carousel like apperance.
+You can also see high use of "case" for carousel like apperance.
 The build and deployment proces is made by github workflow action, 
 described in deploy.yml.
 
 The project is currently deployed to github pages, however it is still in works.
 
-### Parts of project currently in development.
+### Parts of project currently in development:
 
 Set responsiveness rules.
 
