@@ -1,10 +1,13 @@
 // astigmTest.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const AstigmatismTest = () => {
   const [currentContent, setCurrentContent] = useState(0);
   const [correctAnswersCase0, setCorrectAnswersCase0] = useState(0);
   const [correctAnswersCase2, setCorrectAnswersCase2] = useState(0);
+  const navigate = useNavigate();
 
   const totalContents = 4;
 
@@ -107,6 +110,10 @@ const AstigmatismTest = () => {
             </div>
             </div>
           </div>
+          <div className='next_test_buttons'>
+      <button className='selectTest homePage' onClick={() => navigate('/instrukce-test-zorneho-pole')}>Pokračovat dalším testem</button>
+      <button className='selectTest homePage' onClick={() => navigate('/vyber-testu')}>Nebo si vyberte určitý test</button>
+      </div>
           <div className='result-map'>
           <img src="./resultMap.svg" alt="ResultMap" />
           <p><b>Vyhledejte optika společnosti Erste Optik ve své blízkosti.</b> Pro kompletní vyšetření zraku vždy vyhledejte profesionálního očního lékaře.</p>

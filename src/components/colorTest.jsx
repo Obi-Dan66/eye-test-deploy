@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const ColorTest = () => {
   const [currentContent, setCurrentContent] = useState(0);
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
   const [clickedButtonId, setClickedButtonId] = useState(null);
+  const navigate = useNavigate();
   
 
   const totalContents = 7;
@@ -164,6 +167,10 @@ const ColorTest = () => {
             </div>
             </div>
           </div>
+          <div className='next_test_buttons'>
+      <button className='selectTest homePage' onClick={() => navigate('/instrukce-test-astigmatismu')}>Pokračovat dalším testem</button>
+      <button className='selectTest homePage' onClick={() => navigate('/vyber-testu')}>Nebo si vyberte určitý test</button>
+      </div>
           <div className='result-map'>
           <img src="./resultMap.svg" alt="ResultMap" />
           <p><b>Vyhledejte optika společnosti Erste Optik ve své blízkosti.</b> Pro kompletní vyšetření zraku vždy vyhledejte profesionálního očního lékaře.</p>

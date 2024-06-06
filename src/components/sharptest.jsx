@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const SharpTest = () => {
   const [currentContent, setCurrentContent] = useState(0);
@@ -8,6 +10,7 @@ const SharpTest = () => {
   const totalCases = 20; // Adjust based on your actual cases
   const [showTick, setShowTick] = useState(false);
   const [iconType, setIconType] = useState(null);
+  const navigate = useNavigate();
 
   // Define correctButtonForCase here for simplicity
   const correctButtonForCase = {
@@ -256,6 +259,10 @@ switch (currentContent) {
           </div>
         </div>
         </div>
+      </div>
+      <div className='next_test_buttons'>
+      <button className='selectTest homePage' onClick={() => navigate('/instrukce-test-kontrastniho-videni')}>Pokračovat dalším testem</button>
+      <button className='selectTest homePage' onClick={() => navigate('/vyber-testu')}>Nebo si vyberte určitý test</button>
       </div>
       <div className='result-map'>
       <img src="./resultMap.svg" alt="ResultMap" />

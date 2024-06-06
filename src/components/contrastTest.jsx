@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const ContrastTest = () => {
   const [currentContent, setCurrentContent] = useState(0);
@@ -8,6 +10,7 @@ const ContrastTest = () => {
   const totalCases = 18; // Adjust based on your actual cases
   const [showTick, setShowTick] = useState(false);
   const [iconType, setIconType] = useState(null);
+  const navigate = useNavigate();
 
   // Define correctButtonForCase here for simplicity
   const correctButtonForCase = {
@@ -280,6 +283,10 @@ switch (currentContent) {
           </div>
           </div>
         </div>
+        <div className='next_test_buttons'>
+      <button className='selectTest homePage' onClick={() => navigate('/instrukce-test-barevneho-videni')}>Pokračovat dalším testem</button>
+      <button className='selectTest homePage' onClick={() => navigate('/vyber-testu')}>Nebo si vyberte určitý test</button>
+      </div>
         <div className='result-map'>
         <img src="./resultMap.svg" alt="ResultMap" />
         <p><b>Vyhledejte optika společnosti Erste Optik ve své blízkosti.</b> Pro kompletní vyšetření zraku vždy vyhledejte profesionálního očního lékaře.</p>

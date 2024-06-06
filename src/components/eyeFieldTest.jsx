@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const EyeFieldTest = () => {
   const [currentContent, setCurrentContent] = useState(0);
   const [correctAnswersRight, setCorrectAnswersRight] = useState(0);
   const [correctAnswersLeft, setCorrectAnswersLeft] = useState(0);
+  const navigate = useNavigate();
 
   const totalContents = 6;
 
@@ -143,6 +146,10 @@ const EyeFieldTest = () => {
               </div>
             </div>
             </div>
+          </div>
+          <div className='next_test_buttons'>
+          <button className='selectTest homePage' onClick={() => navigate('/vysledky-testu')}>Zobrazit výsledky testů</button>
+          <button className='selectTest homePage' onClick={() => navigate('/vyber-testu')}>Vyberte si jiný test</button>
           </div>
           <div className='result-map'>
           <img src="./resultMap.svg" alt="ResultMap" />
