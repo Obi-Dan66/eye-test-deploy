@@ -132,8 +132,8 @@ const ColorTest = () => {
       </div>
   </div>);
       case 6:
-        let imageUrl;
-        let resultText= "";
+        var imageUrl;
+        var resultText= "";
         if (correctAnswersCount === 6) {
           imageUrl = './greenface.svg';
           resultText = "Vaše barevné vidění se zdá být vynikající.";

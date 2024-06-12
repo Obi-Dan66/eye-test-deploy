@@ -1,14 +1,14 @@
 # React + Vite Eye-test App
 
-This project is ispired by https://visionscreening.zeiss.com/en-INT
+This project is inspired by https://visionscreening.zeiss.com/en-INT
 
 The goal is to make similar Eye - testing app, in Czech Republic.
 
 ### You can check live here: https://obi-dan66.github.io/eye-test-deploy/
 
-This project is made by "npm create vite@latest --template react". 
-You can also see high use of "case" for carousel like apperance.
-The build and deployment proces is made by github workflow action, 
+This project is made by "npm create vite@latest --template react".
+You can also see high use of "case" for carousel like appearance.
+The build and deployment process is made by github workflow action,
 described in deploy.yml.
 
 The project is currently deployed to github pages, however it is still in works.
@@ -42,13 +42,8 @@ Add an info icon that will have contact, faq and legal documents
 Add user administration for adding users in Google Map. This step also include adding payments solution,
 since the membership in map will have a small fee. Also includes setting up automation with Google Map.
 
-
-
-
-
-
-
 Initial info:
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -68,12 +63,12 @@ If you are developing a production application, we recommend updating the config
 export default {
   // other rules...
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: ["./tsconfig.json", "./tsconfig.node.json"],
     tsconfigRootDir: __dirname,
   },
-}
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
