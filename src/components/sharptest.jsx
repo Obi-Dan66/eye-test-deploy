@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SharpTest = () => {
+  const navigate = useNavigate();
   const [currentContent, setCurrentContent] = useState(0);
   const [clickedButton, setClickedButton] = useState(null);
   const [correctAnswersRange1, setCorrectAnswersRange1] = useState(0); // For cases 0-7
   const [correctAnswersRange2, setCorrectAnswersRange2] = useState(0); // For cases 9-16
   const totalCases = 20; // Adjust based on your actual cases
-  const [showTick, setShowTick] = useState(false);
+  const [, setShowTick] = useState(false);
   const [iconType, setIconType] = useState(null);
-  const navigate = useNavigate();
 
   // Define correctButtonForCase here for simplicity
   const correctButtonForCase = {
@@ -279,8 +279,6 @@ const SharpTest = () => {
         </div>
       );
     };
-
-    const transformStyle = transformStyles[currentContent] || "scale(1)";
 
     switch (currentContent) {
       case 0:

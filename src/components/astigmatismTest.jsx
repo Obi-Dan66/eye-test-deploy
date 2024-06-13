@@ -7,7 +7,6 @@ const AstigmatismTest = () => {
   const [correctAnswersCase0, setCorrectAnswersCase0] = useState(0);
   const [correctAnswersCase2, setCorrectAnswersCase2] = useState(0);
   const navigate = useNavigate();
-
   const totalContents = 4;
 
   const handleClick = (isCorrect, caseNumber) => {
@@ -212,7 +211,7 @@ const AstigmatismTest = () => {
           <div>
             <div className="eyes-result-container">
               <h1>
-                <b>Výsledek testu zorného pole</b>
+                <b>Výsledek testu astigmatismu</b>
               </h1>
               <p>{resultText}</p>
               <div className="eyes-result">

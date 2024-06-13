@@ -6,7 +6,6 @@ const EyeFieldTest = () => {
   const [correctAnswersRight, setCorrectAnswersRight] = useState(0);
   const [correctAnswersLeft, setCorrectAnswersLeft] = useState(0);
   const navigate = useNavigate();
-
   const totalContents = 6;
 
   const handleClick = (isCorrect, caseNumber) => {
@@ -315,6 +314,7 @@ const EyeFieldTest = () => {
           imageUrl2 = "./redface.svg";
           resultText = "Zorné pole vašich obou očí se zdá být omezené.";
         }
+
         return (
           <div>
             <div className="eyes-result-container">

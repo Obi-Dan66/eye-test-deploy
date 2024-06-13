@@ -1,25 +1,16 @@
-import React from 'react';
+import React from "react";
+import { useSelector } from "react-redux";
 
-const TestResults = ({ imageUrl1, imageUrl2, resultText }) => {
+const TestResults = () => {
+  const testResults = useSelector((state) => state.testResults);
+
   return (
-    <div className='eyes-result-container'>
-      <h1><b>Výsledek testu zrakové ostrosti</b></h1>
-      <p>{resultText}</p>
-      <div className='eyes-result'>
-        <div className='eyes-result-images'>
-          <div className='eyes-result-left'>
-            <img src={imageUrl1} alt="ResultLeft" />
-          </div>
-          <div className="eyes-result-right">
-            <img src={imageUrl2} alt="ResultRight" />
-          </div>
-        </div>
-        <div className='resultDescriptionLeft'>
-          <p>Levé</p>
-          <div className='resultDescriptionRight'>
-            <p>Pravé</p>
-          </div>
-        </div>
+    <div>
+      <h2>{testResults.testName}</h2>
+      <p>Result Text: {testResults.resultText}</p>
+      <div>
+        <img src={testResults.imageUrl1} alt="Result Image 1" />
+        <img src={testResults.imageUrl2} alt="Result Image 2" />
       </div>
     </div>
   );

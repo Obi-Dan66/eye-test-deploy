@@ -7,7 +7,7 @@ const ContrastTest = () => {
   const [correctAnswersRange1, setCorrectAnswersRange1] = useState(0); // For cases 0-7
   const [correctAnswersRange2, setCorrectAnswersRange2] = useState(0); // For cases 9-16
   const totalCases = 18; // Adjust based on your actual cases
-  const [showTick, setShowTick] = useState(false);
+  const [, setShowTick] = useState(false);
   const [iconType, setIconType] = useState(null);
   const navigate = useNavigate();
 
@@ -310,11 +310,6 @@ const ContrastTest = () => {
       );
     };
 
-    const transformStyle1 = transformStyles[currentContent] || "rotate(0deg)";
-    const colorStyle1 = colorStyles[currentContent] || "rgba(0, 0, 0, 1)";
-    const transformStyle2 = transformStyles[currentContent] || "rotate(0deg)";
-    const colorStyle2 = colorStyles[currentContent] || "rgba(0, 0, 0, 1)";
-
     switch (currentContent) {
       case 0:
       case 1:
@@ -485,7 +480,7 @@ const ContrastTest = () => {
           <div>
             <div className="eyes-result-container">
               <h1>
-                <b>Výsledek testu zorného pole</b>
+                <b>"Výsledek testu kontrastního vidění</b>
               </h1>
               <p>{resultText}</p>
               <div className="eyes-result">

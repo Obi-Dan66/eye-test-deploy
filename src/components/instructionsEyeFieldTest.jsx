@@ -6,7 +6,7 @@ const InstructionsEyeFieldTest = () => {
 
   const [currentContent, setCurrentContent] = useState(0);
   const [sliderValue, setSliderValue] = useState(50); // Define sliderValue here
-  const [sliderChanged, setSliderChanged] = useState(false);
+  const [, setSliderChanged] = useState(false);
 
   const totalContents = 7;
 
