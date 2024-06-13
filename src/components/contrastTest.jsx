@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setTestResult } from "../store/testResultSlice.js"; // Adjust the import path as needed
 
 const ContrastTest = () => {
   const [currentContent, setCurrentContent] = useState(0);
@@ -10,6 +12,8 @@ const ContrastTest = () => {
   const [, setShowTick] = useState(false);
   const [iconType, setIconType] = useState(null);
   const navigate = useNavigate();
+  const isTestComplete = currentContent === totalCases - 1;
+  const dispatch = useDispatch();
 
   // Define correctButtonForCase here for simplicity
   const correctButtonForCase = {
@@ -427,53 +431,70 @@ const ContrastTest = () => {
         );
       }
       case 17:
-        var imageUrl1, imageUrl2, resultText;
+        var imageUrlContrastTest1,
+          imageUrlContrastTest2,
+          resultTextContrastTest;
 
-        // Determine imageUrl2 based on correctAnswersRange1
+        // Determine imageUrlContrastTest2 based on correctAnswersRange1
         if (correctAnswersRange1 >= 7) {
-          imageUrl2 = "./greenface.svg";
+          imageUrlContrastTest2 = "./greenface.svg";
         } else if (correctAnswersRange1 >= 5 && correctAnswersRange1 <= 6) {
-          imageUrl2 = "./yellowface.svg";
+          imageUrlContrastTest2 = "./yellowface.svg";
         } else {
-          imageUrl2 = "./redface.svg";
+          imageUrlContrastTest2 = "./redface.svg";
         }
 
-        // Determine imageUrl1 based on correctAnswersRange2
+        // Determine imageUrlContrastTest1 based on correctAnswersRange2
         if (correctAnswersRange2 >= 7) {
-          imageUrl1 = "./greenface.svg";
+          imageUrlContrastTest1 = "./greenface.svg";
         } else if (correctAnswersRange2 >= 5 && correctAnswersRange1 <= 6) {
-          imageUrl1 = "./yellowface.svg";
+          imageUrlContrastTest1 = "./yellowface.svg";
         } else {
-          imageUrl1 = "./redface.svg";
+          imageUrlContrastTest1 = "./redface.svg";
         }
 
-        // Determine resultText based on the combination of imageUrl1 and imageUrl2
+        // Determine resultTextContrastTest based on the combination of imageUrlContrastTest1 and imageUrlContrastTest2
         if (
-          imageUrl1 === "./greenface.svg" &&
-          imageUrl2 === "./greenface.svg"
+          imageUrlContrastTest1 === "./greenface.svg" &&
+          imageUrlContrastTest2 === "./greenface.svg"
         ) {
-          resultText = "Vaše kontrastní vidění obou očí se zdá být vynikající."; // Both are green
+          resultTextContrastTest =
+            "Vaše kontrastní vidění obou očí se zdá být vynikající."; // Both are green
         } else if (
-          imageUrl1 === "./redface.svg" &&
-          imageUrl2 === "./redface.svg"
+          imageUrlContrastTest1 === "./redface.svg" &&
+          imageUrlContrastTest2 === "./redface.svg"
         ) {
-          resultText = "Vaše kontrastní vidění obou očí se zdá být omezené."; // Both are red
+          resultTextContrastTest =
+            "Vaše kontrastní vidění obou očí se zdá být omezené."; // Both are red
         } else if (
-          imageUrl1 === "./yellowface.svg" &&
-          imageUrl2 === "./yellowface.svg"
+          imageUrlContrastTest1 === "./yellowface.svg" &&
+          imageUrlContrastTest2 === "./yellowface.svg"
         ) {
-          resultText = "Vaše kontrastní vidění obou očí se zdá být v pořádku."; // Both are yellow
+          resultTextContrastTest =
+            "Vaše kontrastní vidění obou očí se zdá být v pořádku."; // Both are yellow
         } else if (
-          imageUrl1 === "./redface.svg" ||
-          imageUrl2 === "./redface.svg"
+          imageUrlContrastTest1 === "./redface.svg" ||
+          imageUrlContrastTest2 === "./redface.svg"
         ) {
-          resultText = "Vaše kontrastní vidění jednoho oka se zdá být omezené."; // At least one is red
+          resultTextContrastTest =
+            "Vaše kontrastní vidění jednoho oka se zdá být omezené."; // At least one is red
         } else if (
-          imageUrl1 === "./yellowface.svg" ||
-          imageUrl2 === "./yellowface.svg"
+          imageUrlContrastTest1 === "./yellowface.svg" ||
+          imageUrlContrastTest2 === "./yellowface.svg"
         ) {
-          resultText =
+          resultTextContrastTest =
             "Vaše kontrastní vidění jednoho oka se zdá být v pořádku."; // At least one is yellow
+        }
+
+        if (isTestComplete) {
+          dispatch(
+            setTestResult({
+              testNameContrastTest: "Test kontrastního vidění",
+              resultTextContrastTest: resultTextContrastTest,
+              imageUrlContrastTest1: imageUrlContrastTest1,
+              imageUrlContrastTest2: imageUrlContrastTest2,
+            })
+          );
         }
 
         return (
@@ -482,14 +503,14 @@ const ContrastTest = () => {
               <h1>
                 <b>"Výsledek testu kontrastního vidění</b>
               </h1>
-              <p>{resultText}</p>
+              <p>{resultTextContrastTest}</p>
               <div className="eyes-result">
                 <div className="eyes-result-images">
                   <div className="eyes-result-left">
-                    <img src={imageUrl1} alt="ResultLeft" />
+                    <img src={imageUrlContrastTest1} alt="ResultLeft" />
                   </div>
                   <div className="eyes-result-right">
-                    <img src={imageUrl2} alt="ResultRight" />
+                    <img src={imageUrlContrastTest2} alt="ResultRight" />
                   </div>
                 </div>
                 <div className="resultDescriptionLeft">

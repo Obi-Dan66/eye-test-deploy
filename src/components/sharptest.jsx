@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setTestResult } from "../store/testResultSlice.js"; // Adjust the import path as needed
 
 const SharpTest = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [currentContent, setCurrentContent] = useState(0);
   const [clickedButton, setClickedButton] = useState(null);
@@ -10,6 +13,7 @@ const SharpTest = () => {
   const totalCases = 20; // Adjust based on your actual cases
   const [, setShowTick] = useState(false);
   const [iconType, setIconType] = useState(null);
+  const isTestComplete = currentContent === totalCases - 1;
 
   // Define correctButtonForCase here for simplicity
   const correctButtonForCase = {
@@ -386,52 +390,68 @@ const SharpTest = () => {
         return renderSvgContainer2(clickedButton, handleClick, transformStyle2);
       }
       case 19:
-        var imageUrl1, imageUrl2, resultText;
+        var imageUrlSharpTest1, imageUrlSharpTest2, resultTextSharpTest;
 
-        // Determine imageUrl2 based on correctAnswersRange1
+        // Determine imageUrlSharpTest2 based on correctAnswersRange1
         if (correctAnswersRange1 >= 8) {
-          imageUrl2 = "./greenface.svg";
+          imageUrlSharpTest2 = "./greenface.svg";
         } else if (correctAnswersRange1 >= 6 && correctAnswersRange1 <= 7) {
-          imageUrl2 = "./yellowface.svg";
+          imageUrlSharpTest2 = "./yellowface.svg";
         } else {
-          imageUrl2 = "./redface.svg";
+          imageUrlSharpTest2 = "./redface.svg";
         }
 
-        // Determine imageUrl1 based on correctAnswersRange2
+        // Determine imageUrlSharpTest1 based on correctAnswersRange2
         if (correctAnswersRange2 >= 8) {
-          imageUrl1 = "./greenface.svg";
+          imageUrlSharpTest1 = "./greenface.svg";
         } else if (correctAnswersRange2 >= 6 && correctAnswersRange1 <= 7) {
-          imageUrl1 = "./yellowface.svg";
+          imageUrlSharpTest1 = "./yellowface.svg";
         } else {
-          imageUrl1 = "./redface.svg";
+          imageUrlSharpTest1 = "./redface.svg";
         }
 
-        // Determine resultText based on the combination of imageUrl1 and imageUrl2
+        // Determine resultTextSharpTest based on the combination of imageUrlSharpTest1 and imageUrlSharpTest2
         if (
-          imageUrl1 === "./greenface.svg" &&
-          imageUrl2 === "./greenface.svg"
+          imageUrlSharpTest1 === "./greenface.svg" &&
+          imageUrlSharpTest2 === "./greenface.svg"
         ) {
-          resultText = "Vaše zraková ostrost obou očí se zdá být vynikající."; // Both are green
+          resultTextSharpTest =
+            "Vaše zraková ostrost obou očí se zdá být vynikající."; // Both are green
         } else if (
-          imageUrl1 === "./redface.svg" &&
-          imageUrl2 === "./redface.svg"
+          imageUrlSharpTest1 === "./redface.svg" &&
+          imageUrlSharpTest2 === "./redface.svg"
         ) {
-          resultText = "Vaše zraková ostrost obou očí se zdá být omezená."; // Both are red
+          resultTextSharpTest =
+            "Vaše zraková ostrost obou očí se zdá být omezená."; // Both are red
         } else if (
-          imageUrl1 === "./yellowface.svg" &&
-          imageUrl2 === "./yellowface.svg"
+          imageUrlSharpTest1 === "./yellowface.svg" &&
+          imageUrlSharpTest2 === "./yellowface.svg"
         ) {
-          resultText = "Vaše zraková ostrost obou očí se zdá být v pořádku."; // Both are yellow
+          resultTextSharpTest =
+            "Vaše zraková ostrost obou očí se zdá být v pořádku."; // Both are yellow
         } else if (
-          imageUrl1 === "./redface.svg" ||
-          imageUrl2 === "./redface.svg"
+          imageUrlSharpTest1 === "./redface.svg" ||
+          imageUrlSharpTest2 === "./redface.svg"
         ) {
-          resultText = "Vaše zraková ostrost jednoho oka se zdá být omezená."; // At least one is red
+          resultTextSharpTest =
+            "Vaše zraková ostrost jednoho oka se zdá být omezená."; // At least one is red
         } else if (
-          imageUrl1 === "./yellowface.svg" ||
-          imageUrl2 === "./yellowface.svg"
+          imageUrlSharpTest1 === "./yellowface.svg" ||
+          imageUrlSharpTest2 === "./yellowface.svg"
         ) {
-          resultText = "Vaše zraková ostrost jednoho oka se zdá být v pořádku."; // At least one is yellow
+          resultTextSharpTest =
+            "Vaše zraková ostrost jednoho oka se zdá být v pořádku."; // At least one is yellow
+        }
+
+        if (isTestComplete) {
+          dispatch(
+            setTestResult({
+              testNameSharpTest: "Test zrakové ostrosti",
+              resultTextSharpTest: resultTextSharpTest,
+              imageUrlSharpTest1: imageUrlSharpTest1,
+              imageUrlSharpTest2: imageUrlSharpTest2,
+            })
+          );
         }
 
         return (
@@ -440,14 +460,14 @@ const SharpTest = () => {
               <h1>
                 <b>Výsledek testu zrakové ostrosti</b>
               </h1>
-              <p>{resultText}</p>
+              <p>{resultTextSharpTest}</p>
               <div className="eyes-result">
                 <div className="eyes-result-images">
                   <div className="eyes-result-left">
-                    <img src={imageUrl1} alt="ResultLeft" />
+                    <img src={imageUrlSharpTest1} alt="ResultLeft" />
                   </div>
                   <div className="eyes-result-right">
-                    <img src={imageUrl2} alt="ResultRight" />
+                    <img src={imageUrlSharpTest2} alt="ResultRight" />
                   </div>
                 </div>
                 <div className="resultDescriptionLeft">

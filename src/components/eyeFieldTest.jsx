@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setTestResult } from "../store/testResultSlice.js";
 
 const EyeFieldTest = () => {
   const [currentContent, setCurrentContent] = useState(0);
@@ -7,6 +9,8 @@ const EyeFieldTest = () => {
   const [correctAnswersLeft, setCorrectAnswersLeft] = useState(0);
   const navigate = useNavigate();
   const totalContents = 6;
+  const isTestComplete = currentContent === totalContents - 1;
+  const dispatch = useDispatch();
 
   const handleClick = (isCorrect, caseNumber) => {
     // Increment correct answers count if the answer is correct
@@ -294,25 +298,41 @@ const EyeFieldTest = () => {
           </div>
         );
       case 5:
-        var imageUrl1;
-        var imageUrl2;
-        var resultText = "";
+        var imageUrlEyeFieldTest1,
+          imageUrlEyeFieldTest2,
+          resultTextEyeFieldTest;
+
         if (correctAnswersRight === 2 && correctAnswersLeft === 2) {
-          imageUrl1 = "./greenface.svg";
-          imageUrl2 = "./greenface.svg";
-          resultText = "Zorné pole vašich obou očí se zdá být vynikající.";
+          imageUrlEyeFieldTest1 = "./greenface.svg";
+          imageUrlEyeFieldTest2 = "./greenface.svg";
+          resultTextEyeFieldTest =
+            "Zorné pole vašich obou očí se zdá být vynikající.";
         } else if (correctAnswersRight < 2 && correctAnswersLeft === 2) {
-          imageUrl1 = "./greenface.svg";
-          imageUrl2 = "./redface.svg";
-          resultText = "Zorné pole vašeho jednoho oka se zdá být omezené.";
+          imageUrlEyeFieldTest1 = "./greenface.svg";
+          imageUrlEyeFieldTest2 = "./redface.svg";
+          resultTextEyeFieldTest =
+            "Zorné pole vašeho jednoho oka se zdá být omezené.";
         } else if (correctAnswersRight === 2 && correctAnswersLeft < 2) {
-          imageUrl1 = "./redface.svg";
-          imageUrl2 = "./greenface.svg";
-          resultText = "Zorné pole vašeho jednoho oka se zdá být omezené.";
+          imageUrlEyeFieldTest1 = "./redface.svg";
+          imageUrlEyeFieldTest2 = "./greenface.svg";
+          resultTextEyeFieldTest =
+            "Zorné pole vašeho jednoho oka se zdá být omezené.";
         } else {
-          imageUrl1 = "./redface.svg";
-          imageUrl2 = "./redface.svg";
-          resultText = "Zorné pole vašich obou očí se zdá být omezené.";
+          imageUrlEyeFieldTest1 = "./redface.svg";
+          imageUrlEyeFieldTest2 = "./redface.svg";
+          resultTextEyeFieldTest =
+            "Zorné pole vašich obou očí se zdá být omezené.";
+        }
+
+        if (isTestComplete) {
+          dispatch(
+            setTestResult({
+              testNameEyeFieldTest: "Test zorného pole",
+              resultTextEyeFieldTest: resultTextEyeFieldTest,
+              imageUrlEyeFieldTest1: imageUrlEyeFieldTest1,
+              imageUrlEyeFieldTest2: imageUrlEyeFieldTest2,
+            })
+          );
         }
 
         return (
@@ -321,14 +341,14 @@ const EyeFieldTest = () => {
               <h1>
                 <b>Výsledek testu zorného pole</b>
               </h1>
-              <p>{resultText}</p>
+              <p>{resultTextEyeFieldTest}</p>
               <div className="eyes-result">
                 <div className="eyes-result-images">
                   <div className="eyes-result-left">
-                    <img src={imageUrl1} alt="ResultLeft" />
+                    <img src={imageUrlEyeFieldTest1} alt="ResultLeft" />
                   </div>
                   <div className="eyes-result-right">
-                    <img src={imageUrl2} alt="ResultRight" />
+                    <img src={imageUrlEyeFieldTest2} alt="ResultRight" />
                   </div>
                 </div>
                 <div className="resultDescriptionLeft">

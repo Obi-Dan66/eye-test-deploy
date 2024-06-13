@@ -7,19 +7,19 @@
   background-color: #ecf0f4;
 }
 
-.test-selection-container{
+.test-selection-container {
   display: block;
   justify-content: center;
   align-items: center;
 }
 
 .test-selection {
-background-color: white;
-margin: auto;
-margin-top: 20px;
-border-radius: 30px;
-width: 25%;
-padding: 15px;
+  background-color: white;
+  margin: auto;
+  margin-top: 20px;
+  border-radius: 30px;
+  width: 25%;
+  padding: 15px;
 }
 
 .test-selection button {
@@ -34,17 +34,18 @@ h2 {
   color: #000000;
 }
 
-html,body {
+html,
+body {
   background-color: #ecf0f4;
   /*background-color: grey; */
   border-radius: 10px;
   margin: 0;
 }
 
-.consent{
+.consent {
   margin: auto;
   width: 50%;
-  text-align:left;
+  text-align: left;
 }
 
 .consent h1 {
@@ -61,21 +62,21 @@ html,body {
 }
 
 .consent button:hover {
-  background-color:#002ead;
+  background-color: #002ead;
   transition: 0.7s;
   color: white;
 }
 
-.home{
+.home {
   margin-top: 10%;
 }
 
-.homePage{
-width: 50%;
-margin: auto;
+.homePage {
+  width: 50%;
+  margin: auto;
 }
 
-.homePage{
+.homePage {
   width: 200px;
   height: 50px;
   display: inline-flex;
@@ -90,7 +91,6 @@ h1 {
   color: black;
 }
 
-
 p {
   display: block; /* Ensure the <p> tag is displayed as a block element */
   margin: 10px 0; /* Add margin for spacing */
@@ -99,7 +99,7 @@ p {
 }
 
 #pg {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: 12px;
 }
 
@@ -112,8 +112,8 @@ p {
   margin-right: 5px;
 }
 
-.defaultButton:hover{
-  background-color:#002ead;
+.defaultButton:hover {
+  background-color: #002ead;
   transition: 0.7s;
 }
 
@@ -123,11 +123,10 @@ p {
   border-width: 0px;
   border-radius: 5px;
   margin-right: 5px;
-  
 }
- 
+
 .testBegin:hover {
-  background-color:#002ead;
+  background-color: #002ead;
   transition: 0.7s;
 }
 
@@ -140,24 +139,24 @@ p {
 }
 
 .selectTest:hover {
-  background-color:#002ead;
+  background-color: #002ead;
   transition: 0.7s;
 }
 
 .sharp {
-    height: 80px;
-    width: 100px;
-    clip-path: polygon(16.5% 50%, 83.5% 50%, 100% 0, 0 0);
-    transform-origin: 0 0;
-    background-color: black;
-    padding-bottom: 40px;
+  height: 80px;
+  width: 100px;
+  clip-path: polygon(16.5% 50%, 83.5% 50%, 100% 0, 0 0);
+  transform-origin: 0 0;
+  background-color: black;
+  padding-bottom: 40px;
 }
 
 .sharpButtonsDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
 }
 
 .circle1 {
@@ -200,13 +199,16 @@ p {
 }
 
 @keyframes move {
-  0%, 20% {
+  0%,
+  20% {
     transform: translateY(0);
   }
-  40%, 60% {
+  40%,
+  60% {
     transform: translateY(-40px);
   }
-  80%, 100% {
+  80%,
+  100% {
     transform: translateY(0);
   }
 }
@@ -217,13 +219,16 @@ p {
 }
 
 @keyframes move {
-  0%, 20% {
+  0%,
+  20% {
     transform: translateY(0);
   }
-  40%, 60% {
+  40%,
+  60% {
     transform: translateY(-40px);
   }
-  80%, 100% {
+  80%,
+  100% {
     transform: translateY(0);
   }
 }
@@ -285,27 +290,26 @@ p {
   height: 30vh; /* Set the height to 100% of the viewport height */
 }
 
-
-
 /* colorTest */
 .colorTestBtn {
   align-items: center;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
   box-sizing: border-box;
   color: rgba(0, 0, 0, 0.85);
   cursor: pointer;
   display: inline-flex;
-  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
   font-size: 16px;
   font-weight: 600;
   justify-content: center;
   line-height: 1.25;
   margin-left: 5px;
   min-height: 3rem;
-  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
   margin-top: 30px;
   position: relative;
   text-decoration: none;
@@ -329,7 +333,7 @@ p {
 }
 
 .colorTestBtn:active {
-  background-color: #F0F0F1;
+  background-color: #f0f0f1;
   border-color: rgba(0, 0, 0, 0.15);
   box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
   color: rgba(0, 0, 0, 0.65);
@@ -337,7 +341,7 @@ p {
 }
 
 .colorTestCard {
-  background-color: #F0F0F1;
+  background-color: #f0f0f1;
   border-radius: 30px;
   padding: 20px;
   margin: auto;
@@ -348,17 +352,17 @@ p {
   margin-top: 30px;
 }
 
-.media-space-container{
+.media-space-container {
   margin: auto;
   width: 40%;
-  text-align:center;
+  text-align: center;
 }
 
 .media-space-container h1 {
   font-size: 2rem;
 }
 
-.card-container-wrapper{
+.card-container-wrapper {
   margin: auto;
   width: 50%;
   margin-top: 100px;
@@ -387,7 +391,7 @@ p {
 }
 
 .slider-no-change-button:hover {
-  background-color:#002ead;
+  background-color: #002ead;
   transition: 0.7s;
   color: white;
 }
@@ -411,7 +415,7 @@ p {
   height: 100px;
 }
 
-.be-ready-svgs :nth-child(2){
+.be-ready-svgs :nth-child(2) {
   width: auto;
   height: 100px;
 }
@@ -421,12 +425,12 @@ svg path:hover {
   cursor: pointer; /* Change cursor to indicate clickable area */
 }
 
-.eyes-result-container{
-background-color: white;
-border-radius: 30px;
-margin: auto;
-width: 50%;
-padding: 10px;
+.eyes-result-container {
+  background-color: white;
+  border-radius: 30px;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
 }
 
 .eyes-result {
@@ -442,7 +446,7 @@ padding: 10px;
   margin-right: 10px;
 }
 
-.eyes-result-right  {
+.eyes-result-right {
   margin-left: 10px;
 }
 
@@ -464,14 +468,14 @@ padding: 10px;
   margin: auto;
   width: 50%;
   margin-top: 80px;
-  padding:10px;
+  padding: 10px;
 }
 
 .result-map button {
   margin-top: 10px;
 }
 
-.test-info-page{
+.test-info-page {
   display: block;
   margin: auto;
   width: 50%;
@@ -503,9 +507,8 @@ padding: 10px;
   }
 }
 
-
 .correct::after {
-  content: '\2714'; /* Unicode for checkmark symbol */
+  content: "\2714"; /* Unicode for checkmark symbol */
   color: green; /* Color of the checkmark */
   font-size: 1.2em; /* Adjust size as needed */
   display: inline-block;
@@ -523,7 +526,7 @@ padding: 10px;
 }
 
 .wrong::after {
-  content: '\2717'; /* Unicode for cross symbol */
+  content: "\2717"; /* Unicode for cross symbol */
   color: red; /* Color of the cross */
   font-size: 1.2em; /* Adjust size as needed */
   display: inline-block;
@@ -540,6 +543,22 @@ padding: 10px;
   }
 }
 
-.next_test_buttons{
+.next_test_buttons {
   margin-top: 70px;
+}
+
+.contrasttest-result-container {
+  margin-top: 50px;
+}
+
+.colortest-result-container {
+  margin-top: 50px;
+}
+
+.astigmatismtest-result-container {
+  margin-top: 50px;
+}
+
+.eyefieldtest-result-container {
+  margin-top: 50px;
 }

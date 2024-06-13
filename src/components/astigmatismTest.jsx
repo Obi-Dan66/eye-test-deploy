@@ -1,6 +1,8 @@
 // astigmTest.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setTestResult } from "../store/testResultSlice.js";
 
 const AstigmatismTest = () => {
   const [currentContent, setCurrentContent] = useState(0);
@@ -8,6 +10,8 @@ const AstigmatismTest = () => {
   const [correctAnswersCase2, setCorrectAnswersCase2] = useState(0);
   const navigate = useNavigate();
   const totalContents = 4;
+  const isTestComplete = currentContent === totalContents - 1;
+  const dispatch = useDispatch();
 
   const handleClick = (isCorrect, caseNumber) => {
     // Increment correct answers count if the answer is correct
@@ -186,25 +190,41 @@ const AstigmatismTest = () => {
           </div>
         );
       case 3:
-        var imageUrl1;
-        var imageUrl2;
-        var resultText = "";
+        var imageUrlAstigmatismTest1,
+          imageUrlAstigmatismTest2,
+          resultTextAstigmatismTest;
+
         if (correctAnswersCase0 === 1 && correctAnswersCase2 === 1) {
-          imageUrl1 = "./greenface.svg";
-          imageUrl2 = "./greenface.svg";
-          resultText = "Zdá se, že nevykazujete příznaky astigmatismu.";
+          imageUrlAstigmatismTest1 = "./greenface.svg";
+          imageUrlAstigmatismTest2 = "./greenface.svg";
+          resultTextAstigmatismTest =
+            "Zdá se, že nevykazujete příznaky astigmatismu.";
         } else if (correctAnswersCase0 === 0 && correctAnswersCase2 === 1) {
-          imageUrl1 = "./greenface.svg";
-          imageUrl2 = "./redface.svg";
-          resultText = "Zdá se, že rozdíly mezi řádky vidíte jedním okem.";
+          imageUrlAstigmatismTest1 = "./greenface.svg";
+          imageUrlAstigmatismTest2 = "./redface.svg";
+          resultTextAstigmatismTest =
+            "Zdá se, že rozdíly mezi řádky vidíte jedním okem.";
         } else if (correctAnswersCase0 === 1 && correctAnswersCase2 === 0) {
-          imageUrl1 = "./redface.svg";
-          imageUrl2 = "./greenface.svg";
-          resultText = "Zdá se, že rozdíly mezi řádky vidíte jedním okem.";
+          imageUrlAstigmatismTest1 = "./redface.svg";
+          imageUrlAstigmatismTest2 = "./greenface.svg";
+          resultTextAstigmatismTest =
+            "Zdá se, že rozdíly mezi řádky vidíte jedním okem.";
         } else {
-          imageUrl1 = "./redface.svg";
-          imageUrl2 = "./redface.svg";
-          resultText = "Zdá se, že rozdíly mezi řádky vidíte oběma očima.";
+          imageUrlAstigmatismTest1 = "./redface.svg";
+          imageUrlAstigmatismTest2 = "./redface.svg";
+          resultTextAstigmatismTest =
+            "Zdá se, že rozdíly mezi řádky vidíte oběma očima.";
+        }
+
+        if (isTestComplete) {
+          dispatch(
+            setTestResult({
+              testNameAstigmatismTest: "Test astigmatismu",
+              resultTextAstigmatismTest: resultTextAstigmatismTest,
+              imageUrlAstigmatismTest1: imageUrlAstigmatismTest1,
+              imageUrlAstigmatismTest2: imageUrlAstigmatismTest2,
+            })
+          );
         }
 
         return (
@@ -213,14 +233,14 @@ const AstigmatismTest = () => {
               <h1>
                 <b>Výsledek testu astigmatismu</b>
               </h1>
-              <p>{resultText}</p>
+              <p>{resultTextAstigmatismTest}</p>
               <div className="eyes-result">
                 <div className="eyes-result-images">
                   <div className="eyes-result-left">
-                    <img src={imageUrl1} alt="ResultLeft" />
+                    <img src={imageUrlAstigmatismTest1} alt="ResultLeft" />
                   </div>
                   <div className="eyes-result-right">
-                    <img src={imageUrl2} alt="ResultRight" />
+                    <img src={imageUrlAstigmatismTest2} alt="ResultRight" />
                   </div>
                 </div>
                 <div className="resultDescriptionLeft">

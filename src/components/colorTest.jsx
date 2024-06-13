@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setTestResult } from "../store/testResultSlice.js";
 
 const ColorTest = () => {
   const [currentContent, setCurrentContent] = useState(0);
@@ -7,6 +9,8 @@ const ColorTest = () => {
   const [clickedButtonId, setClickedButtonId] = useState(null);
   const navigate = useNavigate();
   const totalContents = 7;
+  const isTestComplete = currentContent === totalContents - 1;
+  const dispatch = useDispatch();
 
   const handleClick = (buttonId, isCorrect) => {
     setClickedButtonId(buttonId);
@@ -305,21 +309,31 @@ const ColorTest = () => {
           </div>
         );
       case 6:
-        var imageUrl1;
-        var imageUrl2;
-        var resultText = "";
+        var imageUrlColorTest1, imageUrlColorTest2, resultTextColorTest;
+
         if (correctAnswersCount === 6) {
-          imageUrl1 = "./greenface.svg";
-          imageUrl2 = "./greenface.svg";
-          resultText = "Vaše barevné vidění se zdá být vynikající.";
+          imageUrlColorTest1 = "./greenface.svg";
+          imageUrlColorTest2 = "./greenface.svg";
+          resultTextColorTest = "Vaše barevné vidění se zdá být vynikající.";
         } else if (correctAnswersCount === 4 || correctAnswersCount === 5) {
-          imageUrl1 = "./yellowface.svg";
-          imageUrl2 = "./yellowface.svg";
-          resultText = "Vaše barevné vidění se zdá být v pořádku.";
+          imageUrlColorTest1 = "./yellowface.svg";
+          imageUrlColorTest2 = "./yellowface.svg";
+          resultTextColorTest = "Vaše barevné vidění se zdá být v pořádku.";
         } else {
-          imageUrl1 = "./redface.svg";
-          imageUrl2 = "./redface.svg";
-          resultText = "Vaše barevné vidění se zdá být omezené.";
+          imageUrlColorTest1 = "./redface.svg";
+          imageUrlColorTest2 = "./redface.svg";
+          resultTextColorTest = "Vaše barevné vidění se zdá být omezené.";
+        }
+
+        if (isTestComplete) {
+          dispatch(
+            setTestResult({
+              testNameColorTest: "Test barevného vidění",
+              resultTextColorTest: resultTextColorTest,
+              imageUrlColorTest1: imageUrlColorTest1,
+              imageUrlColorTest2: imageUrlColorTest2,
+            })
+          );
         }
 
         return (
@@ -328,14 +342,14 @@ const ColorTest = () => {
               <h1>
                 <b>Výsledek testu barevného vidění</b>
               </h1>
-              <p>{resultText}</p>
+              <p>{resultTextColorTest}</p>
               <div className="eyes-result">
                 <div className="eyes-result-images">
                   <div className="eyes-result-left">
-                    <img src={imageUrl1} alt="ResultLeft" />
+                    <img src={imageUrlColorTest1} alt="ResultLeft" />
                   </div>
                   <div className="eyes-result-right">
-                    <img src={imageUrl2} alt="ResultRight" />
+                    <img src={imageUrlColorTest2} alt="ResultRight" />
                   </div>
                 </div>
                 <div className="resultDescriptionLeft">
