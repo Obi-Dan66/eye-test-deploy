@@ -501,7 +501,7 @@ const ContrastTest = () => {
           <div>
             <div className="eyes-result-container">
               <h1>
-                <b>"Výsledek testu kontrastního vidění</b>
+                <b>Výsledek testu kontrastního vidění</b>
               </h1>
               <p>{resultTextContrastTest}</p>
               <div className="eyes-result">
