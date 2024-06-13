@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CloseButton from "./CloseButton";
 
 const InstructionsSharpTest = () => {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ const InstructionsSharpTest = () => {
       case 0:
         return (
           <div className="consent">
+            <CloseButton />
             <h1>
               <b>
                 Před zahájením si tyto informace prosím přečtěte a přijměte je.
@@ -57,6 +59,7 @@ const InstructionsSharpTest = () => {
       case 1:
         return (
           <div className="media-space-container">
+            <CloseButton />
             <div className="media-space">
               <app-icon
                 id="preparation_brightness"
@@ -117,6 +120,7 @@ const InstructionsSharpTest = () => {
         var scaleFactor = 0.5 + sliderValue / 100;
         return (
           <div className="card-container-wrapper">
+            <CloseButton />
             <div className="page-container">
               <div className="card-container">
                 <div
@@ -160,6 +164,7 @@ const InstructionsSharpTest = () => {
       case 3:
         return (
           <div className="be-ready">
+            <CloseButton />
             <div>
               <img
                 className="eyeAndLenses"
@@ -181,6 +186,7 @@ const InstructionsSharpTest = () => {
       case 4:
         return (
           <div>
+            <CloseButton />
             <svg
               _ngcontent-ng-c226631475=""
               xmlns="http://www.w3.org/2000/svg"
@@ -259,6 +265,7 @@ const InstructionsSharpTest = () => {
       case 5:
         return (
           <div>
+            <CloseButton />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="264px"

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setTestResult } from "../store/testResultSlice.js";
+import CloseButton from "./CloseButton";
 
 const AstigmatismTest = () => {
   const [currentContent, setCurrentContent] = useState(0);
@@ -32,6 +33,7 @@ const AstigmatismTest = () => {
       case 0:
         return (
           <div>
+            <CloseButton />
             <h1>
               <b>Astigmatismus</b>
             </h1>
@@ -73,6 +75,7 @@ const AstigmatismTest = () => {
       case 1:
         return (
           <div>
+            <CloseButton />
             <svg
               _ngcontent-ng-c226631475=""
               xmlns="http://www.w3.org/2000/svg"
@@ -151,6 +154,7 @@ const AstigmatismTest = () => {
       case 2:
         return (
           <div>
+            <CloseButton />
             <h1>
               <b>Astigmatismus</b>
             </h1>
@@ -229,6 +233,7 @@ const AstigmatismTest = () => {
 
         return (
           <div>
+            <CloseButton />
             <div className="eyes-result-container">
               <h1>
                 <b>Výsledek testu astigmatismu</b>

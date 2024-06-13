@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import CloseButton from "./CloseButton";
 
 const TestResults = () => {
   const testResults = useSelector((state) => state.testResults);
@@ -8,6 +9,7 @@ const TestResults = () => {
 
   return (
     <div className="results-overview">
+      <CloseButton />
       <h1>
         <b>Výsledky testů</b>
       </h1>

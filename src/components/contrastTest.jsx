@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setTestResult } from "../store/testResultSlice.js"; // Adjust the import path as needed
+import CloseButton from "./CloseButton";
 
 const ContrastTest = () => {
   const [currentContent, setCurrentContent] = useState(0);
@@ -124,6 +125,7 @@ const ContrastTest = () => {
     ) => {
       return (
         <div className="sharptestCircle">
+          <CloseButton />
           <h1>
             <b>Kontrastní vidění</b>
           </h1>
@@ -223,6 +225,7 @@ const ContrastTest = () => {
     ) => {
       return (
         <div className="sharptestCircle">
+          <CloseButton />
           <h1>
             <b>Kontrastní vidění</b>
           </h1>
@@ -337,6 +340,7 @@ const ContrastTest = () => {
       case 8:
         return (
           <div>
+            <CloseButton />
             <svg
               _ngcontent-ng-c226631475=""
               xmlns="http://www.w3.org/2000/svg"
@@ -499,6 +503,7 @@ const ContrastTest = () => {
 
         return (
           <div>
+            <CloseButton />
             <div className="eyes-result-container">
               <h1>
                 <b>Výsledek testu kontrastního vidění</b>

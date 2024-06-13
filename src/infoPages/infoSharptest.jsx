@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import CloseButton from "../components/CloseButton";
 
 const InfoSharptest = () => {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ const InfoSharptest = () => {
   };
   return (
     <div className="test-info-page" ref={containerRef}>
+      <CloseButton />
       <h1>Zraková ostrost</h1>
       <h2>
         <b>Nalezněte mezeru</b>

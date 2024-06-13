@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setTestResult } from "../store/testResultSlice.js"; // Adjust the import path as needed
+import CloseButton from "./CloseButton";
 
 const SharpTest = () => {
   const dispatch = useDispatch();
@@ -101,6 +102,7 @@ const SharpTest = () => {
     const renderSvgContainer = (clickedButton, handleClick, transformStyle) => {
       return (
         <div className="sharptestCircle">
+          <CloseButton />
           <h1>
             <b>Zraková ostrost</b>
           </h1>
@@ -196,6 +198,7 @@ const SharpTest = () => {
     ) => {
       return (
         <div className="sharptestCircle">
+          <CloseButton />
           <h1>
             <b>Zraková ostrost</b>
           </h1>
@@ -301,6 +304,7 @@ const SharpTest = () => {
       case 9:
         return (
           <div>
+            <CloseButton />
             <svg
               _ngcontent-ng-c226631475=""
               xmlns="http://www.w3.org/2000/svg"
@@ -456,6 +460,7 @@ const SharpTest = () => {
 
         return (
           <div>
+            <CloseButton />
             <div className="eyes-result-container">
               <h1>
                 <b>Výsledek testu zrakové ostrosti</b>

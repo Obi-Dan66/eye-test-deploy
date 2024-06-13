@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setTestResult } from "../store/testResultSlice.js";
+import CloseButton from "./CloseButton";
 
 const EyeFieldTest = () => {
   const [currentContent, setCurrentContent] = useState(0);
@@ -40,6 +41,7 @@ const EyeFieldTest = () => {
       case 0:
         return (
           <div>
+            <CloseButton />
             <h1>
               <b>Zorné pole</b>
             </h1>
@@ -85,6 +87,7 @@ const EyeFieldTest = () => {
       case 1:
         return (
           <div>
+            <CloseButton />
             <h1>
               <b>Zorné pole</b>
             </h1>
@@ -131,6 +134,7 @@ const EyeFieldTest = () => {
       case 2:
         return (
           <div>
+            <CloseButton />
             <svg
               _ngcontent-ng-c226631475=""
               xmlns="http://www.w3.org/2000/svg"
@@ -209,6 +213,7 @@ const EyeFieldTest = () => {
       case 3:
         return (
           <div>
+            <CloseButton />
             <h1>
               <b>Zorné pole</b>
             </h1>
@@ -254,6 +259,7 @@ const EyeFieldTest = () => {
       case 4:
         return (
           <div>
+            <CloseButton />
             <h1>
               <b>Zorné pole</b>
             </h1>
@@ -337,6 +343,7 @@ const EyeFieldTest = () => {
 
         return (
           <div>
+            <CloseButton />
             <div className="eyes-result-container">
               <h1>
                 <b>Výsledek testu zorného pole</b>

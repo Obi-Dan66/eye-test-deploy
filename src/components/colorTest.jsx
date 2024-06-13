@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setTestResult } from "../store/testResultSlice.js";
+import CloseButton from "./CloseButton";
 
 const ColorTest = () => {
   const [currentContent, setCurrentContent] = useState(0);
@@ -35,6 +36,7 @@ const ColorTest = () => {
       case 0:
         return (
           <div>
+            <CloseButton />
             <h1>
               <b>Barevné vidění</b>
             </h1>
@@ -81,6 +83,7 @@ const ColorTest = () => {
       case 1:
         return (
           <div>
+            <CloseButton />
             <h1>
               <b>Barevné vidění</b>
             </h1>
@@ -127,6 +130,7 @@ const ColorTest = () => {
       case 2:
         return (
           <div>
+            <CloseButton />
             <h1>
               <b>Barevné vidění</b>
             </h1>
@@ -173,6 +177,7 @@ const ColorTest = () => {
       case 3:
         return (
           <div>
+            <CloseButton />
             <h1>
               <b>Barevné vidění</b>
             </h1>
@@ -219,6 +224,7 @@ const ColorTest = () => {
       case 4:
         return (
           <div>
+            <CloseButton />
             <h1>
               <b>Barevné vidění</b>
             </h1>
@@ -265,6 +271,7 @@ const ColorTest = () => {
       case 5:
         return (
           <div>
+            <CloseButton />
             <h1>
               <b>Barevné vidění</b>
             </h1>
@@ -338,6 +345,7 @@ const ColorTest = () => {
 
         return (
           <div>
+            <CloseButton />
             <div className="eyes-result-container">
               <h1>
                 <b>Výsledek testu barevného vidění</b>

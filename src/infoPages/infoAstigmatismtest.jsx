@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import CloseButton from "../components/CloseButton";
 
 const InfoAstigmatismtest = () => {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ const InfoAstigmatismtest = () => {
   };
   return (
     <div className="test-info-page" ref={containerRef}>
+      <CloseButton />
       <h1>Astigmatismus</h1>
       <h2>
         <b>Vypořádejte se s rozostřeným viděním.</b>
