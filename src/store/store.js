@@ -1,11 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-
-// Import your slices here
-import testResultsReducer from "./testResultSlice"; // Adjust the import path as needed
+import instructionsReducer from "./instructionsReducer";
+import testResultsReducer from "./testResultSlice";
 
 const store = configureStore({
   reducer: {
-    testResults: testResultsReducer, // Add other reducers here as needed
+    instructions: instructionsReducer, // Added instructions reducer
+    testResults: testResultsReducer, // Existing test results reducer
+    // Add other reducers here as needed
   },
 });
 
