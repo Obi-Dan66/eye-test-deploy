@@ -1,39 +1,31 @@
+// astigmTest.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setTestResult } from "../store/testResultSlice.js";
-import CloseButton from "./CloseButton";
+import CloseButton from "../components/CloseButton.jsx";
 
-const EyeFieldTest = () => {
+const AstigmatismTest = () => {
   const [currentContent, setCurrentContent] = useState(0);
-  const [correctAnswersRight, setCorrectAnswersRight] = useState(0);
-  const [correctAnswersLeft, setCorrectAnswersLeft] = useState(0);
+  const [correctAnswersCase0, setCorrectAnswersCase0] = useState(0);
+  const [correctAnswersCase2, setCorrectAnswersCase2] = useState(0);
   const navigate = useNavigate();
-  const totalContents = 6;
+  const totalContents = 4;
   const isTestComplete = currentContent === totalContents - 1;
   const dispatch = useDispatch();
 
   const handleClick = (isCorrect, caseNumber) => {
     // Increment correct answers count if the answer is correct
     if (isCorrect) {
-      // Check for cases 0 and 1 to increment correctAnswersRight
-      if (caseNumber === 0 || caseNumber === 1) {
-        setCorrectAnswersRight((prevCount) => {
-          return prevCount + 1;
-        });
-      }
-      // Check for cases 3 and 4 to increment correctAnswersLeft
-      else if (caseNumber === 3 || caseNumber === 4) {
-        setCorrectAnswersLeft((prevCount) => {
-          return prevCount + 1;
-        });
+      if (caseNumber === 0) {
+        setCorrectAnswersCase0((prevCount) => prevCount + 1);
+      } else if (caseNumber === 2) {
+        setCorrectAnswersCase2((prevCount) => prevCount + 1);
       }
     }
 
     // Move to the next content
-    setCurrentContent((prevContent) => {
-      return (prevContent + 1) % totalContents;
-    });
+    setCurrentContent((prevContent) => (prevContent + 1) % totalContents);
   };
 
   const getContent = (contentIndex) => {
@@ -43,26 +35,22 @@ const EyeFieldTest = () => {
           <div>
             <CloseButton />
             <h1>
-              <b>Zorné pole</b>
+              <b>Astigmatismus</b>
             </h1>
             <p>
               1 - Zakryjte si <b>levé</b> oko.
             </p>
             <p>
-              2 - Posuňte své zařízení trochu blíže -{" "}
-              <b>na půl délky paže nebo na vzdálenost 30 cm.</b>
+              2 - Zařízení držte na <b>délku paže</b>.
             </p>
             <p>
-              3 -{" "}
-              <b>
-                Soustřeďte se na černou tečku uprostřed. Vypadají všechny čáry a
-                čtverce stejně a pravidelně?
-              </b>{" "}
+              3 - Zaměřte se na střed půlkruhu.{" "}
+              <b>Vidíte všechny čáry ve stejném odstínu černé?</b>{" "}
             </p>
             <div className="colorTestCard" style={{ backgroundColor: "white" }}>
               <img
                 className="astigmatism-image"
-                src="./imageEyeFieldTest.svg"
+                src="./astigmatismus.svg"
                 width={200}
                 height={200}
                 alt="color test"
@@ -85,53 +73,6 @@ const EyeFieldTest = () => {
           </div>
         );
       case 1:
-        return (
-          <div>
-            <CloseButton />
-            <h1>
-              <b>Zorné pole</b>
-            </h1>
-            <p>
-              1 - Zakryjte si <b>levé</b> oko.
-            </p>
-            <p>
-              2 - Posuňte své zařízení trochu blíže -{" "}
-              <b>na půl délky paže nebo na vzdálenost 30 cm.</b>
-            </p>
-            <p>
-              3 -{" "}
-              <b>
-                Soustřeďte se na černou tečku uprostřed. Chybí některé části
-                mřížky nebo jsou některé části zkreslené nebo tmavší než
-                ostatní?
-              </b>{" "}
-            </p>
-            <div className="colorTestCard" style={{ backgroundColor: "white" }}>
-              <img
-                className="astigmatism-image"
-                src="./imageEyeFieldTest.svg"
-                width={200}
-                height={200}
-                alt="color test"
-              ></img>
-              <div>
-                <button
-                  className="colorTestBtn"
-                  onClick={() => handleClick(false, 1)}
-                >
-                  Ano
-                </button>
-                <button
-                  className="colorTestBtn correct"
-                  onClick={() => handleClick(true, 1)}
-                >
-                  Ne
-                </button>
-              </div>
-            </div>
-          </div>
-        );
-      case 2:
         return (
           <div>
             <CloseButton />
@@ -210,133 +151,82 @@ const EyeFieldTest = () => {
             </button>
           </div>
         );
+      case 2:
+        return (
+          <div>
+            <CloseButton />
+            <h1>
+              <b>Astigmatismus</b>
+            </h1>
+            <p>
+              1 - Zakryjte si <b>pravé</b> oko.
+            </p>
+            <p>
+              2 - Zařízení držte na <b>délku paže</b>.
+            </p>
+            <p>
+              3 - Zaměřte se na střed půlkruhu.{" "}
+              <b>Vidíte všechny čáry ve stejném odstínu černé?</b>{" "}
+            </p>
+            <div className="colorTestCard" style={{ backgroundColor: "white" }}>
+              <img
+                className="astigmatism-image"
+                src="./astigmatismus.svg"
+                width={200}
+                height={200}
+                alt="color test"
+              ></img>
+              <div>
+                <button
+                  className="colorTestBtn correct"
+                  onClick={() => handleClick(true, 2)}
+                >
+                  Ano
+                </button>
+                <button
+                  className="colorTestBtn"
+                  onClick={() => handleClick(false, 2)}
+                >
+                  Ne
+                </button>
+              </div>
+            </div>
+          </div>
+        );
       case 3:
-        return (
-          <div>
-            <CloseButton />
-            <h1>
-              <b>Zorné pole</b>
-            </h1>
-            <p>
-              1 - Zakryjte si <b>pravé</b> oko.
-            </p>
-            <p>
-              2 - Posuňte své zařízení trochu blíže -{" "}
-              <b>na půl délky paže nebo na vzdálenost 30 cm.</b>
-            </p>
-            <p>
-              3 -{" "}
-              <b>
-                Soustřeďte se na černou tečku uprostřed. Vypadají všechny čáry a
-                čtverce stejně a pravidelně?
-              </b>{" "}
-            </p>
-            <div className="colorTestCard" style={{ backgroundColor: "white" }}>
-              <img
-                className="astigmatism-image"
-                src="./imageEyeFieldTest.svg"
-                width={200}
-                height={200}
-                alt="color test"
-              ></img>
-              <div>
-                <button
-                  className="colorTestBtn correct"
-                  onClick={() => handleClick(true, 3)}
-                >
-                  Ano
-                </button>
-                <button
-                  className="colorTestBtn"
-                  onClick={() => handleClick(false, 3)}
-                >
-                  Ne
-                </button>
-              </div>
-            </div>
-          </div>
-        );
-      case 4:
-        return (
-          <div>
-            <CloseButton />
-            <h1>
-              <b>Zorné pole</b>
-            </h1>
-            <p>
-              1 - Zakryjte si <b>pravé</b> oko.
-            </p>
-            <p>
-              2 - Posuňte své zařízení trochu blíže -{" "}
-              <b>na půl délky paže nebo na vzdálenost 30 cm.</b>
-            </p>
-            <p>
-              3 -{" "}
-              <b>
-                Soustřeďte se na černou tečku uprostřed. Chybí některé části
-                mřížky nebo jsou některé části zkreslené nebo tmavší než
-                ostatní?
-              </b>{" "}
-            </p>
-            <div className="colorTestCard" style={{ backgroundColor: "white" }}>
-              <img
-                className="astigmatism-image"
-                src="./imageEyeFieldTest.svg"
-                width={200}
-                height={200}
-                alt="color test"
-              ></img>
-              <div>
-                <button
-                  className="colorTestBtn"
-                  onClick={() => handleClick(false, 4)}
-                >
-                  Ano
-                </button>
-                <button
-                  className="colorTestBtn correct"
-                  onClick={() => handleClick(true, 4)}
-                >
-                  Ne
-                </button>
-              </div>
-            </div>
-          </div>
-        );
-      case 5:
-        var imageUrlEyeFieldTest1,
-          imageUrlEyeFieldTest2,
-          resultTextEyeFieldTest;
+        var imageUrlAstigmatismTest1,
+          imageUrlAstigmatismTest2,
+          resultTextAstigmatismTest;
 
-        if (correctAnswersRight === 2 && correctAnswersLeft === 2) {
-          imageUrlEyeFieldTest1 = "./greenface.svg";
-          imageUrlEyeFieldTest2 = "./greenface.svg";
-          resultTextEyeFieldTest =
-            "Zorné pole vašich obou očí se zdá být vynikající.";
-        } else if (correctAnswersRight < 2 && correctAnswersLeft === 2) {
-          imageUrlEyeFieldTest1 = "./greenface.svg";
-          imageUrlEyeFieldTest2 = "./redface.svg";
-          resultTextEyeFieldTest =
-            "Zorné pole vašeho jednoho oka se zdá být omezené.";
-        } else if (correctAnswersRight === 2 && correctAnswersLeft < 2) {
-          imageUrlEyeFieldTest1 = "./redface.svg";
-          imageUrlEyeFieldTest2 = "./greenface.svg";
-          resultTextEyeFieldTest =
-            "Zorné pole vašeho jednoho oka se zdá být omezené.";
+        if (correctAnswersCase0 === 1 && correctAnswersCase2 === 1) {
+          imageUrlAstigmatismTest1 = "./greenface.svg";
+          imageUrlAstigmatismTest2 = "./greenface.svg";
+          resultTextAstigmatismTest =
+            "Zdá se, že nevykazujete příznaky astigmatismu.";
+        } else if (correctAnswersCase0 === 0 && correctAnswersCase2 === 1) {
+          imageUrlAstigmatismTest1 = "./greenface.svg";
+          imageUrlAstigmatismTest2 = "./redface.svg";
+          resultTextAstigmatismTest =
+            "Zdá se, že rozdíly mezi řádky vidíte jedním okem.";
+        } else if (correctAnswersCase0 === 1 && correctAnswersCase2 === 0) {
+          imageUrlAstigmatismTest1 = "./redface.svg";
+          imageUrlAstigmatismTest2 = "./greenface.svg";
+          resultTextAstigmatismTest =
+            "Zdá se, že rozdíly mezi řádky vidíte jedním okem.";
         } else {
-          imageUrlEyeFieldTest1 = "./redface.svg";
-          imageUrlEyeFieldTest2 = "./redface.svg";
-          resultTextEyeFieldTest =
-            "Zorné pole vašich obou očí se zdá být omezené.";
+          imageUrlAstigmatismTest1 = "./redface.svg";
+          imageUrlAstigmatismTest2 = "./redface.svg";
+          resultTextAstigmatismTest =
+            "Zdá se, že rozdíly mezi řádky vidíte oběma očima.";
         }
 
         if (isTestComplete) {
           dispatch(
             setTestResult({
-              testNameEyeFieldTest: "Test zorného pole",
-              resultTextEyeFieldTest: resultTextEyeFieldTest,
-              imageUrlEyeFieldTest1: imageUrlEyeFieldTest1,
-              imageUrlEyeFieldTest2: imageUrlEyeFieldTest2,
+              testNameAstigmatismTest: "Test astigmatismu",
+              resultTextAstigmatismTest: resultTextAstigmatismTest,
+              imageUrlAstigmatismTest1: imageUrlAstigmatismTest1,
+              imageUrlAstigmatismTest2: imageUrlAstigmatismTest2,
             })
           );
         }
@@ -346,16 +236,16 @@ const EyeFieldTest = () => {
             <CloseButton />
             <div className="eyes-result-container">
               <h1>
-                <b>Výsledek testu zorného pole</b>
+                <b>Výsledek testu astigmatismu</b>
               </h1>
-              <p>{resultTextEyeFieldTest}</p>
+              <p>{resultTextAstigmatismTest}</p>
               <div className="eyes-result">
                 <div className="eyes-result-images">
                   <div className="eyes-result-left">
-                    <img src={imageUrlEyeFieldTest1} alt="ResultLeft" />
+                    <img src={imageUrlAstigmatismTest1} alt="ResultLeft" />
                   </div>
                   <div className="eyes-result-right">
-                    <img src={imageUrlEyeFieldTest2} alt="ResultRight" />
+                    <img src={imageUrlAstigmatismTest2} alt="ResultRight" />
                   </div>
                 </div>
                 <div className="resultDescriptionLeft">
@@ -369,15 +259,15 @@ const EyeFieldTest = () => {
             <div className="next_test_buttons">
               <button
                 className="selectTest homePage"
-                onClick={() => navigate("/vysledky-testu")}
+                onClick={() => navigate("/instrukce-test-zorneho-pole")}
               >
-                Zobrazit výsledky testů
+                Pokračovat dalším testem
               </button>
               <button
                 className="selectTest homePage"
                 onClick={() => navigate("/vyber-testu")}
               >
-                Vyberte si jiný test
+                Nebo si vyberte určitý test
               </button>
             </div>
             <div className="result-map">
@@ -403,4 +293,4 @@ const EyeFieldTest = () => {
   return <div>{getContent(currentContent)}</div>;
 };
 
-export default EyeFieldTest;
+export default AstigmatismTest;

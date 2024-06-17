@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import CloseButton from "./CloseButton";
+import CloseButton from "../components/CloseButton";
 import { useSelector, useDispatch } from "react-redux";
-import { setSeenInstructions } from "../store/actions";
+import { setSeenInstructions } from "../store/actions/actions";
 
-const InstructionsSharpTest = () => {
+const InstructionsColorTest = () => {
   const navigate = useNavigate();
   const [currentContent, setCurrentContent] = useState(0);
   const [sliderValue, setSliderValue] = useState(50); // Define sliderValue here
   const [, setSliderChanged] = useState(false);
-  const totalContents = 8;
   const [abbreviatedOnly] = useState(false);
   const dispatch = useDispatch();
   const seenInstructions = useSelector(
@@ -23,15 +22,16 @@ const InstructionsSharpTest = () => {
     }
   }, [seenInstructions]);
 
+  const totalContents = 7;
+
   const handleNext = () => {
-    // Move to the next content, wrapping around with modulo operation
     setCurrentContent((prevContent) => (prevContent + 1) % totalContents);
     dispatch(setSeenInstructions(true));
   };
 
   const startTest = () => {
     // Redirect to '/another-page' when a button is clicked
-    navigate("/test-zrakove-ostrosti");
+    navigate("/test-barevneho-videni");
   };
 
   const handleSliderChange = (e) => {
@@ -41,7 +41,6 @@ const InstructionsSharpTest = () => {
 
   const getContent = (contentIndex) => {
     if (abbreviatedOnly) {
-      // Directly jump to abbreviated content
       switch (contentIndex) {
         case 0:
           return (
@@ -91,38 +90,15 @@ const InstructionsSharpTest = () => {
                   ></circle>
                 </g>
               </svg>
-              <div
-                _ngcontent-ng-c226631475=""
-                className="left-hand ng-star-inserted"
-              >
-                <svg
-                  _ngcontent-ng-c226631475=""
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="40"
-                  height="48"
-                >
-                  <path
-                    _ngcontent-ng-c226631475=""
-                    d="M38.004 9.182a4.746 4.746 0 00-3.312-1.331 4.129 4.129 0 00-2.295.646V6.935a4.423 4.423 0 00-4.225-3.99 3.967 3.967 0 00-2.561.985 4.061 4.061 0 00-4-2.928 3.988 3.988 0 00-3.135 1.392 4.8 4.8 0 00-1.072 2.673 5.272 5.272 0 00-2.246-.634 4.365 4.365 0 00-4.523 4.187 4.06 4.06 0 00.017.614v15.033a13.084 13.084 0 00-2.328-2.172c-1.371-.686-2.958-1.721-4.351-1.1a4.871 4.871 0 00-2.679 2.86 5.033 5.033 0 00.476 4.358l9.951 13.6a14.331 14.331 0 005.648 3.966 21.723 21.723 0 007.741 1.422h.027a13.653 13.653 0 0014.01-13.909V11.863a3.684 3.684 0 00-1.143-2.681z"
-                    fill="#ECF0F4"
-                  ></path>
-                  <path
-                    _ngcontent-ng-c226631475=""
-                    d="M38.804 8.501a5 5 0 00-3.473-1.383 4.36 4.36 0 00-2.407.671V6.166a4.62 4.62 0 00-4.431-4.146 4.182 4.182 0 00-2.686 1.024 4.254 4.254 0 00-4.2-3.042 4.2 4.2 0 00-3.287 1.447 4.962 4.962 0 00-1.124 2.777 5.568 5.568 0 00-2.355-.658 4.56 4.56 0 00-4.743 4.35 4.18 4.18 0 00.018.638v14.58a13.67 13.67 0 00-2.441-2.257 5.356 5.356 0 00-4.563-.1A5.08 5.08 0 00.303 23.75a5.188 5.188 0 00.5 4.528l10.435 14.126a15.028 15.028 0 005.923 4.12 22.967 22.967 0 008.118 1.477h.028c8.375 0 14.691-6.212 14.691-14.451V11.287a3.811 3.811 0 00-1.194-2.786zm-20.6 12.632a.964.964 0 001.026-1.071l-.01-14.788a3.614 3.614 0 01.8-2.62 2.22 2.22 0 011.6-.6 2.191 2.191 0 011.608.531 3.668 3.668 0 01.793 2.692l.01 14.787a1.032 1.032 0 102.064 0V6.246a2.465 2.465 0 012.407-2.161 2.423 2.423 0 012.378 2.119v15.388a1.091 1.091 0 00.293.813 1.042 1.042 0 00.749.26.968.968 0 001.014-1.073V11.326a2.374 2.374 0 012.372-2.136c1.3-.012 2.652 1.051 2.652 2.1v22.266a12.446 12.446 0 01-3.56 8.9 12.288 12.288 0 01-9.076 3.52A21.727 21.727 0 0118 44.602a13.767 13.767 0 01-5.032-3.376L2.65 27.41a4.327 4.327 0 01-.556-2.162 3.036 3.036 0 011.348-2.3 4.124 4.124 0 012.028-.577 2.2 2.2 0 011.8.81l2.984 3.538a1.366 1.366 0 001.157.683c.756-.078.756-.632.756-.963l.029-17.876a3.088 3.088 0 01.744-2.277 2.582 2.582 0 011.845-.659h.091a2.333 2.333 0 012.3 1.951v12.5a.974.974 0 001.026 1.054z"
-                    fill="#0072EF"
-                  ></path>
-                </svg>
-              </div>
               <h1>
                 <b>Jsou vaše oči připraveny?</b>
               </h1>
-              <p>Zakryjte si levé oko.</p>
+              <p>Mějte obě oči otevřené.</p>
               <button className="defaultButton" onClick={handleNext}>
                 Další krok
               </button>
             </div>
-          ); // Default to the first abbreviated case if out of range
-
+          );
         case 1:
           return (
             <div className="abbreviated">
@@ -175,29 +151,10 @@ const InstructionsSharpTest = () => {
                 <path d="M26 51l6-6v12z" fill="#0072EF"></path>
                 <path d="M80 51l-6 6V45z" fill="#0072EF"></path>
               </svg>
-              <h1>Nepřibližujte. Zařízení držte během testu na délku paže.</h1>
-              <button className="defaultButton" onClick={handleNext}>
-                Další krok
-              </button>
-            </div>
-          );
-        case 2:
-          return (
-            <div className="abbreviated">
-              <CloseButton />
-              <div>
-                <img
-                  className="circle-image"
-                  src="./imageCase6.svg"
-                  width={200}
-                  height={200}
-                  alt="circle"
-                ></img>
-              </div>
               <h1>
-                <b>Označte bod.</b>
+                <b>Nepřibližujte.</b>
               </h1>
-              <p>Vidite horní kruh? Označte příslušný bod na spodním kruhu.</p>
+              <p>Zařízení držte během testu na délku paže.</p>
               <button className="defaultButton" onClick={startTest}>
                 Jsem připraven/a
               </button>
@@ -286,8 +243,8 @@ const InstructionsSharpTest = () => {
                 </app-icon>
               </div>
               <h1>
-                Abyste dosáhli co nejpřesnějších výsledků{" "}
-                <b>,nastavte na svém zařízení jas obrazovky na maximum.</b>
+                Abyste dosáhli co nejpřesnějších výsledků,{" "}
+                <b>nastavte na svém zařízení jas obrazovky na maximum.</b>
               </h1>
 
               <button className="defaultButton" onClick={handleNext}>
@@ -354,9 +311,11 @@ const InstructionsSharpTest = () => {
                 ></img>
               </div>
               <h1>
-                Budte připraveni. Nasadte si brýle nebo kontaktní čočky (pokud
-                nějaké nosíte).
+                <b>Budte připraveni.</b>
               </h1>
+              <p>
+                Nasadte si brýle nebo kontaktní čočky (pokud nějaké nosíte).
+              </p>
               <button className="defaultButton" onClick={handleNext}>
                 Další krok
               </button>
@@ -410,32 +369,10 @@ const InstructionsSharpTest = () => {
                   ></circle>
                 </g>
               </svg>
-              <div
-                _ngcontent-ng-c226631475=""
-                className="left-hand ng-star-inserted"
-              >
-                <svg
-                  _ngcontent-ng-c226631475=""
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="40"
-                  height="48"
-                >
-                  <path
-                    _ngcontent-ng-c226631475=""
-                    d="M38.004 9.182a4.746 4.746 0 00-3.312-1.331 4.129 4.129 0 00-2.295.646V6.935a4.423 4.423 0 00-4.225-3.99 3.967 3.967 0 00-2.561.985 4.061 4.061 0 00-4-2.928 3.988 3.988 0 00-3.135 1.392 4.8 4.8 0 00-1.072 2.673 5.272 5.272 0 00-2.246-.634 4.365 4.365 0 00-4.523 4.187 4.06 4.06 0 00.017.614v15.033a13.084 13.084 0 00-2.328-2.172c-1.371-.686-2.958-1.721-4.351-1.1a4.871 4.871 0 00-2.679 2.86 5.033 5.033 0 00.476 4.358l9.951 13.6a14.331 14.331 0 005.648 3.966 21.723 21.723 0 007.741 1.422h.027a13.653 13.653 0 0014.01-13.909V11.863a3.684 3.684 0 00-1.143-2.681z"
-                    fill="#ECF0F4"
-                  ></path>
-                  <path
-                    _ngcontent-ng-c226631475=""
-                    d="M38.804 8.501a5 5 0 00-3.473-1.383 4.36 4.36 0 00-2.407.671V6.166a4.62 4.62 0 00-4.431-4.146 4.182 4.182 0 00-2.686 1.024 4.254 4.254 0 00-4.2-3.042 4.2 4.2 0 00-3.287 1.447 4.962 4.962 0 00-1.124 2.777 5.568 5.568 0 00-2.355-.658 4.56 4.56 0 00-4.743 4.35 4.18 4.18 0 00.018.638v14.58a13.67 13.67 0 00-2.441-2.257 5.356 5.356 0 00-4.563-.1A5.08 5.08 0 00.303 23.75a5.188 5.188 0 00.5 4.528l10.435 14.126a15.028 15.028 0 005.923 4.12 22.967 22.967 0 008.118 1.477h.028c8.375 0 14.691-6.212 14.691-14.451V11.287a3.811 3.811 0 00-1.194-2.786zm-20.6 12.632a.964.964 0 001.026-1.071l-.01-14.788a3.614 3.614 0 01.8-2.62 2.22 2.22 0 011.6-.6 2.191 2.191 0 011.608.531 3.668 3.668 0 01.793 2.692l.01 14.787a1.032 1.032 0 102.064 0V6.246a2.465 2.465 0 012.407-2.161 2.423 2.423 0 012.378 2.119v15.388a1.091 1.091 0 00.293.813 1.042 1.042 0 00.749.26.968.968 0 001.014-1.073V11.326a2.374 2.374 0 012.372-2.136c1.3-.012 2.652 1.051 2.652 2.1v22.266a12.446 12.446 0 01-3.56 8.9 12.288 12.288 0 01-9.076 3.52A21.727 21.727 0 0118 44.602a13.767 13.767 0 01-5.032-3.376L2.65 27.41a4.327 4.327 0 01-.556-2.162 3.036 3.036 0 011.348-2.3 4.124 4.124 0 012.028-.577 2.2 2.2 0 011.8.81l2.984 3.538a1.366 1.366 0 001.157.683c.756-.078.756-.632.756-.963l.029-17.876a3.088 3.088 0 01.744-2.277 2.582 2.582 0 011.845-.659h.091a2.333 2.333 0 012.3 1.951v12.5a.974.974 0 001.026 1.054z"
-                    fill="#0072EF"
-                  ></path>
-                </svg>
-              </div>
               <h1>
                 <b>Jsou vaše oči připraveny?</b>
               </h1>
-              <p>Zakryjte si levé oko.</p>
+              <p>Mějte obě oči otevřené.</p>
               <button className="defaultButton" onClick={handleNext}>
                 Další krok
               </button>
@@ -493,29 +430,10 @@ const InstructionsSharpTest = () => {
                 <path d="M26 51l6-6v12z" fill="#0072EF"></path>
                 <path d="M80 51l-6 6V45z" fill="#0072EF"></path>
               </svg>
-              <h1>Nepřibližujte. Zařízení držte během testu na délku paže.</h1>
-              <button className="defaultButton" onClick={handleNext}>
-                Další krok
-              </button>
-            </div>
-          );
-        case 6:
-          return (
-            <div className="abbreviated">
-              <CloseButton />
-              <div>
-                <img
-                  className="circle-image"
-                  src="./imageCase6.svg"
-                  width={200}
-                  height={200}
-                  alt="circle"
-                ></img>
-              </div>
               <h1>
-                <b>Označte bod.</b>
+                <b>Nepřibližujte.</b>
               </h1>
-              <p>Vidite horní kruh? Označte příslušný bod na spodním kruhu.</p>
+              <p>Zařízení držte během testu na délku paže.</p>
               <button className="defaultButton" onClick={startTest}>
                 Jsem připraven/a
               </button>
@@ -530,4 +448,4 @@ const InstructionsSharpTest = () => {
   return <div>{getContent(currentContent)}</div>;
 };
 
-export default InstructionsSharpTest;
+export default InstructionsColorTest;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import CloseButton from "./CloseButton";
+import CloseButton from "../components/CloseButton";
 import { useSelector, useDispatch } from "react-redux";
-import { setSeenInstructions } from "../store/actions";
+import { setSeenInstructions } from "../store/actions/actions";
 
 const InstructionsSharpTest = () => {
   const navigate = useNavigate();

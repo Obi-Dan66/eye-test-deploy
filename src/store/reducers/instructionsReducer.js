@@ -1,4 +1,4 @@
-import { SET_SEEN_INSTRUCTIONS } from "./actionTypes";
+import { SET_SEEN_INSTRUCTIONS } from "../actions/actionTypes";
 
 const initialState = {
   seenInstructions: false,
