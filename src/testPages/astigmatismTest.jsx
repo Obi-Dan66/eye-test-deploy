@@ -1,7 +1,7 @@
 // astigmTest.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setTestResult } from "../store/testResultSlice.js";
 import CloseButton from "../components/CloseButton.jsx";
 
@@ -13,6 +13,24 @@ const AstigmatismTest = () => {
   const totalContents = 4;
   const isTestComplete = currentContent === totalContents - 1;
   const dispatch = useDispatch();
+  const rangeValue = useSelector((state) => state.slider.rangeValue);
+
+  const getSvgScale = () => {
+    switch (rangeValue) {
+      case 1:
+        return 0.5; // Decrease by 50%
+      case 2:
+        return 0.75; // Decrease by 25%
+      case 3:
+        return 1; // Default size
+      case 4:
+        return 1.25; // Increase by 25%
+      case 5:
+        return 1.5; // Increase by 50%
+      default:
+        return 1; // Default size
+    }
+  };
 
   const handleClick = (isCorrect, caseNumber) => {
     // Increment correct answers count if the answer is correct
@@ -53,7 +71,8 @@ const AstigmatismTest = () => {
                 src="./astigmatismus.svg"
                 width={200}
                 height={200}
-                alt="color test"
+                alt="astigmatism test"
+                style={{ transform: `scale(${getSvgScale()})` }}
               ></img>
               <div>
                 <button
@@ -174,7 +193,8 @@ const AstigmatismTest = () => {
                 src="./astigmatismus.svg"
                 width={200}
                 height={200}
-                alt="color test"
+                alt="astigmatism test"
+                style={{ transform: `scale(${getSvgScale()})` }}
               ></img>
               <div>
                 <button

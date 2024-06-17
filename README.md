@@ -17,19 +17,19 @@ The project is currently deployed to github pages, however it is still in works.
 
 Set responsiveness rules.
 
-Adding shade sizing.
+Adding shade sizing.✅
 
 Add a conditional case to the instructions when the slider for shade is not moved.
 
 Add animation to the last case in the instructions (sharp, contrast tests).
 
-Add a page and click through to the result page on the map.
+Add a page and click through to the result page on the map.✅
 
 Add button on result case that will lead to next test if there is any left. ✅
 
 Add button on result case that will lead to test selection.✅
 
-Add hook -> if the user has already seen the general instructions than display only the abbreviated instructions for relevant test.
+Add hook -> if the user has already seen the general instructions than display only the abbreviated instructions for relevant test.✅
 
 Add a page that will store and display the results of all tests so far done.✅
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setTestResult } from "../store/testResultSlice.js"; // Adjust the import path as needed
 import CloseButton from "../components/CloseButton.jsx";
 
@@ -15,6 +15,24 @@ const SharpTest = () => {
   const [, setShowTick] = useState(false);
   const [iconType, setIconType] = useState(null);
   const isTestComplete = currentContent === totalCases - 1;
+  const rangeValue = useSelector((state) => state.slider.rangeValue);
+
+  const getSvgScale = () => {
+    switch (rangeValue) {
+      case 1:
+        return 0.5; // Decrease by 50%
+      case 2:
+        return 0.75; // Decrease by 25%
+      case 3:
+        return 1; // Default size
+      case 4:
+        return 1.25; // Increase by 25%
+      case 5:
+        return 1.5; // Increase by 50%
+      default:
+        return 1; // Default size
+    }
+  };
 
   // Define correctButtonForCase here for simplicity
   const correctButtonForCase = {
@@ -120,6 +138,7 @@ const SharpTest = () => {
                 height="25"
                 viewBox="0 0 3 3"
                 xmlns="http://www.w3.org/2000/svg"
+                style={{ transform: `scale(${getSvgScale()})` }}
               >
                 <path d="M1.785,0.015c0.684,0.139 1.2,0.745 1.2,1.47c0,0.828 -0.672,1.5 -1.5,1.5c-0.828,0 -1.5,-0.672 -1.5,-1.5c0,-0.725 0.516,-1.331 1.2,-1.47l0,0.69c-0.321,0.119 -0.55,0.424 -0.55,0.78c0,0.46 0.381,0.833 0.85,0.833c0.469,0 0.85,-0.373 0.85,-0.833c0,-0.356 -0.229,-0.661 -0.55,-0.78l0,-0.69Z"></path>
               </svg>
@@ -216,6 +235,7 @@ const SharpTest = () => {
                 height="25"
                 viewBox="0 0 3 3"
                 xmlns="http://www.w3.org/2000/svg"
+                style={{ transform: `scale(${getSvgScale()})` }}
               >
                 <path d="M1.785,0.015c0.684,0.139 1.2,0.745 1.2,1.47c0,0.828 -0.672,1.5 -1.5,1.5c-0.828,0 -1.5,-0.672 -1.5,-1.5c0,-0.725 0.516,-1.331 1.2,-1.47l0,0.69c-0.321,0.119 -0.55,0.424 -0.55,0.78c0,0.46 0.381,0.833 0.85,0.833c0.469,0 0.85,-0.373 0.85,-0.833c0,-0.356 -0.229,-0.661 -0.55,-0.78l0,-0.69Z"></path>
               </svg>
