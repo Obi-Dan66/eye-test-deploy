@@ -1,12 +1,10 @@
-import { SET_SEEN_INSTRUCTIONS } from "../actions/actionTypes";
-
 const initialState = {
   seenInstructions: false,
 };
 
 const instructionsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_SEEN_INSTRUCTIONS:
+    case "SET_SEEN_INSTRUCTIONS":
       return {
         ...state,
         seenInstructions: action.payload,
