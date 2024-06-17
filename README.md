@@ -19,9 +19,7 @@ Set responsiveness rules.
 
 Adding shade sizing.✅
 
-Add a conditional case to the instructions when the slider for shade is not moved.
-
-Add animation to the last case in the instructions (sharp, contrast tests).
+Add a conditional case to the instructions when the slider for shade is not moved.✅
 
 Add a page and click through to the result page on the map.✅
 

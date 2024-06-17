@@ -9,15 +9,30 @@ const InstructionsSharpTest = () => {
   const dispatch = useDispatch();
   const [currentContent, setCurrentContent] = useState(0);
   const [sliderValue, setSliderValue] = useState(50); // Define sliderValue here
-  const [, setSliderChanged] = useState(false);
-  const totalContents = 7;
+  const [sliderChanged, setSliderChanged] = useState(false); // Update this line to track the state
+  const totalContents = 8;
   const seenInstructions = useSelector(
     (state) => state.instructions.seenInstructions
   );
 
   const handleNext = () => {
-    // Move to the next content, wrapping around with modulo operation
-    setCurrentContent((prevContent) => (prevContent + 1) % totalContents);
+    if (currentContent === 2 && sliderChanged) {
+      // If we are at case 2 and the slider has changed, skip case 3
+      setCurrentContent((prevContent) => (prevContent + 2) % totalContents);
+    } else {
+      // Normal behavior or slider has not changed
+      setCurrentContent((prevContent) => (prevContent + 1) % totalContents);
+    }
+  };
+
+  const handlePrev = () => {
+    setCurrentContent((prevContent) => {
+      if (prevContent === 0) {
+        return totalContents - 1; // Wrap around to the last content
+      } else {
+        return prevContent - 1;
+      }
+    });
   };
 
   useEffect(() => {
@@ -172,6 +187,25 @@ const InstructionsSharpTest = () => {
           </div>
         );
       case 3:
+        // conditional case
+        return (
+          <div className="home">
+            <h1>
+              <b>Jste si jistí, že kalibraci obrazovky nechcete provést?</b>
+            </h1>
+            <p>
+              Bohužel jste neprovedli nastavení velikosti pomocí běžné karty. To
+              bude mít negativní dopad na přesnost výsledků.
+            </p>
+            <button className="defaultButton" onClick={handlePrev}>
+              Vrátit se zpět
+            </button>
+            <button className="defaultButton" onClick={handleNext}>
+              Pokračovat bez kalibrace
+            </button>
+          </div>
+        );
+      case 4:
         return (
           <div className="be-ready">
             <CloseButton />
@@ -193,7 +227,7 @@ const InstructionsSharpTest = () => {
             </button>
           </div>
         );
-      case 4:
+      case 5:
         return (
           <div className="abbreviated">
             <CloseButton />
@@ -272,7 +306,7 @@ const InstructionsSharpTest = () => {
             </button>
           </div>
         );
-      case 5:
+      case 6:
         return (
           <div className="abbreviated">
             <CloseButton />
@@ -330,7 +364,7 @@ const InstructionsSharpTest = () => {
             </button>
           </div>
         );
-      case 6:
+      case 7:
         return (
           <div className="abbreviated">
             <CloseButton />
