@@ -462,7 +462,7 @@ const ContrastTest = () => {
         // Determine imageUrlContrastTest2 based on correctAnswersRange1
         if (correctAnswersRange1 >= 7) {
           imageUrlContrastTest2 = "./greenface.svg";
-        } else if (correctAnswersRange1 >= 5 && correctAnswersRange1 <= 6) {
+        } else if (correctAnswersRange1 == 6) {
           imageUrlContrastTest2 = "./yellowface.svg";
         } else {
           imageUrlContrastTest2 = "./redface.svg";
@@ -471,7 +471,7 @@ const ContrastTest = () => {
         // Determine imageUrlContrastTest1 based on correctAnswersRange2
         if (correctAnswersRange2 >= 7) {
           imageUrlContrastTest1 = "./greenface.svg";
-        } else if (correctAnswersRange2 >= 5 && correctAnswersRange1 <= 6) {
+        } else if (correctAnswersRange2 == 6) {
           imageUrlContrastTest1 = "./yellowface.svg";
         } else {
           imageUrlContrastTest1 = "./redface.svg";

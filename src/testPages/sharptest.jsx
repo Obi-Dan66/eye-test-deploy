@@ -419,7 +419,7 @@ const SharpTest = () => {
         // Determine imageUrlSharpTest2 based on correctAnswersRange1
         if (correctAnswersRange1 >= 8) {
           imageUrlSharpTest2 = "./greenface.svg";
-        } else if (correctAnswersRange1 >= 6 && correctAnswersRange1 <= 7) {
+        } else if (correctAnswersRange1 == 7) {
           imageUrlSharpTest2 = "./yellowface.svg";
         } else {
           imageUrlSharpTest2 = "./redface.svg";
@@ -428,7 +428,7 @@ const SharpTest = () => {
         // Determine imageUrlSharpTest1 based on correctAnswersRange2
         if (correctAnswersRange2 >= 8) {
           imageUrlSharpTest1 = "./greenface.svg";
-        } else if (correctAnswersRange2 >= 6 && correctAnswersRange1 <= 7) {
+        } else if (correctAnswersRange2 == 7) {
           imageUrlSharpTest1 = "./yellowface.svg";
         } else {
           imageUrlSharpTest1 = "./redface.svg";
