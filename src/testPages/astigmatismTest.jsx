@@ -15,6 +15,7 @@ const AstigmatismTest = () => {
   const dispatch = useDispatch();
   const rangeValue = useSelector((state) => state.slider.rangeValue);
   const [clickedButtonId, setClickedButtonId] = useState(null);
+  const [isClickable, setIsClickable] = useState(true);
 
   const getSvgScale = () => {
     switch (rangeValue) {
@@ -34,6 +35,8 @@ const AstigmatismTest = () => {
   };
 
   const handleClick = (buttonId, isCorrect, caseNumber) => {
+    if (!isClickable) return; // Prevent handling clicks if not clickable
+
     setClickedButtonId(buttonId);
 
     if (isCorrect) {
@@ -44,10 +47,13 @@ const AstigmatismTest = () => {
       }
     }
 
+    setIsClickable(false); // Disable further clicks during the timeout
+
     // Delay before moving to the next content to allow feedback to be visible
     setTimeout(() => {
       setCurrentContent((prevContent) => (prevContent + 1) % totalContents);
       setClickedButtonId(null); // Reset the clicked button ID for the next interaction
+      setIsClickable(true); // Re-enable clicking after the timeout
     }, 800); // Adjust the delay time as needed
   };
 

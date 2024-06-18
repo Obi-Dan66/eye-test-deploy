@@ -16,6 +16,7 @@ const ContrastTest = () => {
   const isTestComplete = currentContent === totalCases - 1;
   const dispatch = useDispatch();
   const rangeValue = useSelector((state) => state.slider.rangeValue);
+  const [isClickable, setIsClickable] = useState(true);
 
   const getSvgScale = () => {
     switch (rangeValue) {
@@ -56,11 +57,16 @@ const ContrastTest = () => {
   };
 
   const handleClick = (buttonId) => {
+    if (!isClickable) return; // Prevent handling clicks if not clickable
+
+    setIsClickable(false); // Disable further clicks immediately
+
     if (currentContent === 8) {
       setCurrentContent((prevContent) => (prevContent + 1) % totalCases);
       setClickedButton(null);
       setShowTick(false);
       setIconType(null); // Reset icon type
+      setIsClickable(true); // Re-enable clicking after handling special case
       return;
     }
 
@@ -80,6 +86,7 @@ const ContrastTest = () => {
         setClickedButton(null);
         setShowTick(false); // Hide the tick after the animation
         setIconType(null); // Reset icon type
+        setIsClickable(true); // Re-enable clicking after the timeout
       }, 800);
     } else {
       setCurrentContent((prevContent) => (prevContent + 1) % totalCases);
@@ -87,6 +94,7 @@ const ContrastTest = () => {
 
       setTimeout(() => {
         setIconType(null); // Reset icon type after showing cross
+        setIsClickable(true); // Re-enable clicking after the timeout
       }, 800);
     }
   };
@@ -180,7 +188,7 @@ const ContrastTest = () => {
               {iconType === "cross" && (
                 <img src="./cross.svg" className="tick-animation" alt="Cross" />
               )}
-              <svg viewBox="0 0 100% 100%" xmlns="http://www.w3.org/2000/svg">
+              <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
                 <path
                   id="TOP"
                   onClick={() => handleClick("TOP")}
@@ -281,7 +289,7 @@ const ContrastTest = () => {
               {iconType === "cross" && (
                 <img src="./cross.svg" className="tick-animation" alt="Cross" />
               )}
-              <svg viewBox="0 0 100% 100%" xmlns="http://www.w3.org/2000/svg">
+              <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
                 <path
                   id="TOP"
                   onClick={() => handleClick("TOP")}

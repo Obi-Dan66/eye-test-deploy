@@ -13,15 +13,20 @@ const ColorTest = () => {
   const isTestComplete = currentContent === totalContents - 1;
   const dispatch = useDispatch();
   const [showFeedback, setShowFeedback] = useState(false);
+  const [isClickable, setIsClickable] = useState(true);
 
   const handleClick = (buttonId, isCorrect) => {
+    if (!isClickable) return; // Prevent handling clicks if not clickable
+
     setClickedButtonId(buttonId);
     setShowFeedback(true); // Enable feedback visibility
+    setIsClickable(false); // Disable further clicks during the timeout
 
     setTimeout(() => {
       setCurrentContent((prevContent) => (prevContent + 1) % totalContents);
       setShowFeedback(false); // Reset feedback visibility for the next question
       setClickedButtonId(null);
+      setIsClickable(true); // Re-enable clicking after the timeout
 
       if (isCorrect) {
         setCorrectAnswersCount((prevCount) => prevCount + 1);

@@ -16,6 +16,7 @@ const SharpTest = () => {
   const [iconType, setIconType] = useState(null);
   const isTestComplete = currentContent === totalCases - 1;
   const rangeValue = useSelector((state) => state.slider.rangeValue);
+  const [isClickable, setIsClickable] = useState(true);
 
   const getSvgScale = () => {
     switch (rangeValue) {
@@ -58,6 +59,8 @@ const SharpTest = () => {
   };
 
   const handleClick = (buttonId) => {
+    if (!isClickable) return; // Prevent handling clicks if not clickable
+
     if (currentContent === 9) {
       setCurrentContent((prevContent) => (prevContent + 1) % totalCases);
       setClickedButton(null);
@@ -76,19 +79,23 @@ const SharpTest = () => {
       setClickedButton(buttonId);
       setShowTick(true); // Show the tick animation
       setIconType("checkmark"); // Set icon to checkmark for correct answer
+      setIsClickable(false); // Disable further clicks during the timeout
 
       setTimeout(() => {
         setCurrentContent((prevContent) => (prevContent + 1) % totalCases);
         setClickedButton(null);
         setShowTick(false); // Hide the tick after the animation
         setIconType(null); // Reset icon type
+        setIsClickable(true); // Re-enable clicking after the timeout
       }, 800);
     } else {
       setCurrentContent((prevContent) => (prevContent + 1) % totalCases);
       setIconType("cross"); // Set icon to cross for incorrect answer
+      setIsClickable(false); // Disable further clicks during the timeout
 
       setTimeout(() => {
         setIconType(null); // Reset icon type after showing cross
+        setIsClickable(true); // Re-enable clicking after the timeout
       }, 800);
     }
   };
@@ -154,7 +161,7 @@ const SharpTest = () => {
               {iconType === "cross" && (
                 <img src="./cross.svg" className="tick-animation" alt="Cross" />
               )}
-              <svg viewBox="0 0 100% 100%" xmlns="http://www.w3.org/2000/svg">
+              <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
                 <path
                   id="TOP"
                   onClick={() => handleClick("TOP")}
@@ -251,7 +258,7 @@ const SharpTest = () => {
               {iconType === "cross" && (
                 <img src="./cross.svg" className="tick-animation" alt="Cross" />
               )}
-              <svg viewBox="0 0 100% 100%" xmlns="http://www.w3.org/2000/svg">
+              <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
                 <path
                   id="TOP"
                   onClick={() => handleClick("TOP")}

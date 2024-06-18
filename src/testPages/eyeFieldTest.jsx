@@ -13,11 +13,13 @@ const EyeFieldTest = () => {
   const totalContents = 6;
   const isTestComplete = currentContent === totalContents - 1;
   const dispatch = useDispatch();
+  const [isClickable, setIsClickable] = useState(true);
 
   const handleClick = (buttonId, isCorrect, caseNumber) => {
-    setClickedButtonId(buttonId); // Set the ID of the clicked button
+    if (!isClickable) return; // Prevent handling clicks if not clickable
 
-    // Increment correct answers count if the answer is correct
+    setClickedButtonId(buttonId);
+    // Logic to handle correct answers
     if (isCorrect) {
       if (caseNumber === 0 || caseNumber === 1) {
         setCorrectAnswersRight((prevCount) => prevCount + 1);
@@ -26,10 +28,13 @@ const EyeFieldTest = () => {
       }
     }
 
+    setIsClickable(false); // Disable further clicks during the timeout
+
     // Delay before moving to the next content to allow feedback to be visible
     setTimeout(() => {
       setCurrentContent((prevContent) => (prevContent + 1) % totalContents);
       setClickedButtonId(null); // Reset the clicked button ID for the next interaction
+      setIsClickable(true); // Re-enable clicking after the timeout
     }, 800); // Adjust the delay time as needed
   };
 
