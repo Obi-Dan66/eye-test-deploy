@@ -507,40 +507,27 @@ svg path:hover {
   }
 }
 
+.correct::after,
+.wrong::after {
+  opacity: 0; /* Start hidden */
+  content: ""; /* No content by default */
+  color: transparent;
+  font-size: 1.2em;
+  display: inline-block;
+  margin-left: 5px;
+  transition: opacity 0.8s ease, color 0.8s ease; /* Smooth transition for opacity and color */
+}
+
 .correct::after {
   content: "\2714"; /* Unicode for checkmark symbol */
   color: green; /* Color of the checkmark */
-  font-size: 1.2em; /* Adjust size as needed */
-  display: inline-block;
-  margin-left: 5px; /* Adjust spacing */
-  animation: fadeIn 0.8s ease; /* Optional: You can add fade-in animation */
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  opacity: 1; /* Make visible when class is applied */
 }
 
 .wrong::after {
   content: "\2717"; /* Unicode for cross symbol */
   color: red; /* Color of the cross */
-  font-size: 1.2em; /* Adjust size as needed */
-  display: inline-block;
-  margin-left: 5px; /* Adjust spacing */
-  animation: fadeIn 0.8s ease; /* Optional: You can add fade-in animation */
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  opacity: 1; /* Make visible when class is applied */
 }
 
 .next_test_buttons {

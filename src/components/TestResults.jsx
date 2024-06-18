@@ -173,6 +173,18 @@ const TestResults = () => {
       >
         Výběr testu
       </button>
+
+      <div className="result-map">
+        <img src="./resultMap.svg" alt="ResultMap" />
+        <p>
+          <b>Vyhledejte optika společnosti Erste Optik ve své blízkosti.</b> Pro
+          kompletní vyšetření zraku vždy vyhledejte profesionálního očního
+          lékaře.
+        </p>
+        <button className="defaultButton">
+          Zobrazit specialisty v mé blízkosti
+        </button>
+      </div>
     </div>
   );
 };

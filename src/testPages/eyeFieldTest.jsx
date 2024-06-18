@@ -9,31 +9,28 @@ const EyeFieldTest = () => {
   const [correctAnswersRight, setCorrectAnswersRight] = useState(0);
   const [correctAnswersLeft, setCorrectAnswersLeft] = useState(0);
   const navigate = useNavigate();
+  const [clickedButtonId, setClickedButtonId] = useState(null);
   const totalContents = 6;
   const isTestComplete = currentContent === totalContents - 1;
   const dispatch = useDispatch();
 
-  const handleClick = (isCorrect, caseNumber) => {
+  const handleClick = (buttonId, isCorrect, caseNumber) => {
+    setClickedButtonId(buttonId); // Set the ID of the clicked button
+
     // Increment correct answers count if the answer is correct
     if (isCorrect) {
-      // Check for cases 0 and 1 to increment correctAnswersRight
       if (caseNumber === 0 || caseNumber === 1) {
-        setCorrectAnswersRight((prevCount) => {
-          return prevCount + 1;
-        });
-      }
-      // Check for cases 3 and 4 to increment correctAnswersLeft
-      else if (caseNumber === 3 || caseNumber === 4) {
-        setCorrectAnswersLeft((prevCount) => {
-          return prevCount + 1;
-        });
+        setCorrectAnswersRight((prevCount) => prevCount + 1);
+      } else if (caseNumber === 3 || caseNumber === 4) {
+        setCorrectAnswersLeft((prevCount) => prevCount + 1);
       }
     }
 
-    // Move to the next content
-    setCurrentContent((prevContent) => {
-      return (prevContent + 1) % totalContents;
-    });
+    // Delay before moving to the next content to allow feedback to be visible
+    setTimeout(() => {
+      setCurrentContent((prevContent) => (prevContent + 1) % totalContents);
+      setClickedButtonId(null); // Reset the clicked button ID for the next interaction
+    }, 800); // Adjust the delay time as needed
   };
 
   const getContent = (contentIndex) => {
@@ -69,14 +66,18 @@ const EyeFieldTest = () => {
               ></img>
               <div>
                 <button
-                  className="colorTestBtn correct"
-                  onClick={() => handleClick(true, 0)}
+                  className={`colorTestBtn ${
+                    clickedButtonId === "correct0" ? "correct" : ""
+                  }`}
+                  onClick={() => handleClick("correct0", true, 0)}
                 >
                   Ano
                 </button>
                 <button
-                  className="colorTestBtn"
-                  onClick={() => handleClick(false, 0)}
+                  className={`colorTestBtn ${
+                    clickedButtonId === "wrong0" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong0", false, 0)}
                 >
                   Ne
                 </button>
@@ -116,14 +117,18 @@ const EyeFieldTest = () => {
               ></img>
               <div>
                 <button
-                  className="colorTestBtn"
-                  onClick={() => handleClick(false, 1)}
+                  className={`colorTestBtn ${
+                    clickedButtonId === "wrong1" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong1", false, 1)}
                 >
                   Ano
                 </button>
                 <button
-                  className="colorTestBtn correct"
-                  onClick={() => handleClick(true, 1)}
+                  className={`colorTestBtn ${
+                    clickedButtonId === "correct1" ? "correct" : ""
+                  }`}
+                  onClick={() => handleClick("correct1", true, 1)}
                 >
                   Ne
                 </button>
@@ -241,14 +246,18 @@ const EyeFieldTest = () => {
               ></img>
               <div>
                 <button
-                  className="colorTestBtn correct"
-                  onClick={() => handleClick(true, 3)}
+                  className={`colorTestBtn ${
+                    clickedButtonId === "correct3" ? "correct" : ""
+                  }`}
+                  onClick={() => handleClick("correct3", true, 3)}
                 >
                   Ano
                 </button>
                 <button
-                  className="colorTestBtn"
-                  onClick={() => handleClick(false, 3)}
+                  className={`colorTestBtn ${
+                    clickedButtonId === "wrong3" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong3", false, 3)}
                 >
                   Ne
                 </button>
@@ -288,14 +297,18 @@ const EyeFieldTest = () => {
               ></img>
               <div>
                 <button
-                  className="colorTestBtn"
-                  onClick={() => handleClick(false, 4)}
+                  className={`colorTestBtn ${
+                    clickedButtonId === "wrong4" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong4", false, 4)}
                 >
                   Ano
                 </button>
                 <button
-                  className="colorTestBtn correct"
-                  onClick={() => handleClick(true, 4)}
+                  className={`colorTestBtn ${
+                    clickedButtonId === "correct4" ? "correct" : ""
+                  }`}
+                  onClick={() => handleClick("correct4", true, 4)}
                 >
                   Ne
                 </button>

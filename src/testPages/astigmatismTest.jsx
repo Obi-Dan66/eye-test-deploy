@@ -14,6 +14,7 @@ const AstigmatismTest = () => {
   const isTestComplete = currentContent === totalContents - 1;
   const dispatch = useDispatch();
   const rangeValue = useSelector((state) => state.slider.rangeValue);
+  const [clickedButtonId, setClickedButtonId] = useState(null);
 
   const getSvgScale = () => {
     switch (rangeValue) {
@@ -32,8 +33,9 @@ const AstigmatismTest = () => {
     }
   };
 
-  const handleClick = (isCorrect, caseNumber) => {
-    // Increment correct answers count if the answer is correct
+  const handleClick = (buttonId, isCorrect, caseNumber) => {
+    setClickedButtonId(buttonId);
+
     if (isCorrect) {
       if (caseNumber === 0) {
         setCorrectAnswersCase0((prevCount) => prevCount + 1);
@@ -42,8 +44,11 @@ const AstigmatismTest = () => {
       }
     }
 
-    // Move to the next content
-    setCurrentContent((prevContent) => (prevContent + 1) % totalContents);
+    // Delay before moving to the next content to allow feedback to be visible
+    setTimeout(() => {
+      setCurrentContent((prevContent) => (prevContent + 1) % totalContents);
+      setClickedButtonId(null); // Reset the clicked button ID for the next interaction
+    }, 800); // Adjust the delay time as needed
   };
 
   const getContent = (contentIndex) => {
@@ -76,14 +81,18 @@ const AstigmatismTest = () => {
               ></img>
               <div>
                 <button
-                  className="colorTestBtn correct"
-                  onClick={() => handleClick(true, 0)}
+                  className={`colorTestBtn ${
+                    clickedButtonId === "correct0" ? "correct" : ""
+                  }`}
+                  onClick={() => handleClick("correct0", true, 0)}
                 >
                   Ano
                 </button>
                 <button
-                  className="colorTestBtn"
-                  onClick={() => handleClick(false, 0)}
+                  className={`colorTestBtn ${
+                    clickedButtonId === "wrong0" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong0", false, 0)}
                 >
                   Ne
                 </button>
@@ -198,14 +207,19 @@ const AstigmatismTest = () => {
               ></img>
               <div>
                 <button
-                  className="colorTestBtn correct"
-                  onClick={() => handleClick(true, 2)}
+                  className={`colorTestBtn ${
+                    clickedButtonId === "correct2" ? "correct" : ""
+                  }`}
+                  onClick={() => handleClick("correct2", true, 2)}
                 >
                   Ano
                 </button>
+
                 <button
-                  className="colorTestBtn"
-                  onClick={() => handleClick(false, 2)}
+                  className={`colorTestBtn ${
+                    clickedButtonId === "wrong2" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong2", false, 2)}
                 >
                   Ne
                 </button>

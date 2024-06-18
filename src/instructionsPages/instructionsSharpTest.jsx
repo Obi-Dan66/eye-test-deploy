@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import CloseButton from "../components/CloseButton.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { setSeenInstructions } from "../store/instructionsSlice";
-
+import { setSliderValue } from "../store/sliderSlice";
 const InstructionsSharpTest = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [currentContent, setCurrentContent] = useState(0);
-  const [sliderValue, setSliderValue] = useState(50); // Define sliderValue here
+  const sliderValue = useSelector((state) => state.slider.sliderValue);
   const [sliderChanged, setSliderChanged] = useState(false); // Update this line to track the state
   const totalContents = 8;
   const seenInstructions = useSelector(
@@ -49,6 +49,7 @@ const InstructionsSharpTest = () => {
   const handleSliderChange = (e) => {
     setSliderValue(e.target.value);
     setSliderChanged(true);
+    dispatch(setSliderValue(parseInt(e.target.value)));
   };
 
   const getContent = (contentIndex) => {

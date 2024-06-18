@@ -12,12 +12,15 @@ const ColorTest = () => {
   const totalContents = 7;
   const isTestComplete = currentContent === totalContents - 1;
   const dispatch = useDispatch();
+  const [showFeedback, setShowFeedback] = useState(false);
 
   const handleClick = (buttonId, isCorrect) => {
     setClickedButtonId(buttonId);
+    setShowFeedback(true); // Enable feedback visibility
 
     setTimeout(() => {
       setCurrentContent((prevContent) => (prevContent + 1) % totalContents);
+      setShowFeedback(false); // Reset feedback visibility for the next question
       setClickedButtonId(null);
 
       if (isCorrect) {
@@ -29,8 +32,6 @@ const ColorTest = () => {
   const getContent = (contentIndex) => {
     const correctClicked =
       clickedButtonId === "correct" && currentContent === contentIndex;
-    const wrongClicked =
-      clickedButtonId !== "correct" && currentContent === contentIndex;
 
     switch (contentIndex) {
       case 0:
@@ -53,26 +54,34 @@ const ColorTest = () => {
               ></img>
               <div>
                 <button
-                  className={`colorTestBtn ${wrongClicked ? "wrong" : ""}`}
-                  onClick={() => handleClick("wrong", false)}
+                  className={`colorTestBtn ${
+                    showFeedback && clickedButtonId === "wrong1" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong1", false)}
                 >
                   31
                 </button>
                 <button
-                  className={`colorTestBtn ${correctClicked ? "correct" : ""}`}
+                  className={`colorTestBtn ${
+                    showFeedback && correctClicked ? "correct" : ""
+                  }`}
                   onClick={() => handleClick("correct", true)}
                 >
                   12
                 </button>
                 <button
-                  className={`colorTestBtn ${wrongClicked ? "wrong" : ""}`}
-                  onClick={() => handleClick("wrong", false)}
+                  className={`colorTestBtn ${
+                    showFeedback && clickedButtonId === "wrong2" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong2", false)}
                 >
                   71
                 </button>
                 <button
-                  className={`colorTestBtn ${wrongClicked ? "wrong" : ""}`}
-                  onClick={() => handleClick("wrong", false)}
+                  className={`colorTestBtn ${
+                    showFeedback && clickedButtonId === "wrong3" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong3", false)}
                 >
                   Nic
                 </button>
@@ -100,26 +109,34 @@ const ColorTest = () => {
               ></img>
               <div>
                 <button
-                  className={`colorTestBtn ${correctClicked ? "correct" : ""}`}
+                  className={`colorTestBtn ${
+                    showFeedback && correctClicked ? "correct" : ""
+                  }`}
                   onClick={() => handleClick("correct", true)}
                 >
                   8
                 </button>
                 <button
-                  className={`colorTestBtn ${wrongClicked ? "wrong" : ""}`}
-                  onClick={() => handleClick("wrong", false)}
+                  className={`colorTestBtn ${
+                    showFeedback && clickedButtonId === "wrong1" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong1", false)}
                 >
                   3
                 </button>
                 <button
-                  className={`colorTestBtn ${wrongClicked ? "wrong" : ""}`}
-                  onClick={() => handleClick("wrong", false)}
+                  className={`colorTestBtn ${
+                    showFeedback && clickedButtonId === "wrong2" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong2", false)}
                 >
                   11
                 </button>
                 <button
-                  className={`colorTestBtn ${wrongClicked ? "wrong" : ""}`}
-                  onClick={() => handleClick("wrong", false)}
+                  className={`colorTestBtn ${
+                    showFeedback && clickedButtonId === "wrong3" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong3", false)}
                 >
                   Nic
                 </button>
@@ -147,26 +164,34 @@ const ColorTest = () => {
               ></img>
               <div>
                 <button
-                  className={`colorTestBtn ${wrongClicked ? "wrong" : ""}`}
-                  onClick={() => handleClick("wrong", false)}
+                  className={`colorTestBtn ${
+                    showFeedback && clickedButtonId === "wrong1" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong1", false)}
                 >
                   5
                 </button>
                 <button
-                  className={`colorTestBtn ${correctClicked ? "correct" : ""}`}
+                  className={`colorTestBtn ${
+                    showFeedback && correctClicked ? "correct" : ""
+                  }`}
                   onClick={() => handleClick("correct", true)}
                 >
                   3
                 </button>
                 <button
-                  className={`colorTestBtn ${wrongClicked ? "wrong" : ""}`}
-                  onClick={() => handleClick("wrong", false)}
+                  className={`colorTestBtn ${
+                    showFeedback && clickedButtonId === "wrong2" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong2", false)}
                 >
                   27
                 </button>
                 <button
-                  className={`colorTestBtn ${wrongClicked ? "wrong" : ""}`}
-                  onClick={() => handleClick("wrong", false)}
+                  className={`colorTestBtn ${
+                    showFeedback && clickedButtonId === "wrong3" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong3", false)}
                 >
                   Nic
                 </button>
@@ -194,26 +219,34 @@ const ColorTest = () => {
               ></img>
               <div>
                 <button
-                  className={`colorTestBtn ${wrongClicked ? "wrong" : ""}`}
-                  onClick={() => handleClick("wrong", false)}
+                  className={`colorTestBtn ${
+                    showFeedback && clickedButtonId === "wrong1" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong1", false)}
                 >
                   36
                 </button>
                 <button
-                  className={`colorTestBtn ${correctClicked ? "correct" : ""}`}
+                  className={`colorTestBtn ${
+                    showFeedback && correctClicked ? "correct" : ""
+                  }`}
                   onClick={() => handleClick("correct", true)}
                 >
                   45
                 </button>
                 <button
-                  className={`colorTestBtn ${wrongClicked ? "wrong" : ""}`}
-                  onClick={() => handleClick("wrong", false)}
+                  className={`colorTestBtn ${
+                    showFeedback && clickedButtonId === "wrong2" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong2", false)}
                 >
                   60
                 </button>
                 <button
-                  className={`colorTestBtn ${wrongClicked ? "wrong" : ""}`}
-                  onClick={() => handleClick("wrong", false)}
+                  className={`colorTestBtn ${
+                    showFeedback && clickedButtonId === "wrong3" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong3", false)}
                 >
                   Nic
                 </button>
@@ -241,26 +274,34 @@ const ColorTest = () => {
               ></img>
               <div>
                 <button
-                  className={`colorTestBtn ${correctClicked ? "correct" : ""}`}
+                  className={`colorTestBtn ${
+                    showFeedback && correctClicked ? "correct" : ""
+                  }`}
                   onClick={() => handleClick("correct", true)}
                 >
                   5
                 </button>
                 <button
-                  className={`colorTestBtn ${wrongClicked ? "wrong" : ""}`}
-                  onClick={() => handleClick("wrong", false)}
+                  className={`colorTestBtn ${
+                    showFeedback && clickedButtonId === "wrong1" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong1", false)}
                 >
                   57
                 </button>
                 <button
-                  className={`colorTestBtn ${wrongClicked ? "wrong" : ""}`}
-                  onClick={() => handleClick("wrong", false)}
+                  className={`colorTestBtn ${
+                    showFeedback && clickedButtonId === "wrong2" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong2", false)}
                 >
                   14
                 </button>
                 <button
-                  className={`colorTestBtn ${wrongClicked ? "wrong" : ""}`}
-                  onClick={() => handleClick("wrong", false)}
+                  className={`colorTestBtn ${
+                    showFeedback && clickedButtonId === "wrong3" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong3", false)}
                 >
                   Nic
                 </button>
@@ -288,25 +329,33 @@ const ColorTest = () => {
               ></img>
               <div>
                 <button
-                  className={`colorTestBtn ${wrongClicked ? "wrong" : ""}`}
-                  onClick={() => handleClick("wrong", false)}
+                  className={`colorTestBtn ${
+                    showFeedback && clickedButtonId === "wrong1" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong1", false)}
                 >
                   45
                 </button>
                 <button
-                  className={`colorTestBtn ${wrongClicked ? "wrong" : ""}`}
-                  onClick={() => handleClick("wrong", false)}
+                  className={`colorTestBtn ${
+                    showFeedback && clickedButtonId === "wrong2" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong2", false)}
                 >
                   70
                 </button>
                 <button
-                  className={`colorTestBtn ${wrongClicked ? "wrong" : ""}`}
-                  onClick={() => handleClick("wrong", false)}
+                  className={`colorTestBtn ${
+                    showFeedback && clickedButtonId === "wrong3" ? "wrong" : ""
+                  }`}
+                  onClick={() => handleClick("wrong3", false)}
                 >
                   6
                 </button>
                 <button
-                  className={`colorTestBtn ${correctClicked ? "correct" : ""}`}
+                  className={`colorTestBtn ${
+                    showFeedback && correctClicked ? "correct" : ""
+                  }`}
                   onClick={() => handleClick("correct", true)}
                 >
                   Nic
