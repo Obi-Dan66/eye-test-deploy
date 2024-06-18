@@ -2,7 +2,6 @@ import React from "react";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import "./index.css";
-import "./indexTailwind.css";
 import InstructionsSharpTest from "./instructionsPages/instructionsSharpTest.jsx";
 import InstructionsContrastTest from "./instructionsPages/instructionsContrastTest.jsx";
 import InstructionsAstigmatismTest from "./instructionsPages/instructionsAstigmatismTest.jsx";
