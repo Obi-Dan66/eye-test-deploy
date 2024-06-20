@@ -7,19 +7,94 @@
   background-color: #ecf0f4;
 }
 
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.test-selection-wrapper {
+  width: 100%;
+  margin: auto;
+}
+
+/* Base styles for .test-selection-container */
 .test-selection-container {
-  display: block;
-  justify-content: center;
-  align-items: center;
+  display: flex; /* Ensure the container uses flexbox */
+  flex-direction: column; /* Align children vertically */
+  justify-content: center; /* Center-align items vertically */
+  align-items: center; /* Center-align items horizontally */
+  padding: 20px; /* Add padding for spacing */
+}
+
+/* Mobile devices (up to 767px) */
+@media (max-width: 767px) {
+  .test-selection-container {
+    flex-direction: column; /* Stack children vertically */
+  }
+}
+
+/* Tablets (from 768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .test-selection-container {
+    flex-direction: column; /* Stack children vertically */
+  }
+}
+
+/* Desktops and larger screens (from 1024px) */
+@media (min-width: 1024px) {
+  .test-selection-container {
+    flex-direction: column; /* Align children in a row */
+  }
 }
 
 .test-selection {
   background-color: white;
-  margin: auto;
   margin-top: 20px;
   border-radius: 30px;
-  width: 25%;
+  width: 90%; /* Default width for large screens */
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Mobile devices (up to 767px) */
+@media (max-width: 767px) {
+  .test-selection {
+    width: 100% !important; /* Full width for smaller screens */
+    margin-top: 10px; /* Less margin top */
+    padding: 20px; /* Slightly less padding */
+  }
+}
+
+/* Tablets (from 768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .test-selection {
+    width: 25%; /* Moderate width for tablets */
+    padding: 15px; /* Standard padding */
+    margin-top: 15px; /* Standard margin top */
+  }
+}
+
+/* Desktops and larger screens (from 1024px) */
+@media (min-width: 1024px) {
+  .test-selection {
+    width: 25%; /* Original width for desktops */
+    padding: 20px; /* More padding for larger screens */
+    margin-top: 20px; /* Original margin top */
+  }
+}
+
+@media (max-width: 1023px) {
+  .test-selection {
+    width: 50%; /* Adjust width to prevent overstretching */
+    flex-direction: column; /* Ensure content stacks vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+  }
 }
 
 .test-selection button {
@@ -43,13 +118,27 @@ body {
 }
 
 .consent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%; /* Adjust width as needed */
   margin: auto;
-  width: 50%;
-  text-align: left;
+  padding: 20px;
+  height: 50%; /* Set the height to 50% of the viewport height */
+  text-align: center;
 }
 
 .consent h1 {
-  font-size: 2rem;
+  font-size: 2rem; /* Large font size for the header */
+  color: #333; /* Dark grey color for text */
+  margin-bottom: 20px; /* Space below the header */
+}
+
+.consent p {
+  font-size: 1rem; /* Regular font size for the paragraph */
+  color: #666; /* Lighter grey color for paragraph text */
+  line-height: 1.5; /* Spacing between lines */
 }
 
 .consent button {
@@ -59,6 +148,9 @@ body {
   color: #0055ab;
   border-width: 2px;
   border-color: #0055ab;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 .consent button:hover {
@@ -67,21 +159,148 @@ body {
   color: white;
 }
 
+@media (max-width: 767px) {
+  .consent {
+    width: 90%; /* Increase width for small screens */
+    padding: 15px; /* Adjust padding */
+  }
+
+  .consent h1 {
+    font-size: 1.5rem; /* Adjust font size for smaller screens */
+  }
+
+  .consent p {
+    font-size: 0.9rem; /* Adjust font size for smaller screens */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .consent {
+    width: 70%; /* Adjust width for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .consent {
+    width: 50%; /* Maintain default width for large screens */
+  }
+}
+
+.home-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin: auto;
+  width: 80%; /* Default width */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .home-wrapper {
+    width: 95%; /* Increase width for small screens */
+    padding: 15px; /* Adjust padding */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .home-wrapper {
+    width: 90%; /* Adjust width for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .home-wrapper {
+    width: 70%; /* Maintain a narrower width for large screens */
+  }
+}
+
 .home {
-  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 2rem; /* Adjust top margin */
+  width: 100%; /* Default width */
+  margin: auto; /* Center the div */
+  box-sizing: border-box;
+}
+
+/* Ensure images are not causing any overflow */
+.home img {
+  max-width: 100%; /* Limit image width to prevent overflow */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Adjust button styling to ensure they are centered and have consistent spacing */
+.home button {
+  width: 90%; /* Slightly less than full width for aesthetics */
+  margin: 10px 0; /* Add top and bottom margin for spacing */
+  padding: 12px 0; /* Sufficient padding for tap targets */
+}
+
+/* Remove any specific left or right margins that might be affecting centering */
+.home button {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 767px) {
+  .home {
+    padding: 15px; /* Adjust padding */
+  }
+  .home button {
+    width: 100%; /* Full width buttons on smaller devices */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .home {
+    width: 90%; /* Adjust width for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .home {
+    width: 70%; /* Maintain a narrower width for large screens */
+  }
 }
 
 .homePage {
   width: 50%;
   margin: auto;
-}
-
-.homePage {
-  width: 200px;
-  height: 50px;
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .homePage {
+    width: 90%; /* Increase width for small screens */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .homePage {
+    width: 70%; /* Adjust width for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .homePage {
+    width: 60%; /* Slightly reduce width for large screens */
+  }
 }
 
 h1 {
@@ -104,12 +323,40 @@ p {
 }
 
 .defaultButton {
-  width: 200px;
-  height: 50px;
   background-color: #0072ef;
   border-width: 0px;
   border-radius: 5px;
   margin-right: 5px;
+  padding: 10px 20px; /* Default padding */
+  width: auto; /* Default width based on content */
+  transition: background-color 0.7s;
+}
+
+/* Mobile devices (up to 767px) */
+@media (max-width: 767px) {
+  .defaultButton {
+    width: 50%; /* Full width for better usability on small screens */
+    margin-right: 0; /* Adjust margin to fit mobile layout */
+    padding: 10px 0; /* Increase padding for better touch target size */
+  }
+}
+
+/* Tablets (from 768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .defaultButton {
+    width: 50%; /* Adjust width for tablet screens */
+    margin-right: 5px; /* Standard margin */
+    padding: 15px 0; /* Slightly larger padding */
+  }
+}
+
+/* Desktops and larger screens (from 1024px) */
+@media (min-width: 1024px) {
+  .defaultButton {
+    width: 200px; /* Original width for desktops */
+    margin-right: 5px; /* Original margin */
+    padding: 10px 20px; /* Standard padding */
+  }
 }
 
 .defaultButton:hover {
@@ -117,12 +364,55 @@ p {
   transition: 0.7s;
 }
 
-.testBegin {
+.testBegin,
+.selectTest {
   width: 200px;
   background-color: #0072ef;
-  border-width: 0px;
+  border: none;
   border-radius: 5px;
-  margin-right: 5px;
+  padding: 10px 20px;
+  margin: 5px; /* Adjusted margin for better spacing */
+}
+
+.selectTest {
+  background-color: transparent;
+  border: black solid;
+  color: black;
+}
+
+.testBegin:hover,
+.selectTest:hover {
+  background-color: #0055ab;
+}
+
+/* Mobile devices (up to 767px) */
+@media (max-width: 767px) {
+  .testBegin,
+  .selectTest {
+    width: 100%; /* Full width for better usability on small screens */
+    margin: 10px 0; /* Increased margin for better spacing */
+    padding: 12px 0; /* Increased padding for a better touch target */
+  }
+}
+
+/* Tablets (from 768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .testBegin,
+  .selectTest {
+    width: 50%; /* Adjust width for tablet screens */
+    margin: 5px; /* Standard margin */
+    padding: 15px 20px; /* Slightly larger padding */
+  }
+}
+
+/* Desktops and larger screens (from 1024px) */
+@media (min-width: 1024px) {
+  .testBegin,
+  .selectTest {
+    width: 200px; /* Original width for desktops */
+    margin: 5px; /* Original margin */
+    padding: 10px 20px; /* Standard padding */
+  }
 }
 
 .testBegin:hover {
@@ -130,34 +420,28 @@ p {
   transition: 0.7s;
 }
 
-.selectTest {
-  margin-left: 5px;
-  width: 200px;
-  border-width: 0px;
-  background-color: #0072ef;
-  border-radius: 5px;
-}
-
 .selectTest:hover {
+  color: white;
   background-color: #002ead;
   transition: 0.7s;
+  border: none;
 }
 
-.sharp {
+/*.sharp {
   height: 80px;
   width: 100px;
   clip-path: polygon(16.5% 50%, 83.5% 50%, 100% 0, 0 0);
   transform-origin: 0 0;
   background-color: black;
   padding-bottom: 40px;
-}
+}*/
 
-.sharpButtonsDiv {
+/*.sharpButtonsDiv {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: auto;
-}
+}*/
 
 .circle1 {
   width: 260px;
@@ -353,9 +637,41 @@ p {
 }
 
 .media-space-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
   margin: auto;
-  width: 40%;
-  text-align: center;
+  width: 80%; /* Default width */
+}
+
+.media-space {
+  padding: 15px;
+  border-radius: 8px;
+  width: 100%; /* Full width within the container */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .media-space-container {
+    width: 95%; /* Increase width for small screens */
+    padding: 10px; /* Adjust padding */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .media-space-container {
+    width: 90%; /* Adjust width for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .media-space-container {
+    width: 70%; /* Maintain a narrower width for large screens */
+  }
 }
 
 .media-space-container h1 {

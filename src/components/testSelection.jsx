@@ -7,7 +7,7 @@ const TestSelection = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="test-selection-wrapper">
       <CloseButton />
       <h1>Všechny testy zraku</h1>
       <p>

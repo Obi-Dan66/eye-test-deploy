@@ -14,10 +14,7 @@ const InstructionsEyeFieldTest = () => {
   const seenInstructions = useSelector(
     (state) => state.instructions.seenInstructions
   );
-  // TODO: repair instructions, since some updating slider,
-  // TODO:  and some are not rendering conditional case
-  // TODO: repair cross and tick appearing in eye field and astigm test
-  // TODO:( should be allright in color test)
+
   useEffect(() => {
     if (seenInstructions) {
       setCurrentContent(4); // Start from the first abbreviated content case
