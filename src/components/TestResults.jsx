@@ -164,11 +164,11 @@ const TestResults = () => {
           </div>
         </div>
       )}
-      <button className="selectTest homePage" onClick={() => navigate("/")}>
+      <button className="defaultButton" onClick={() => navigate("/")}>
         Hlavní stránka
       </button>
       <button
-        className="selectTest homePage"
+        className="defaultButton"
         onClick={() => navigate("/vyber-testu")}
       >
         Výběr testu

@@ -178,66 +178,74 @@ const ContrastTest = () => {
               </svg>
             </div>
             <div className="circle1">
-              {iconType === "checkmark" && (
-                <img
-                  src="./checkmark.svg"
-                  className="tick-animation"
-                  alt="Tick"
-                />
-              )}
-              {iconType === "cross" && (
-                <img src="./cross.svg" className="tick-animation" alt="Cross" />
-              )}
-              <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  id="TOP"
-                  onClick={() => handleClick("TOP")}
-                  style={{ opacity: clickedButton === "TOP" ? 0 : 1 }}
-                  d="M158.934 57.545a77.47 77.47 0 00-13.211-3.957 78.642 78.642 0 00-31.437 0 77.47 77.47 0 00-13.211 3.957l-19.9-48.059a130.162 130.162 0 0197.674 0z"
-                ></path>
-                <path
-                  id="TOPRIGHT"
-                  onClick={() => handleClick("TOPRIGHT")}
-                  style={{ opacity: clickedButton === "TOPRIGHT" ? 0 : 1 }}
-                  d="M201.693 99.226a78.216 78.216 0 00-40.914-40.914l19.906-48.059a130.414 130.414 0 0169.066 69.066l-48.059 19.907z"
-                ></path>
-                <path
-                  id="RIGHT"
-                  onClick={() => handleClick("RIGHT")}
-                  style={{ opacity: clickedButton === "RIGHT" ? 0 : 1 }}
-                  d="M202.459 158.933a77.41 77.41 0 003.959-13.213 78.785 78.785 0 000-31.437 77.477 77.477 0 00-3.957-13.209l48.057-19.9a129.319 129.319 0 016.844 22.635 130.2 130.2 0 01-6.844 75.036z"
-                ></path>
-                <path
-                  id="BOTTOMRIGHT"
-                  onClick={() => handleClick("BOTTOMRIGHT")}
-                  style={{ opacity: clickedButton === "BOTTOMRIGHT" ? 0 : 1 }}
-                  d="M160.779 201.692a78.193 78.193 0 0024.379-16.535 78.8 78.8 0 009.525-11.545 77.993 77.993 0 007.008-12.833l48.061 19.907a130.393 130.393 0 01-69.068 69.064z"
-                ></path>
-                <path
-                  id="BOTTOM"
-                  onClick={() => handleClick("BOTTOM")}
-                  style={{ opacity: clickedButton === "BOTTOM" ? 0 : 1 }}
-                  d="M130 260.001a130.826 130.826 0 01-26.2-2.641 129.332 129.332 0 01-22.639-6.846l19.906-48.058a77.615 77.615 0 0013.213 3.957 78.642 78.642 0 0031.438 0 77.47 77.47 0 0013.211-3.957l19.906 48.058a129.181 129.181 0 01-22.639 6.846A130.778 130.778 0 01130 260.001z"
-                ></path>
-                <path
-                  id="BOTTOMLEFT"
-                  onClick={() => handleClick("BOTTOMLEFT")}
-                  style={{ opacity: clickedButton === "BOTTOMLEFT" ? 0 : 1 }}
-                  d="M79.316 249.75a130.42 130.42 0 01-69.066-69.063l48.057-19.9a78.285 78.285 0 0028.084 33.9 77.645 77.645 0 0012.836 7.015z"
-                ></path>
-                <path
-                  id="LEFT"
-                  onClick={() => handleClick("LEFT")}
-                  style={{ opacity: clickedButton === "LEFT" ? 0 : 1 }}
-                  d="M9.486 178.84a130.148 130.148 0 010-97.673l48.055 19.9a78.1 78.1 0 000 57.865z"
-                ></path>
-                <path
-                  id="TOPLEFT"
-                  onClick={() => handleClick("TOPLEFT")}
-                  style={{ opacity: clickedButton === "TOPLEFT" ? 0 : 1 }}
-                  d="M10.252 79.316a130.414 130.414 0 0169.064-69.064l19.908 48.059a77.664 77.664 0 00-12.834 7.014 78.166 78.166 0 00-28.084 33.9z"
-                ></path>
-              </svg>
+              <div className="svg-container">
+                <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    id="TOP"
+                    onClick={() => handleClick("TOP")}
+                    style={{ opacity: clickedButton === "TOP" ? 0 : 1 }}
+                    d="M158.934 57.545a77.47 77.47 0 00-13.211-3.957 78.642 78.642 0 00-31.437 0 77.47 77.47 0 00-13.211 3.957l-19.9-48.059a130.162 130.162 0 0197.674 0z"
+                  ></path>
+                  <path
+                    id="TOPRIGHT"
+                    onClick={() => handleClick("TOPRIGHT")}
+                    style={{ opacity: clickedButton === "TOPRIGHT" ? 0 : 1 }}
+                    d="M201.693 99.226a78.216 78.216 0 00-40.914-40.914l19.906-48.059a130.414 130.414 0 0169.066 69.066l-48.059 19.907z"
+                  ></path>
+                  <path
+                    id="RIGHT"
+                    onClick={() => handleClick("RIGHT")}
+                    style={{ opacity: clickedButton === "RIGHT" ? 0 : 1 }}
+                    d="M202.459 158.933a77.41 77.41 0 003.959-13.213 78.785 78.785 0 000-31.437 77.477 77.477 0 00-3.957-13.209l48.057-19.9a129.319 129.319 0 016.844 22.635 130.2 130.2 0 01-6.844 75.036z"
+                  ></path>
+                  <path
+                    id="BOTTOMRIGHT"
+                    onClick={() => handleClick("BOTTOMRIGHT")}
+                    style={{ opacity: clickedButton === "BOTTOMRIGHT" ? 0 : 1 }}
+                    d="M160.779 201.692a78.193 78.193 0 0024.379-16.535 78.8 78.8 0 009.525-11.545 77.993 77.993 0 007.008-12.833l48.061 19.907a130.393 130.393 0 01-69.068 69.064z"
+                  ></path>
+                  <path
+                    id="BOTTOM"
+                    onClick={() => handleClick("BOTTOM")}
+                    style={{ opacity: clickedButton === "BOTTOM" ? 0 : 1 }}
+                    d="M130 260.001a130.826 130.826 0 01-26.2-2.641 129.332 129.332 0 01-22.639-6.846l19.906-48.058a77.615 77.615 0 0013.213 3.957 78.642 78.642 0 0031.438 0 77.47 77.47 0 0013.211-3.957l19.906 48.058a129.181 129.181 0 01-22.639 6.846A130.778 130.778 0 01130 260.001z"
+                  ></path>
+                  <path
+                    id="BOTTOMLEFT"
+                    onClick={() => handleClick("BOTTOMLEFT")}
+                    style={{ opacity: clickedButton === "BOTTOMLEFT" ? 0 : 1 }}
+                    d="M79.316 249.75a130.42 130.42 0 01-69.066-69.063l48.057-19.9a78.285 78.285 0 0028.084 33.9 77.645 77.645 0 0012.836 7.015z"
+                  ></path>
+                  <path
+                    id="LEFT"
+                    onClick={() => handleClick("LEFT")}
+                    style={{ opacity: clickedButton === "LEFT" ? 0 : 1 }}
+                    d="M9.486 178.84a130.148 130.148 0 010-97.673l48.055 19.9a78.1 78.1 0 000 57.865z"
+                  ></path>
+                  <path
+                    id="TOPLEFT"
+                    onClick={() => handleClick("TOPLEFT")}
+                    style={{ opacity: clickedButton === "TOPLEFT" ? 0 : 1 }}
+                    d="M10.252 79.316a130.414 130.414 0 0169.064-69.064l19.908 48.059a77.664 77.664 0 00-12.834 7.014 78.166 78.166 0 00-28.084 33.9z"
+                  ></path>
+                </svg>
+                <div className="icon-overlay">
+                  {iconType === "checkmark" && (
+                    <img
+                      src="./checkmark.svg"
+                      className="tick-animation"
+                      alt="Tick"
+                    />
+                  )}
+                  {iconType === "cross" && (
+                    <img
+                      src="./cross.svg"
+                      className="tick-animation"
+                      alt="Cross"
+                    />
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -279,66 +287,74 @@ const ContrastTest = () => {
               </svg>
             </div>
             <div className="circle1">
-              {iconType === "checkmark" && (
-                <img
-                  src="./checkmark.svg"
-                  className="tick-animation"
-                  alt="Tick"
-                />
-              )}
-              {iconType === "cross" && (
-                <img src="./cross.svg" className="tick-animation" alt="Cross" />
-              )}
-              <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  id="TOP"
-                  onClick={() => handleClick("TOP")}
-                  style={{ opacity: clickedButton === "TOP" ? 0 : 1 }}
-                  d="M158.934 57.545a77.47 77.47 0 00-13.211-3.957 78.642 78.642 0 00-31.437 0 77.47 77.47 0 00-13.211 3.957l-19.9-48.059a130.162 130.162 0 0197.674 0z"
-                ></path>
-                <path
-                  id="TOPRIGHT"
-                  onClick={() => handleClick("TOPRIGHT")}
-                  style={{ opacity: clickedButton === "TOPRIGHT" ? 0 : 1 }}
-                  d="M201.693 99.226a78.216 78.216 0 00-40.914-40.914l19.906-48.059a130.414 130.414 0 0169.066 69.066l-48.059 19.907z"
-                ></path>
-                <path
-                  id="RIGHT"
-                  onClick={() => handleClick("RIGHT")}
-                  style={{ opacity: clickedButton === "RIGHT" ? 0 : 1 }}
-                  d="M202.459 158.933a77.41 77.41 0 003.959-13.213 78.785 78.785 0 000-31.437 77.477 77.477 0 00-3.957-13.209l48.057-19.9a129.319 129.319 0 016.844 22.635 130.2 130.2 0 01-6.844 75.036z"
-                ></path>
-                <path
-                  id="BOTTOMRIGHT"
-                  onClick={() => handleClick("BOTTOMRIGHT")}
-                  style={{ opacity: clickedButton === "BOTTOMRIGHT" ? 0 : 1 }}
-                  d="M160.779 201.692a78.193 78.193 0 0024.379-16.535 78.8 78.8 0 009.525-11.545 77.993 77.993 0 007.008-12.833l48.061 19.907a130.393 130.393 0 01-69.068 69.064z"
-                ></path>
-                <path
-                  id="BOTTOM"
-                  onClick={() => handleClick("BOTTOM")}
-                  style={{ opacity: clickedButton === "BOTTOM" ? 0 : 1 }}
-                  d="M130 260.001a130.826 130.826 0 01-26.2-2.641 129.332 129.332 0 01-22.639-6.846l19.906-48.058a77.615 77.615 0 0013.213 3.957 78.642 78.642 0 0031.438 0 77.47 77.47 0 0013.211-3.957l19.906 48.058a129.181 129.181 0 01-22.639 6.846A130.778 130.778 0 01130 260.001z"
-                ></path>
-                <path
-                  id="BOTTOMLEFT"
-                  onClick={() => handleClick("BOTTOMLEFT")}
-                  style={{ opacity: clickedButton === "BOTTOMLEFT" ? 0 : 1 }}
-                  d="M79.316 249.75a130.42 130.42 0 01-69.066-69.063l48.057-19.9a78.285 78.285 0 0028.084 33.9 77.645 77.645 0 0012.836 7.015z"
-                ></path>
-                <path
-                  id="LEFT"
-                  onClick={() => handleClick("LEFT")}
-                  style={{ opacity: clickedButton === "LEFT" ? 0 : 1 }}
-                  d="M9.486 178.84a130.148 130.148 0 010-97.673l48.055 19.9a78.1 78.1 0 000 57.865z"
-                ></path>
-                <path
-                  id="TOPLEFT"
-                  onClick={() => handleClick("TOPLEFT")}
-                  style={{ opacity: clickedButton === "TOPLEFT" ? 0 : 1 }}
-                  d="M10.252 79.316a130.414 130.414 0 0169.064-69.064l19.908 48.059a77.664 77.664 0 00-12.834 7.014 78.166 78.166 0 00-28.084 33.9z"
-                ></path>
-              </svg>
+              <div className="svg-container">
+                <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    id="TOP"
+                    onClick={() => handleClick("TOP")}
+                    style={{ opacity: clickedButton === "TOP" ? 0 : 1 }}
+                    d="M158.934 57.545a77.47 77.47 0 00-13.211-3.957 78.642 78.642 0 00-31.437 0 77.47 77.47 0 00-13.211 3.957l-19.9-48.059a130.162 130.162 0 0197.674 0z"
+                  ></path>
+                  <path
+                    id="TOPRIGHT"
+                    onClick={() => handleClick("TOPRIGHT")}
+                    style={{ opacity: clickedButton === "TOPRIGHT" ? 0 : 1 }}
+                    d="M201.693 99.226a78.216 78.216 0 00-40.914-40.914l19.906-48.059a130.414 130.414 0 0169.066 69.066l-48.059 19.907z"
+                  ></path>
+                  <path
+                    id="RIGHT"
+                    onClick={() => handleClick("RIGHT")}
+                    style={{ opacity: clickedButton === "RIGHT" ? 0 : 1 }}
+                    d="M202.459 158.933a77.41 77.41 0 003.959-13.213 78.785 78.785 0 000-31.437 77.477 77.477 0 00-3.957-13.209l48.057-19.9a129.319 129.319 0 016.844 22.635 130.2 130.2 0 01-6.844 75.036z"
+                  ></path>
+                  <path
+                    id="BOTTOMRIGHT"
+                    onClick={() => handleClick("BOTTOMRIGHT")}
+                    style={{ opacity: clickedButton === "BOTTOMRIGHT" ? 0 : 1 }}
+                    d="M160.779 201.692a78.193 78.193 0 0024.379-16.535 78.8 78.8 0 009.525-11.545 77.993 77.993 0 007.008-12.833l48.061 19.907a130.393 130.393 0 01-69.068 69.064z"
+                  ></path>
+                  <path
+                    id="BOTTOM"
+                    onClick={() => handleClick("BOTTOM")}
+                    style={{ opacity: clickedButton === "BOTTOM" ? 0 : 1 }}
+                    d="M130 260.001a130.826 130.826 0 01-26.2-2.641 129.332 129.332 0 01-22.639-6.846l19.906-48.058a77.615 77.615 0 0013.213 3.957 78.642 78.642 0 0031.438 0 77.47 77.47 0 0013.211-3.957l19.906 48.058a129.181 129.181 0 01-22.639 6.846A130.778 130.778 0 01130 260.001z"
+                  ></path>
+                  <path
+                    id="BOTTOMLEFT"
+                    onClick={() => handleClick("BOTTOMLEFT")}
+                    style={{ opacity: clickedButton === "BOTTOMLEFT" ? 0 : 1 }}
+                    d="M79.316 249.75a130.42 130.42 0 01-69.066-69.063l48.057-19.9a78.285 78.285 0 0028.084 33.9 77.645 77.645 0 0012.836 7.015z"
+                  ></path>
+                  <path
+                    id="LEFT"
+                    onClick={() => handleClick("LEFT")}
+                    style={{ opacity: clickedButton === "LEFT" ? 0 : 1 }}
+                    d="M9.486 178.84a130.148 130.148 0 010-97.673l48.055 19.9a78.1 78.1 0 000 57.865z"
+                  ></path>
+                  <path
+                    id="TOPLEFT"
+                    onClick={() => handleClick("TOPLEFT")}
+                    style={{ opacity: clickedButton === "TOPLEFT" ? 0 : 1 }}
+                    d="M10.252 79.316a130.414 130.414 0 0169.064-69.064l19.908 48.059a77.664 77.664 0 00-12.834 7.014 78.166 78.166 0 00-28.084 33.9z"
+                  ></path>
+                </svg>
+                <div className="icon-overlay">
+                  {iconType === "checkmark" && (
+                    <img
+                      src="./checkmark.svg"
+                      className="tick-animation"
+                      alt="Tick"
+                    />
+                  )}
+                  {iconType === "cross" && (
+                    <img
+                      src="./cross.svg"
+                      className="tick-animation"
+                      alt="Cross"
+                    />
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -556,13 +572,13 @@ const ContrastTest = () => {
             </div>
             <div className="next_test_buttons">
               <button
-                className="selectTest homePage"
+                className="defaultButton"
                 onClick={() => navigate("/instrukce-test-barevneho-videni")}
               >
                 Pokračovat dalším testem
               </button>
               <button
-                className="selectTest homePage"
+                className="defaultButton"
                 onClick={() => navigate("/vyber-testu")}
               >
                 Nebo si vyberte určitý test

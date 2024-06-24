@@ -386,13 +386,13 @@ const EyeFieldTest = () => {
             </div>
             <div className="next_test_buttons">
               <button
-                className="selectTest homePage"
+                className="defaultButton"
                 onClick={() => navigate("/vysledky-testu")}
               >
                 Zobrazit výsledky testů
               </button>
               <button
-                className="selectTest homePage"
+                className="defaultButton"
                 onClick={() => navigate("/vyber-testu")}
               >
                 Vyberte si jiný test

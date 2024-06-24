@@ -155,7 +155,7 @@ body {
 
 .consent button:hover {
   background-color: #002ead;
-  transition: 0.7s;
+
   color: white;
 }
 
@@ -329,15 +329,15 @@ p {
   margin-right: 5px;
   padding: 10px 20px; /* Default padding */
   width: auto; /* Default width based on content */
-  transition: background-color 0.7s;
 }
 
 /* Mobile devices (up to 767px) */
 @media (max-width: 767px) {
   .defaultButton {
     width: 50%; /* Full width for better usability on small screens */
-    margin-right: 0; /* Adjust margin to fit mobile layout */
-    padding: 10px 0; /* Increase padding for better touch target size */
+    margin-right: 10px; /* Adjust margin to fit mobile layout */
+    padding: 10px 10px 10px 10px; /* Increase padding for better touch target size */
+    margin-bottom: 10px; /* Adjust margin for better spacing */
   }
 }
 
@@ -347,6 +347,7 @@ p {
     width: 50%; /* Adjust width for tablet screens */
     margin-right: 5px; /* Standard margin */
     padding: 15px 0; /* Slightly larger padding */
+    margin-bottom: 10px; /* Adjust margin for better spacing */
   }
 }
 
@@ -361,7 +362,6 @@ p {
 
 .defaultButton:hover {
   background-color: #002ead;
-  transition: 0.7s;
 }
 
 .testBegin,
@@ -460,16 +460,59 @@ p {
   margin-top: 10px;
 }
 
+/* Enhancements and responsive adjustments for .sharpTestContainer */
 .sharpTestContainer {
-  background-color: white;
-  border-radius: 30px;
-  padding: 20px;
-  margin: auto;
-  width: 25%;
-  display: grid;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  height: 50vh;
+  background-color: white; /* Consistent with existing color schemes */
+  border-radius: 30px; /* Soften edges */
+  padding: 20px; /* Adequate padding for content */
+  padding-bottom: 50px;
+  margin-right: 10px; /* Centering the container */
+  width: 80%; /* Starting width, but will adjust for responsiveness */
+  display: flex; /* Using flex to align children */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  transition: all 0.3s ease; /* Smooth transitions for layout changes */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .sharpTestContainer {
+    width: 100%; /* Increase width to use more of the small screen */
+    padding: 15px; /* Adjust padding to fit smaller screens */
+    padding-bottom: 40px; /* Adjust padding to fit smaller screens */
+  }
+}
+
+@media (max-width: 337px) {
+  .sharpTestContainer {
+    width: 100%; /* Increase width to use more of the small screen */
+    padding-bottom: 40px; /* Adjust padding to fit smaller screens */
+    padding-right: 30px;
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .sharpTestContainer {
+    width: 90%; /* Optimal width for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .sharpTestContainer {
+    width: 70%; /* Reduce width to prevent overstretching on large screens */
+  }
+}
+
+.sharpTestCircleSmall {
+  position: relative; /* Needed to position children absolutely within it */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .app-icon-container {
@@ -567,11 +610,36 @@ p {
   cursor: pointer;
 }
 
+@media (max-width: 767px) {
+  .card {
+    transform-origin: top right; /* Sets the pivot point to the center of the card */
+    width: 200px; /* Adjusts the width for mobile view */
+    height: 320px; /* Makes height responsive */
+    background-color: white; /* Sets the background color */
+    border: 2px dashed grey; /* Styles the border */
+    border-radius: 10px; /* Rounds the corners */
+    transition: transform 0.3s ease-in-out; /* Smooth transition for rotation */
+  }
+
+  .page-container {
+    margin-bottom: 30px;
+  }
+
+  .card-container-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100% !important;
+  }
+}
+
 .page-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 30vh; /* Set the height to 100% of the viewport height */
+  padding-left: 25%;
 }
 
 /* colorTest */
@@ -630,6 +698,30 @@ p {
   padding: 20px;
   margin: auto;
   width: 25%;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .colorTestCard {
+    width: 90%; /* Adjust width for smaller screens */
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .colorTestCard {
+    width: 50%; /* Adjust width for tablets */
+    padding: 18px; /* Adjust padding for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .colorTestCard {
+    width: 40%; /* Adjust width for large desktops */
+    padding: 25px; /* Adjust padding for large desktops */
+  }
 }
 
 .color-image {
@@ -720,6 +812,11 @@ p {
   margin: auto;
   width: 70%;
 }
+@media (max-width: 767px) {
+  .be-ready {
+    width: 100%;
+  }
+}
 
 .be-ready-svgs {
   padding: 0px;
@@ -747,6 +844,38 @@ svg path:hover {
   margin: auto;
   width: 50%;
   padding: 10px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .eyes-result-container {
+    width: 90%; /* Adjust width for smaller screens */
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
+}
+
+/* Responsive adjustments for very small screens */
+@media (max-width: 547px) {
+  .eyes-result-container {
+    width: 95%; /* Adjust width for very small screens */
+    padding: 10px; /* Adjust padding for very small screens */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .eyes-result-container {
+    width: 70%; /* Adjust width for tablets */
+    padding: 20px; /* Adjust padding for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .eyes-result-container {
+    width: 60%; /* Adjust width for large desktops */
+    padding: 25px; /* Adjust padding for large desktops */
+  }
 }
 
 .eyes-result {
@@ -785,6 +914,36 @@ svg path:hover {
   width: 50%;
   margin-top: 80px;
   padding: 10px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .result-map {
+    width: 90%; /* Adjust width for smaller screens */
+    margin-top: 60px; /* Adjust margin top for smaller screens */
+    padding: 8px; /* Adjust padding for smaller screens */
+  }
+  .result-map button {
+    padding: 10px;
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .result-map {
+    width: 70%; /* Adjust width for tablets */
+    margin-top: 70px; /* Adjust margin top for tablets */
+    padding: 12px; /* Adjust padding for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .result-map {
+    width: 60%; /* Adjust width for large desktops */
+    margin-top: 90px; /* Adjust margin top for large desktops */
+    padding: 15px; /* Adjust padding for large desktops */
+  }
 }
 
 .result-map button {
@@ -848,6 +1007,34 @@ svg path:hover {
 
 .next_test_buttons {
   margin-top: 70px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .next_test_buttons {
+    flex-direction: column; /* Stack buttons vertically on small screens */
+    align-items: center; /* Center-align buttons */
+  }
+
+  .next_test_buttons button {
+    margin: 10px 0; /* Add vertical spacing between buttons */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .next_test_buttons {
+    margin-top: 30px; /* Adjust margin for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .next_test_buttons {
+    margin-top: 40px; /* Adjust margin for large screens */
+  }
 }
 
 .contrasttest-result-container {
@@ -866,3 +1053,55 @@ svg path:hover {
   margin-top: 50px;
   margin-bottom: 20px;
 }
+.sharptestCircle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  width: 80%; /* Default width */
+  max-width: 600px; /* Maximum width to maintain layout integrity */
+  transition: all 0.3s ease; /* Smooth transition for any changes */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .sharptestCircle {
+    width: 95%; /* Increase width for small screens */
+    padding: 15px; /* Adjust padding */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .sharptestCircle {
+    width: 90%; /* Adjust width for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .sharptestCircle {
+    width: 70%; /* Maintain a narrower width for large screens */
+  }
+}
+
+.svg-container {
+  position: relative;
+  width: 100%;
+}
+
+.icon-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.icon-overlay img {
+  width: 50px; /* Adjust size as needed */
+  height: auto;
+}
+
+/* TODO: Add buttons to info pages that returns to test selection*/
+/*TODO: add responsive rules to info pages*/

@@ -424,13 +424,13 @@ const ColorTest = () => {
             </div>
             <div className="next_test_buttons">
               <button
-                className="selectTest homePage"
+                className="defaultButton"
                 onClick={() => navigate("/instrukce-test-astigmatismu")}
               >
                 Pokračovat dalším testem
               </button>
               <button
-                className="selectTest homePage"
+                className="defaultButton"
                 onClick={() => navigate("/vyber-testu")}
               >
                 Nebo si vyberte určitý test

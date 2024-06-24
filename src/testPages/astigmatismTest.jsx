@@ -298,13 +298,13 @@ const AstigmatismTest = () => {
             </div>
             <div className="next_test_buttons">
               <button
-                className="selectTest homePage"
+                className="defaultButton"
                 onClick={() => navigate("/instrukce-test-zorneho-pole")}
               >
                 Pokračovat dalším testem
               </button>
               <button
-                className="selectTest homePage"
+                className="defaultButton"
                 onClick={() => navigate("/vyber-testu")}
               >
                 Nebo si vyberte určitý test
