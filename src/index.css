@@ -329,6 +329,7 @@ p {
   margin-right: 5px;
   padding: 10px 20px; /* Default padding */
   width: auto; /* Default width based on content */
+  color: white;
 }
 
 /* Mobile devices (up to 767px) */
