@@ -122,7 +122,7 @@ const HomePage = () => {
         ></img>
         <h1>Online oční test od První Optiky</h1>
         <button
-          className="testBegin homePage"
+          className="defaultButton"
           onClick={() => navigate("/instrukce-test-ostrosti")}
         >
           Zkontrolujte si svůj zrak

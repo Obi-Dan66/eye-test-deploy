@@ -375,6 +375,10 @@ p {
   margin: 5px; /* Adjusted margin for better spacing */
 }
 
+.testBegin {
+  color: white;
+}
+
 .selectTest {
   background-color: transparent;
   border: black solid;

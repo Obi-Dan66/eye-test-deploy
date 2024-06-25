@@ -37,13 +37,20 @@ const InfoSharptest = () => {
       <p>
         Zkontrolujte, jak ostrý máte zrak pomocí našeho testu ostrosti zraku.
       </p>
-
-      <button
-        className="defaultButton"
-        onClick={() => navigate("/instrukce-test-ostrosti")}
-      >
-        Spuštění kontroly ostrosti zraku
-      </button>
+      <div className="next_test_buttons">
+        <button
+          className="defaultButton"
+          onClick={() => navigate("/instrukce-test-ostrosti")}
+        >
+          Spuštění kontroly ostrosti zraku
+        </button>
+        <button
+          className="defaultButton"
+          onClick={() => navigate("/vyber-testu")}
+        >
+          Zpět na výběr testů
+        </button>
+      </div>
       <div className="info-sharp-decription">
         <h2>
           <b>Proč kontrolovat ostrost svého zraku?</b>

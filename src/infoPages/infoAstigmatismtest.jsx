@@ -35,13 +35,20 @@ const InfoAstigmatismtest = () => {
         <b>Vypořádejte se s rozostřeným viděním.</b>
       </h2>
       <p>Zkontrolujte příznaky astigmatismu.</p>
-
-      <button
-        className="defaultButton"
-        onClick={() => navigate("/instrukce-test-astigmatismu")}
-      >
-        Spustit test astigmatismu
-      </button>
+      <div className="next_test_buttons">
+        <button
+          className="defaultButton"
+          onClick={() => navigate("/instrukce-test-astigmatismu")}
+        >
+          Spustit test astigmatismu
+        </button>
+        <button
+          className="defaultButton"
+          onClick={() => navigate("/vyber-testu")}
+        >
+          Zpět na výběr testů
+        </button>
+      </div>
       <div className="info-sharp-decription">
         <h2>
           <b>Proč kontrolovat příznaky astigmatismu?</b>

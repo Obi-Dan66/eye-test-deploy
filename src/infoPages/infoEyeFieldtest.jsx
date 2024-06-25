@@ -37,13 +37,20 @@ const InfoEyeFieldtest = () => {
       <p>
         Tato kontrola zorného pole může objevit problémy vašeho zorného pole.
       </p>
-
-      <button
-        className="defaultButton"
-        onClick={() => navigate("/instrukce-test-zorneho-pole")}
-      >
-        Spustit kontrolu zorného pole
-      </button>
+      <div className="next_test_buttons">
+        <button
+          className="defaultButton"
+          onClick={() => navigate("/instrukce-test-zorneho-pole")}
+        >
+          Spustit kontrolu zorného pole
+        </button>
+        <button
+          className="defaultButton"
+          onClick={() => navigate("/vyber-testu")}
+        >
+          Zpět na výběr testů
+        </button>
+      </div>
       <div className="info-sharp-decription">
         <h2>
           <b>Proč je třeba, abych si kontroloval/a zorného pole?</b>

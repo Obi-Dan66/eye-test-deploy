@@ -38,13 +38,20 @@ const InfoColortest = () => {
         Dokážete bez problémů vyjmenovat jednotlivé barvy? Náš test barevného
         vidění prověří, jak jste na tom.
       </p>
-
-      <button
-        className="defaultButton"
-        onClick={() => navigate("/instrukce-test-barevneho-videni")}
-      >
-        Spuštění testu barevného vidění
-      </button>
+      <div className="next_test_buttons">
+        <button
+          className="defaultButton"
+          onClick={() => navigate("/instrukce-test-barevneho-videni")}
+        >
+          Spuštění testu barevného vidění
+        </button>
+        <button
+          className="defaultButton"
+          onClick={() => navigate("/vyber-testu")}
+        >
+          Zpět na výběr testů
+        </button>
+      </div>
       <div className="info-sharp-decription">
         <h2>
           <b>Proč byste měli kontrolovat své barevné vidění?</b>

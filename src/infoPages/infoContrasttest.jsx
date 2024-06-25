@@ -37,13 +37,20 @@ const InfoContrasttest = () => {
       <p>
         Naše vyšetření kontrastního vidění zjistí, jak dobře vidíte rozdíly.
       </p>
-
-      <button
-        className="defaultButton"
-        onClick={() => navigate("/instrukce-test-kontrastniho-videni")}
-      >
-        Spustit test kontrastního vidění
-      </button>
+      <div className="next_test_buttons">
+        <button
+          className="defaultButton"
+          onClick={() => navigate("/instrukce-test-kontrastniho-videni")}
+        >
+          Spustit test kontrastního vidění
+        </button>
+        <button
+          className="defaultButton"
+          onClick={() => navigate("/vyber-testu")}
+        >
+          Zpět na výběr testů
+        </button>
+      </div>
       <div className="info-sharp-decription">
         <h2>
           <b>Proč si otestovat Kontrastní vidění?</b>
