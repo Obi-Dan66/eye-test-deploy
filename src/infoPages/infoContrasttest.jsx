@@ -9,23 +9,32 @@ const InfoContrasttest = () => {
   const containerRef = useRef(null);
 
   const startDrag = (e) => {
-    e.preventDefault(); // Prevent default behavior such as text selection
-    // const startX = e.clientX;
+    e.preventDefault();
 
     const onDrag = (moveEvent) => {
-      const currentX = moveEvent.clientX;
+      let clientX;
+      if (moveEvent.type === "touchmove") {
+        clientX = moveEvent.touches[0].clientX; // Get touch event clientX for mobile
+      } else {
+        clientX = moveEvent.clientX; // Get mouse event clientX for desktop
+      }
+
       const rect = containerRef.current.getBoundingClientRect();
-      const newDividerPosition = ((currentX - rect.left) / rect.width) * 100;
+      const newDividerPosition = ((clientX - rect.left) / rect.width) * 100;
       setDividerPosition(Math.max(0, Math.min(100, newDividerPosition)));
     };
 
     const stopDrag = () => {
       document.removeEventListener("mousemove", onDrag);
       document.removeEventListener("mouseup", stopDrag);
+      document.removeEventListener("touchmove", onDrag); // Remove touch event listener
+      document.removeEventListener("touchend", stopDrag); // Remove touch event listener
     };
 
     document.addEventListener("mousemove", onDrag);
     document.addEventListener("mouseup", stopDrag);
+    document.addEventListener("touchmove", onDrag); // Add touch event listener for mobile
+    document.addEventListener("touchend", stopDrag); // Add touch event listener for mobile
   };
   return (
     <div className="test-info-page" ref={containerRef}>
