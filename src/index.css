@@ -962,6 +962,27 @@ svg path:hover {
   text-align: center;
 }
 
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .test-info-page {
+    width: 95%; /* Adjust width for smaller screens */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .test-info-page {
+    width: 70%; /* Adjust width for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .test-info-page {
+    width: 60%; /* Adjust width for large desktops */
+  }
+}
+
 .info-sharp-decription {
   text-align: left;
 }
@@ -1108,5 +1129,29 @@ svg path:hover {
   height: auto;
 }
 
-/* TODO: Add buttons to info pages that returns to test selection*/
-/*TODO: add responsive rules to info pages*/
+.image-comparison-container {
+  position: relative;
+  width: 100%;
+  height: 425px; /* Default height */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .image-comparison-container {
+    height: 300px; /* Adjust height for smaller screens */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .image-comparison-container {
+    height: 350px; /* Adjust height for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .image-comparison-container {
+    height: 425px; /* Maintain default height for large screens */
+  }
+}
