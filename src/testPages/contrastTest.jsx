@@ -593,7 +593,10 @@ const ContrastTest = () => {
                 Pro kompletní vyšetření zraku vždy vyhledejte profesionálního
                 očního lékaře.
               </p>
-              <button className="defaultButton">
+              <button
+                className="defaultButton"
+                onClick={() => navigate("/mapa")}
+              >
                 Zobrazit specialisty v mé blízkosti
               </button>
             </div>

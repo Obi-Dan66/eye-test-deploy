@@ -20,12 +20,14 @@ import InfoContrasttest from "./infoPages/infoContrasttest.jsx";
 import TestResults from "./components/TestResults.jsx";
 import GeneralInfo from "./infoPages/generalInfo.jsx";
 import { useNavigate } from "react-router-dom";
+import Map from "./infoPages/map.jsx";
 
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/mapa" element={<Map />} />
         <Route path="/o-spolecnosti" element={<GeneralInfo />} />
         <Route
           path="/instrukce-test-kontrastniho-videni"

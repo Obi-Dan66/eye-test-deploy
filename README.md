@@ -15,7 +15,7 @@ The project is currently deployed to github pages, however it is still in works.
 
 ### Parts of project currently in development:
 
-Set responsiveness rules.
+Set responsiveness rules.✅
 
 Adding shade sizing.✅
 
