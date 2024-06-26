@@ -108,6 +108,7 @@ const InfoAstigmatismtest = () => {
               zIndex: 3,
             }}
             onMouseDown={startDrag}
+            onTouchStart={startDrag}
           >
             <div
               style={{

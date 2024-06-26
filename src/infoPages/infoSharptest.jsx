@@ -37,7 +37,6 @@ const InfoSharptest = () => {
     document.addEventListener("touchend", stopDrag); // Add touch event listener for mobile
   };
 
-  // TODO: fix slider on mobile
   return (
     <div className="test-info-page" ref={containerRef}>
       <CloseButton />
