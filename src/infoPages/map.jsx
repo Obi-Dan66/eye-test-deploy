@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-//import env from "./env"; //import for production use
+//import env from "./env"; //import for development only
 
 const Map = () => {
   useEffect(() => {
