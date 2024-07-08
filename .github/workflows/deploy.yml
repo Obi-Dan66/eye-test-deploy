@@ -47,9 +47,6 @@ jobs:
           name: production-files
           path: ./dist
 
-      - name: Set API Key as Environment Variable
-        run: echo "REACT_APP_GOOGLE_MAPS_API_KEY=${{ secrets.REACT_APP_GOOGLE_MAPS_API_KEY }}" >> $GITHUB_ENV
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
