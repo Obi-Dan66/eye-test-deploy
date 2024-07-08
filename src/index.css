@@ -1155,3 +1155,20 @@ svg path:hover {
     height: 425px; /* Maintain default height for large screens */
   }
 }
+
+@media (forced-colors: active) {
+  forced-color-adjust: none;
+}
+
+.login-container {
+  background-color: white;
+  border-radius: 30px;
+  width: 50%;
+  margin: auto;
+  height: 400px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}

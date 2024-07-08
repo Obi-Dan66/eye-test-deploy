@@ -19,6 +19,8 @@ import InfoEyeFieldtest from "./infoPages/infoEyeFieldtest.jsx";
 import InfoContrasttest from "./infoPages/infoContrasttest.jsx";
 import TestResults from "./components/TestResults.jsx";
 import GeneralInfo from "./infoPages/generalInfo.jsx";
+import GoogleLogin from "./infoPages/googleLogin.jsx";
+import AfterLogin from "./infoPages/afterLogin.jsx";
 import { useNavigate } from "react-router-dom";
 import Map from "./infoPages/map.jsx";
 
@@ -29,6 +31,8 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/mapa" element={<Map />} />
         <Route path="/o-spolecnosti" element={<GeneralInfo />} />
+        <Route path="/auth" element={<GoogleLogin />} />
+        <Route path="/auth/callback" element={<AfterLogin />} />
         <Route
           path="/instrukce-test-kontrastniho-videni"
           element={<InstructionsContrastTest />}

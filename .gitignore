@@ -12,6 +12,7 @@ node_modules
 .env
 env.js
 /dist
+/credentials
 
 # Editor directories and files
 .vscode/*
