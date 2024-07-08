@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import env from "./env"; // Import for development only
+// import env from "./env"; // Import for development only
 import axios from "axios";
 
 const Map = () => {
@@ -10,7 +10,7 @@ const Map = () => {
     const loadMapScript = () => {
       return new Promise((resolve, reject) => {
         const googleMapScript = document.createElement("script");
-        const apiKey = env.REACT_APP_GOOGLE_MAPS_API_KEY || ""; // Access API key from environment variables
+        const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY || ""; // Access API key from environment variables
         googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initMap&loading=async`;
         googleMapScript.async = true;
 
@@ -20,7 +20,7 @@ const Map = () => {
             {
               center: { lat: 49.8175, lng: 15.473 }, // Center of Czechia
               zoom: 8,
-              mapId: env.MAP_ID || "", // Custom map ID if available
+              mapId: process.env.MAP_ID || "", // Custom map ID if available
             }
           );
           setMapInstance(map);
