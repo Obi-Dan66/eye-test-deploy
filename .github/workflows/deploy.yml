@@ -22,6 +22,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Set environment variables
+        run: |
+          echo "REACT_APP_GOOGLE_CLIENT_ID=${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "REACT_APP_GOOGLE_MAPS_API_KEY=${{ secrets.REACT_APP_GOOGLE_MAPS_API_KEY }}" >> $GITHUB_ENV
+
       - name: Build project
         run: npm run build
 
@@ -40,12 +45,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-
-      - name: Use secret API key
-        run: echo ${{ secrets.REACT_APP_GOOGLE_MAPS_API_KEY }}
-
-      - name: Use secret Client ID
-        run: echo ${{ secrets.GOOGLE_CLIENT_ID }}
 
       - name: Download artifact
         uses: actions/download-artifact@v3
