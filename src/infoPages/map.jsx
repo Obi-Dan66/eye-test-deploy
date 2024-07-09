@@ -10,7 +10,7 @@ const Map = () => {
     const loadMapScript = () => {
       return new Promise((resolve, reject) => {
         const googleMapScript = document.createElement("script");
-        const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY || ""; // Access API key from environment variables
+        const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ""; // Access API key from environment variables
         googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initMap&loading=async`;
         googleMapScript.async = true;
 
