@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import env from "./env"; // Import for development only
+// import env from "./env"; // Import for development only
 
 const GoogleLogin = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const GoogleLogin = () => {
 
     const initGoogleSignIn = () => {
       window.google.accounts.id.initialize({
-        client_id: env.GOOGLE_CLIENT_ID,
+        client_id: process.env.GOOGLE_CLIENT_ID,
         callback: onSuccess,
       });
 
