@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// import env from "./env"; // Import for development only
 
 const GoogleLogin = () => {
   const navigate = useNavigate();

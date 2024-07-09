@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import env from "./env"; // Import for development only
 import axios from "axios";
 
 const Map = () => {
