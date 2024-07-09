@@ -29,6 +29,9 @@ jobs:
 
       - name: Build project
         run: npm run build
+        env:
+          REACT_APP_GOOGLE_CLIENT_ID: ${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }}
+          REACT_APP_GOOGLE_MAPS_API_KEY: ${{ secrets.REACT_APP_GOOGLE_MAPS_API_KEY }}
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3
