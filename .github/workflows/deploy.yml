@@ -41,6 +41,12 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Use secret API key
+        run: echo ${{ secrets.REACT_APP_GOOGLE_MAPS_API_KEY }}
+
+      - name: Use secret Client ID
+        run: echo ${{ secrets.GOOGLE_CLIENT_ID }}
+
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:

@@ -21,10 +21,7 @@ const GoogleLogin = () => {
 
     const initGoogleSignIn = () => {
       window.google.accounts.id.initialize({
-        //temporary id for debugging purposes ( wont work)
-        // client_id: process.env.GOOGLE_CLIENT_ID,
-        client_id:
-          "569386411663-fhauh2ocn5s31c1jej6m5vb3744crnpj.apps.googleusercontent.com",
+        client_id: process.env.GOOGLE_CLIENT_ID,
         callback: onSuccess,
       });
 
