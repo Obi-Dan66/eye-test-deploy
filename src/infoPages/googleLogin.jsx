@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-//import env from "./env"; // Import for development only
+import env from "./env"; // Import for development only
 
 const GoogleLogin = () => {
   const navigate = useNavigate();
@@ -9,6 +9,7 @@ const GoogleLogin = () => {
     const onSuccess = (response) => {
       const token = response.credential; // Extract the JWT ID token from the response
       localStorage.setItem("JWT_ID_TOKEN", token); // Store the token in local storage with key "JWT_ID_TOKEN"
+      console.log("Token received:", token);
       navigate("/auth/callback"); // Redirect to your desired route
     };
 
@@ -20,7 +21,7 @@ const GoogleLogin = () => {
 
     const initGoogleSignIn = () => {
       window.google.accounts.id.initialize({
-        client_id: process.env.GOOGLE_CLIENT_ID,
+        client_id: env.GOOGLE_CLIENT_ID,
         callback: onSuccess,
       });
 
