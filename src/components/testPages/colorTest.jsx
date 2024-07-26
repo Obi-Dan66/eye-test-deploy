@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setTestResult } from "../store/testResultSlice.js";
-import CloseButton from "../components/CloseButton.jsx";
+import { setTestResult } from "../../store/testResultSlice";
+import CloseButton from "../CloseButton.jsx";
 
 const ColorTest = () => {
   const [currentContent, setCurrentContent] = useState(0);

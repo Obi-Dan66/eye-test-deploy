@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import CloseButton from "./CloseButton";
+import CloseButton from "../CloseButton.jsx";
 
 const TestResults = () => {
   const testResults = useSelector((state) => state.testResults);

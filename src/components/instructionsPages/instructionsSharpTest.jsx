@@ -1,25 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import CloseButton from "../components/CloseButton";
+import CloseButton from "../CloseButton.jsx";
 import { useSelector, useDispatch } from "react-redux";
-import { setSeenInstructions } from "../store/instructionsSlice";
-import { setSliderValue } from "../store/sliderSlice";
-const InstructionsEyeFieldTest = () => {
+import { setSeenInstructions } from "../../store/instructionsSlice";
+import { setSliderValue } from "../../store/sliderSlice";
+const InstructionsSharpTest = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [currentContent, setCurrentContent] = useState(0);
   const sliderValue = useSelector((state) => state.slider.sliderValue);
-  const [sliderChanged, setSliderChanged] = useState(false);
-  const totalContents = 7;
-  const dispatch = useDispatch();
+  const [sliderChanged, setSliderChanged] = useState(false); // Update this line to track the state
+  const totalContents = 8;
   const seenInstructions = useSelector(
     (state) => state.instructions.seenInstructions
   );
-
-  useEffect(() => {
-    if (seenInstructions) {
-      setCurrentContent(4); // Start from the first abbreviated content case
-    }
-  }, [seenInstructions]);
 
   const handleNext = () => {
     if (currentContent === 2 && sliderChanged) {
@@ -41,8 +35,14 @@ const InstructionsEyeFieldTest = () => {
     });
   };
 
+  useEffect(() => {
+    if (seenInstructions) {
+      setCurrentContent(4); // Start from the first abbreviated content case
+    }
+  }, [seenInstructions]);
+
   const startTest = () => {
-    navigate("/test-zorneho-pole");
+    navigate("/test-zrakove-ostrosti");
     dispatch(setSeenInstructions(true)); // Ensure this dispatch is working correctly
   };
 
@@ -133,8 +133,8 @@ const InstructionsEyeFieldTest = () => {
               </app-icon>
             </div>
             <h1>
-              Abyste dosáhli co nejpřesnějších výsledků,{" "}
-              <b>nastavte na svém zařízení jas obrazovky na maximum.</b>
+              Abyste dosáhli co nejpřesnějších výsledků{" "}
+              <b>,nastavte na svém zařízení jas obrazovky na maximum.</b>
             </h1>
 
             <button className="defaultButton" onClick={handleNext}>
@@ -220,9 +220,9 @@ const InstructionsEyeFieldTest = () => {
               ></img>
             </div>
             <h1>
-              <b>Budte připraveni.</b>
+              Budte připraveni. Nasadte si brýle nebo kontaktní čočky (pokud
+              nějaké nosíte).
             </h1>
-            <p>Nasadte si brýle nebo kontaktní čočky (pokud nějaké nosíte).</p>
             <button className="defaultButton" onClick={handleNext}>
               Další krok
             </button>
@@ -359,13 +359,29 @@ const InstructionsEyeFieldTest = () => {
               <path d="M26 51l6-6v12z" fill="#0072EF"></path>
               <path d="M80 51l-6 6V45z" fill="#0072EF"></path>
             </svg>
+            <h1>Nepřibližujte. Zařízení držte během testu na délku paže.</h1>
+            <button className="defaultButton" onClick={handleNext}>
+              Další krok
+            </button>
+          </div>
+        );
+      case 7:
+        return (
+          <div className="abbreviated">
+            <CloseButton />
+            <div>
+              <img
+                className="circle-image"
+                src="./imageCase6.svg"
+                width={200}
+                height={200}
+                alt="circle"
+              ></img>
+            </div>
             <h1>
-              <b>Posuňte blíže.</b>
+              <b>Označte bod.</b>
             </h1>
-            <p>
-              Posuňte své zařízení trochu blíže - na půl délky paže nebo na
-              vzdálenost 30 cm.
-            </p>
+            <p>Vidite horní kruh? Označte příslušný bod na spodním kruhu.</p>
             <button className="defaultButton" onClick={startTest}>
               Jsem připraven/a
             </button>
@@ -379,4 +395,4 @@ const InstructionsEyeFieldTest = () => {
   return <div>{getContent(currentContent)}</div>;
 };
 
-export default InstructionsEyeFieldTest;
+export default InstructionsSharpTest;

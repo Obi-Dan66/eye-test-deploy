@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import CloseButton from "../components/CloseButton";
+import CloseButton from "../CloseButton.jsx";
 
-const InfoAstigmatismtest = () => {
+const InfoColortest = () => {
   const navigate = useNavigate();
 
   const [dividerPosition, setDividerPosition] = useState(50); // Initial position of the divider
@@ -39,17 +39,20 @@ const InfoAstigmatismtest = () => {
   return (
     <div className="test-info-page" ref={containerRef}>
       <CloseButton />
-      <h1>Astigmatismus</h1>
+      <h1>Barevné vidění</h1>
       <h2>
-        <b>Vypořádejte se s rozostřeným viděním.</b>
+        <b>Podívejte se na duhu.</b>
       </h2>
-      <p>Zkontrolujte příznaky astigmatismu.</p>
+      <p>
+        Dokážete bez problémů vyjmenovat jednotlivé barvy? Náš test barevného
+        vidění prověří, jak jste na tom.
+      </p>
       <div className="next_test_buttons">
         <button
           className="defaultButton"
-          onClick={() => navigate("/instrukce-test-astigmatismu")}
+          onClick={() => navigate("/instrukce-test-barevneho-videni")}
         >
-          Spustit test astigmatismu
+          Spuštění testu barevného vidění
         </button>
         <button
           className="defaultButton"
@@ -60,14 +63,15 @@ const InfoAstigmatismtest = () => {
       </div>
       <div className="info-sharp-decription">
         <h2>
-          <b>Proč kontrolovat příznaky astigmatismu?</b>
+          <b>Proč byste měli kontrolovat své barevné vidění?</b>
         </h2>
         <p>
-          AStigmatismus je vada zakřivení oční rohovky nebo čočky. Jedná se o
-          běžný stav, který způsobuje rozmazané nebo zkreslené vidění, a s
-          přibývajícím věkem se může zhoršovat. Astigmatismus může způsobovat
-          také únavu očí, bolesti hlavy a špatné vidění ve tmě. Lze ho napravit
-          správně osazenými brýlemi nebo kontaktními čočkami.
+          Barevné vidění &#40;schopnost rozpoznat různé barvy a odstíny&#41;
+          patří mezi nejdůležitější principy lidského vidění. "Barvoslepost" je
+          termínem často používaným k popisu nedostatků barevného vidění.
+          Pozvolné změny barevného vidění jsou často dědičné. Dobré barevné
+          vidění je důležité a může mít dopad na mnoho každodenních aspektů,
+          jako je vzdělání, výsledky zkoušek a volba kariéry.
         </p>
 
         <div
@@ -75,17 +79,17 @@ const InfoAstigmatismtest = () => {
           style={{ position: "relative", width: "100%", height: "425px" }}
         >
           <img
-            src="./infoAstigmatism1.jpg"
+            src="./infoColor1.jpg"
             style={{
               position: "absolute",
               width: "100%",
               height: "100%",
               zIndex: 1,
             }}
-            alt="Normální vidění"
+            alt="Normální barevné vidění"
           />
           <img
-            src="./infoAstigmatism2.jpg"
+            src="./infoColor2.jpg"
             style={{
               position: "absolute",
               width: "100%",
@@ -93,7 +97,7 @@ const InfoAstigmatismtest = () => {
               clipPath: `inset(0 ${100 - dividerPosition}% 0 0)`,
               zIndex: 2,
             }}
-            alt="Vidění s astigmatismem"
+            alt="Barevné anomálie (protanopie)"
           />
           <div
             className="divider"
@@ -127,18 +131,23 @@ const InfoAstigmatismtest = () => {
       </div>
       <div className="info-sharp-decription">
         <h2>
-          <b>Jak kontrolujeme výskyt astigmatismu?</b>
+          <b>Jak barevné vidění testujeme?</b>
         </h2>
         <p>
-          Náš test astigmatismu využívá půlkruh černých čar, které mají vypadat,
-          že jsou v různých odstínech šedé, je-li astigmatismus přítomen.
-          Zeptáme se vás, zda vidíte různé odstíny šedé.
+          Test barevného vidění je vyšetření vycházející z klinicky prověřené
+          práce doktora Shinobu Ishihary. Lidé s neporušeným viděním budou
+          schopni přečíst čísla na Isiharových barevných destičkách bez
+          problémů, ale ti s nějakým problémem je neuvidí ostře. Provádějí se
+          oběma očima najednou, jelikož jednostranné vady jsou vzácné.
         </p>
 
-        <p>Upozornění: náš test zraku nenahrazuje odborné vyšetření zraku.</p>
+        <p>
+          Náš test je dobrým indikátorem, ale nemůže nahradit plnohodnotné
+          vyšetření očním lékařem.
+        </p>
       </div>
     </div>
   );
 };
 
-export default InfoAstigmatismtest;
+export default InfoColortest;

@@ -1,7 +1,7 @@
 // testSelection.jsx
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
-import CloseButton from "./CloseButton";
+import CloseButton from "../CloseButton.jsx";
 
 const TestSelection = () => {
   const navigate = useNavigate();

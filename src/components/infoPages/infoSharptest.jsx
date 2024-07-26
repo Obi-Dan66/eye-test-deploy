@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import CloseButton from "../components/CloseButton";
+import CloseButton from "../CloseButton.jsx";
 
-const InfoEyeFieldtest = () => {
+const InfoSharptest = () => {
   const navigate = useNavigate();
 
   const [dividerPosition, setDividerPosition] = useState(50); // Initial position of the divider
@@ -36,22 +36,23 @@ const InfoEyeFieldtest = () => {
     document.addEventListener("touchmove", onDrag); // Add touch event listener for mobile
     document.addEventListener("touchend", stopDrag); // Add touch event listener for mobile
   };
+
   return (
     <div className="test-info-page" ref={containerRef}>
       <CloseButton />
-      <h1>Zorné pole</h1>
+      <h1>Zraková ostrost</h1>
       <h2>
-        <b>Sledujte bod.</b>
+        <b>Nalezněte mezeru</b>
       </h2>
       <p>
-        Tato kontrola zorného pole může objevit problémy vašeho zorného pole.
+        Zkontrolujte, jak ostrý máte zrak pomocí našeho testu ostrosti zraku.
       </p>
       <div className="next_test_buttons">
         <button
           className="defaultButton"
-          onClick={() => navigate("/instrukce-test-zorneho-pole")}
+          onClick={() => navigate("/instrukce-test-ostrosti")}
         >
-          Spustit kontrolu zorného pole
+          Spuštění kontroly ostrosti zraku
         </button>
         <button
           className="defaultButton"
@@ -62,16 +63,14 @@ const InfoEyeFieldtest = () => {
       </div>
       <div className="info-sharp-decription">
         <h2>
-          <b>Proč je třeba, abych si kontroloval/a zorného pole?</b>
+          <b>Proč kontrolovat ostrost svého zraku?</b>
         </h2>
         <p>
-          Zorné pole je definováno jako prostor, ve kterém vnímáme světlo a
-          rozpoznáváme předměty. Tento prostor může být omezený různými očními
-          onemocněními nebo neurologickými příčinami a v průběhu času se může
-          zhoršovat. Normální centrální zorní pole je důležité při provádění
-          mnoha každodenních činností, jako je čtení nebo práce v kanceláři.
-          Naše periferní zorné pole nám poskytuje důležité vjemy, pokud se
-          díváme do dálky a řídíme například automobil.
+          Zraková ostrost &#40;schopnost rozpoznat malé detaily&#41; se může
+          postupně měnit, což znamená, že si nemusíte malých změn ve svém zraku
+          všimnout. Proto je důležité pravidelně si kontrolovat zrak. Zrak si
+          můžete kontrolovat s pomocí našich vyšetření a následné konzultace s
+          optikem, který provede kompletní vyšetření.
         </p>
 
         <div
@@ -79,7 +78,7 @@ const InfoEyeFieldtest = () => {
           style={{ position: "relative", width: "100%", height: "425px" }}
         >
           <img
-            src="./infoEyeField1.jpg"
+            src="./infoSharp1.jpg"
             style={{
               position: "absolute",
               width: "100%",
@@ -89,7 +88,7 @@ const InfoEyeFieldtest = () => {
             alt="Normální vidění"
           />
           <img
-            src="./infoEyeField2.jpg"
+            src="./infoSharp2.jpg"
             style={{
               position: "absolute",
               width: "100%",
@@ -97,7 +96,7 @@ const InfoEyeFieldtest = () => {
               clipPath: `inset(0 ${100 - dividerPosition}% 0 0)`,
               zIndex: 2,
             }}
-            alt="Vidění s vadou zorného pole"
+            alt="Rozmazané vidění"
           />
           <div
             className="divider"
@@ -131,23 +130,23 @@ const InfoEyeFieldtest = () => {
       </div>
       <div className="info-sharp-decription">
         <h2>
-          <b>Jak kontrolujeme vaše zorné pole?</b>
+          <b>Jak kontrolujeme ostrost vašeho zraku?</b>
         </h2>
         <p>
-          Naše kontrola zorného pole probíhá s pomocí mřížky a vychází z
-          klinicky proveřeného Amslerova testu. Během kontroly vás požádáme,
-          abyste se zaměřili na středový bod a zjistili, zda vidíte všechny
-          části mřížky stejně. Nepravidelnosti se mohou jevit jako narušené nebo
-          neviditelné linie.
+          Kontrolu ostrosti zraku provádí specialista jako test s čísly nebo
+          písmeny různých velikostí. Naše kontrola používá písmeno C jako symbol
+          zvaný Landoltovo písmeno C, které se popisuje jako kruh s otvorem na
+          vymezením místě.
         </p>
 
         <p>
-          Pokud používáte telefon nebo malou obrazovku, Amslerova mřížka se může
-          zmenšit na menší než doporučenou velikost.
+          Jednoduše určete polohu mezery a označte ji v příslušném kruhu.
+          Landoltova písmena C se zmenšují, dokud nedosáhnete nejmenšího
+          symbolu, který jste schopni rozpoznat.
         </p>
       </div>
     </div>
   );
 };
 
-export default InfoEyeFieldtest;
+export default InfoSharptest;

@@ -1,52 +1,52 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const useAuth = () => {
   const token = localStorage.getItem("JWT_ID_TOKEN");
-  const isAuthenticated = !!token; // Check for JWT ID token presence
+  const isAuthenticated = !!token;
 
   return { isAuthenticated, token };
 };
 
 const AfterLogin = () => {
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, token } = useAuth();
   const [businessListings, setBusinessListings] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchBusinessListings = async () => {
+    const fetchBusinessListings = async (accountId, token) => {
       try {
-        // Make API request to fetch Google business listings data
         const response = await fetch(
-          "https://mybusiness.googleapis.com/v4/accounts/{accountId}/locations",
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("JWT_ID_TOKEN")}`,
-              // Add any other required headers
-            },
-          }
+          `http://localhost:3000/business-listings?accountId=${accountId}&token=${token}`
         );
 
-        if (response.ok) {
-          const data = await response.json();
-          setBusinessListings(data); // Update state with the fetched listings
-        } else {
-          console.error("Failed to fetch business listings");
+        if (!response.ok) {
+          throw new Error(
+            `Failed to fetch business listings: ${response.statusText}`
+          );
         }
+
+        const data = await response.json();
+        setBusinessListings(data.locations);
       } catch (error) {
         console.error("Error fetching business listings:", error);
+        setError(error.message || "Error fetching business listings");
       }
     };
 
     if (isAuthenticated) {
-      fetchBusinessListings(); // Call the function to fetch business listings when authenticated
+      const decoded = jwtDecode(token);
+      console.log("Decoded JWT:", decoded); // Log the decoded token to verify its structure
+      const accountId = decoded.sub; // Ensure the appropriate field for accountId
+
+      fetchBusinessListings(accountId, token); // Pass accountId and token to fetch function
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, token]);
 
   useEffect(() => {
     return () => {
-      // Clean up the token when the component unmounts
       localStorage.removeItem("JWT_ID_TOKEN");
     };
   }, []);
@@ -61,9 +61,16 @@ const AfterLogin = () => {
           </h1>
           <ul>
             {businessListings.map((listing) => (
-              <li key={listing.id}>{listing.name}</li>
+              <li key={listing.name}>{listing.name}</li>
             ))}
           </ul>
+        </div>
+      );
+    } else if (error) {
+      return (
+        <div className="after-login-container">
+          <h1>Error</h1>
+          <p>{error}</p>
         </div>
       );
     } else {

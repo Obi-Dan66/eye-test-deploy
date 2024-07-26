@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setTestResult } from "../store/testResultSlice.js"; // Adjust the import path as needed
-import CloseButton from "../components/CloseButton.jsx";
+import { setTestResult } from "../../store/testResultSlice"; // Adjust the import path as needed
+import CloseButton from "../CloseButton.jsx";
 
-const ContrastTest = () => {
+const SharpTest = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [currentContent, setCurrentContent] = useState(0);
   const [clickedButton, setClickedButton] = useState(null);
   const [correctAnswersRange1, setCorrectAnswersRange1] = useState(0); // For cases 0-7
   const [correctAnswersRange2, setCorrectAnswersRange2] = useState(0); // For cases 9-16
-  const totalCases = 18; // Adjust based on your actual cases
+  const totalCases = 20; // Adjust based on your actual cases
   const [, setShowTick] = useState(false);
   const [iconType, setIconType] = useState(null);
-  const navigate = useNavigate();
   const isTestComplete = currentContent === totalCases - 1;
-  const dispatch = useDispatch();
   const rangeValue = useSelector((state) => state.slider.rangeValue);
   const [isClickable, setIsClickable] = useState(true);
 
@@ -37,49 +37,49 @@ const ContrastTest = () => {
 
   // Define correctButtonForCase here for simplicity
   const correctButtonForCase = {
-    0: "TOPRIGHT",
+    0: "RIGHT",
     1: "TOP",
-    2: "LEFT",
+    2: "TOPLEFT",
     3: "BOTTOM",
-    4: "TOPLEFT",
-    5: "RIGHT",
+    4: "LEFT",
+    5: "TOPRIGHT",
     6: "BOTTOMRIGHT",
     7: "BOTTOMLEFT",
-    8: "",
-    9: "TOPRIGHT",
-    10: "TOP",
-    11: "LEFT",
-    12: "BOTTOM",
-    13: "TOPLEFT",
-    14: "RIGHT",
-    15: "BOTTOMRIGHT",
-    16: "BOTTOMLEFT",
+    8: "BOTTOM",
+    9: "",
+    10: "RIGHT",
+    11: "TOP",
+    12: "TOPLEFT",
+    13: "BOTTOM",
+    14: "LEFT",
+    15: "TOPRIGHT",
+    16: "BOTTOMRIGHT",
+    17: "BOTTOMLEFT",
+    18: "BOTTOM",
   };
 
   const handleClick = (buttonId) => {
     if (!isClickable) return; // Prevent handling clicks if not clickable
 
-    setIsClickable(false); // Disable further clicks immediately
-
-    if (currentContent === 8) {
+    if (currentContent === 9) {
       setCurrentContent((prevContent) => (prevContent + 1) % totalCases);
       setClickedButton(null);
       setShowTick(false);
       setIconType(null); // Reset icon type
-      setIsClickable(true); // Re-enable clicking after handling special case
       return;
     }
 
     if (correctButtonForCase[currentContent] === buttonId) {
-      if (currentContent >= 0 && currentContent <= 7) {
+      if (currentContent >= 0 && currentContent <= 8) {
         setCorrectAnswersRange1((prevCount) => prevCount + 1);
-      } else if (currentContent >= 9 && currentContent <= 16) {
+      } else if (currentContent >= 10 && currentContent <= 18) {
         setCorrectAnswersRange2((prevCount) => prevCount + 1);
       }
 
       setClickedButton(buttonId);
       setShowTick(true); // Show the tick animation
       setIconType("checkmark"); // Set icon to checkmark for correct answer
+      setIsClickable(false); // Disable further clicks during the timeout
 
       setTimeout(() => {
         setCurrentContent((prevContent) => (prevContent + 1) % totalCases);
@@ -91,6 +91,7 @@ const ContrastTest = () => {
     } else {
       setCurrentContent((prevContent) => (prevContent + 1) % totalCases);
       setIconType("cross"); // Set icon to cross for incorrect answer
+      setIsClickable(false); // Disable further clicks during the timeout
 
       setTimeout(() => {
         setIconType(null); // Reset icon type after showing cross
@@ -100,64 +101,39 @@ const ContrastTest = () => {
   };
 
   const getContent = (currentContent) => {
-    // Define rotation styles for each case
+    // Define transformation styles directly within the switch cases
     const transformStyles = [
-      "rotate(45deg)", // Case 0
-      "rotate(0deg)", // Case 1
-      "rotate(270deg)", // Case 2
-      "rotate(180deg)", // Case 3
-      "rotate(315deg)", // Case 4
-      "rotate(90deg)", // Case 5
-      "rotate(135deg)", // Case 6
-      "rotate(225deg)", // Case 7
-      "rotate(90deg)", // Placeholder for Case 8
-      "rotate(45deg)", // Case 9
-      "rotate(0deg)", // Case 10
-      "rotate(270deg)", // Case 11
-      "rotate(180deg)", // Case 12
-      "rotate(315deg)", // Case 13
-      "rotate(90deg)", // Case 14
-      "rotate(135deg)", // Case 15
-      "rotate(225deg)", // Case 16
+      "rotate(90deg) scale(1)", // Case 0
+      "rotate(0deg) scale(0.9)", // Case 1
+      "rotate(315deg) scale(0.8)", // Case 2
+      "rotate(180deg) scale(0.7)", // Case 3
+      "rotate(270deg) scale(0.6)", // Case 4
+      "rotate(45deg) scale(0.5)", // Case 5
+      "rotate(135deg) scale(0.4)", // Case 6
+      "rotate(225deg) scale(0.3)", // Case 7
+      "rotate(180deg) scale(0.2)", // Case 8
+      "rotate(0deg) scale(1)", // Case 9 - placeholder
+      "rotate(90deg) scale(1)", // Case 10
+      "rotate(0deg) scale(0.9)", // Case 11
+      "rotate(315deg) scale(0.8)", // Case 12
+      "rotate(180deg) scale(0.7)", // Case 13
+      "rotate(270deg) scale(0.6)", // Case 14
+      "rotate(45deg) scale(0.5)", // Case 15
+      "rotate(135deg) scale(0.4)", // Case 16
+      "rotate(225deg) scale(0.3)", // Case 17
+      "rotate(180deg) scale(0.2)", // Case 18
     ];
 
-    // Define color styles for each case
-    const colorStyles = [
-      "rgba(0, 0, 0, 0.498)", // Case 0
-      "rgba(0, 0, 0, 0.298)", // Case 1
-      "rgba(0, 0, 0, 0.098)", // Case 2
-      "rgba(0, 0, 0, 0.04)", // Case 3
-      "rgba(0, 0, 0, 0.02)", // Case 4
-      "rgba(0, 0, 0, 0.01)", // Case 5
-      "rgba(0, 0, 0, 0.01)", // Case 6
-      "rgba(0, 0, 0, 0.01)", // Case 7
-      "rgba(0, 0, 0, 0.498)", // Placeholder Case 8
-      "rgba(0, 0, 0, 0.498)", // Case 9
-      "rgba(0, 0, 0, 0.298)", // Case 10
-      "rgba(0, 0, 0, 0.098)", // Case 11
-      "rgba(0, 0, 0, 0.04)", // Case 12
-      "rgba(0, 0, 0, 0.02)", // Case 13
-      "rgba(0, 0, 0, 0.01)", // Case 14
-      "rgba(0, 0, 0, 0.01)", // Case 15
-      "rgba(0, 0, 0, 0.01)", // Case 16
-    ];
-
-    // Use a default style if the case index is out of bounds
-    const renderSvgContainer = (
-      clickedButton,
-      handleClick,
-      transformStyle,
-      colorStyle
-    ) => {
+    const renderSvgContainer = (clickedButton, handleClick, transformStyle) => {
       return (
         <div className="sharptestCircle">
           <CloseButton />
           <h1>
-            <b>Kontrastní vidění</b>
+            <b>Zraková ostrost</b>
           </h1>
           <p>1 - Zakryjte si levé oko.</p>
           <p>2 - Zařízení držte na délku paže.</p>
-          <p>3 - Vidíte horní kruh? Označte příslušný bod.</p>
+          <p>3 - Vidíte horní kruh? Označte příslušný výřez.</p>
 
           <div className="sharpTestContainer">
             <div
@@ -171,10 +147,7 @@ const ContrastTest = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 style={{ transform: `scale(${getSvgScale()})` }}
               >
-                <path
-                  d="M1.785,0.015c0.684,0.139 1.2,0.745 1.2,1.47c0,0.828 -0.672,1.5 -1.5,1.5c-0.828,0 -1.5,-0.672 -1.5,-1.5c0,-0.725 0.516,-1.331 1.2,-1.47l0,0.69c-0.321,0.119 -0.55,0.424 -0.55,0.78c0,0.46 0.381,0.833 0.85,0.833c0.469,0 0.85,-0.373 0.85,-0.833c0,-0.356 -0.229,-0.661 -0.55,-0.78l0,-0.69Z"
-                  style={{ fill: colorStyle }}
-                ></path>
+                <path d="M1.785,0.015c0.684,0.139 1.2,0.745 1.2,1.47c0,0.828 -0.672,1.5 -1.5,1.5c-0.828,0 -1.5,-0.672 -1.5,-1.5c0,-0.725 0.516,-1.331 1.2,-1.47l0,0.69c-0.321,0.119 -0.55,0.424 -0.55,0.78c0,0.46 0.381,0.833 0.85,0.833c0.469,0 0.85,-0.373 0.85,-0.833c0,-0.356 -0.229,-0.661 -0.55,-0.78l0,-0.69Z"></path>
               </svg>
             </div>
             <div className="circle1">
@@ -255,18 +228,17 @@ const ContrastTest = () => {
     const renderSvgContainer2 = (
       clickedButton,
       handleClick,
-      transformStyle,
-      colorStyle
+      transformStyle
     ) => {
       return (
         <div className="sharptestCircle">
           <CloseButton />
           <h1>
-            <b>Kontrastní vidění</b>
+            <b>Zraková ostrost</b>
           </h1>
           <p>1 - Zakryjte si pravé oko.</p>
           <p>2 - Zařízení držte na délku paže.</p>
-          <p>3 - Vidíte horní kruh? Označte příslušný bod.</p>
+          <p>3 - Vidíte horní kruh? Označte příslušný výřez.</p>
 
           <div className="sharpTestContainer">
             <div
@@ -280,10 +252,7 @@ const ContrastTest = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 style={{ transform: `scale(${getSvgScale()})` }}
               >
-                <path
-                  d="M1.785,0.015c0.684,0.139 1.2,0.745 1.2,1.47c0,0.828 -0.672,1.5 -1.5,1.5c-0.828,0 -1.5,-0.672 -1.5,-1.5c0,-0.725 0.516,-1.331 1.2,-1.47l0,0.69c-0.321,0.119 -0.55,0.424 -0.55,0.78c0,0.46 0.381,0.833 0.85,0.833c0.469,0 0.85,-0.373 0.85,-0.833c0,-0.356 -0.229,-0.661 -0.55,-0.78l0,-0.69Z"
-                  style={{ fill: colorStyle }}
-                ></path>
+                <path d="M1.785,0.015c0.684,0.139 1.2,0.745 1.2,1.47c0,0.828 -0.672,1.5 -1.5,1.5c-0.828,0 -1.5,-0.672 -1.5,-1.5c0,-0.725 0.516,-1.331 1.2,-1.47l0,0.69c-0.321,0.119 -0.55,0.424 -0.55,0.78c0,0.46 0.381,0.833 0.85,0.833c0.469,0 0.85,-0.373 0.85,-0.833c0,-0.356 -0.229,-0.661 -0.55,-0.78l0,-0.69Z"></path>
               </svg>
             </div>
             <div className="circle1">
@@ -369,19 +338,13 @@ const ContrastTest = () => {
       case 4:
       case 5:
       case 6:
-      case 7: {
-        // Logic for cases 0-7
+      case 7:
+      case 8: {
         const transformStyle1 =
           transformStyles[currentContent] || "rotate(0deg)";
-        const colorStyle1 = colorStyles[currentContent] || "rgba(0, 0, 0, 1)";
-        return renderSvgContainer(
-          clickedButton,
-          handleClick,
-          transformStyle1,
-          colorStyle1
-        );
+        return renderSvgContainer(clickedButton, handleClick, transformStyle1);
       }
-      case 8:
+      case 9:
         return (
           <div>
             <CloseButton />
@@ -460,87 +423,80 @@ const ContrastTest = () => {
             </button>
           </div>
         );
-      case 9:
       case 10:
       case 11:
       case 12:
       case 13:
       case 14:
       case 15:
-      case 16: {
+      case 16:
+      case 17:
+      case 18: {
         const transformStyle2 =
           transformStyles[currentContent] || "rotate(0deg)";
-        const colorStyle2 = colorStyles[currentContent] || "rgba(0, 0, 0, 1)";
-        return renderSvgContainer2(
-          clickedButton,
-          handleClick,
-          transformStyle2,
-          colorStyle2
-        );
+        return renderSvgContainer2(clickedButton, handleClick, transformStyle2);
       }
-      case 17:
-        var imageUrlContrastTest1,
-          imageUrlContrastTest2,
-          resultTextContrastTest;
+      case 19:
+        var imageUrlSharpTest1, imageUrlSharpTest2, resultTextSharpTest;
 
-        // Determine imageUrlContrastTest2 based on correctAnswersRange1
-        if (correctAnswersRange1 >= 7) {
-          imageUrlContrastTest2 = "./greenface.svg";
-        } else if (correctAnswersRange1 == 6) {
-          imageUrlContrastTest2 = "./yellowface.svg";
+        // Determine imageUrlSharpTest2 based on correctAnswersRange1
+        if (correctAnswersRange1 >= 8) {
+          imageUrlSharpTest2 = "./greenface.svg";
+        } else if (correctAnswersRange1 == 7) {
+          imageUrlSharpTest2 = "./yellowface.svg";
         } else {
-          imageUrlContrastTest2 = "./redface.svg";
+          imageUrlSharpTest2 = "./redface.svg";
         }
 
-        // Determine imageUrlContrastTest1 based on correctAnswersRange2
-        if (correctAnswersRange2 >= 7) {
-          imageUrlContrastTest1 = "./greenface.svg";
-        } else if (correctAnswersRange2 == 6) {
-          imageUrlContrastTest1 = "./yellowface.svg";
+        // Determine imageUrlSharpTest1 based on correctAnswersRange2
+        if (correctAnswersRange2 >= 8) {
+          imageUrlSharpTest1 = "./greenface.svg";
+        } else if (correctAnswersRange2 == 7) {
+          imageUrlSharpTest1 = "./yellowface.svg";
         } else {
-          imageUrlContrastTest1 = "./redface.svg";
+          imageUrlSharpTest1 = "./redface.svg";
         }
 
-        // Determine resultTextContrastTest based on the combination of imageUrlContrastTest1 and imageUrlContrastTest2
+        // Determine resultTextSharpTest based on the combination of imageUrlSharpTest1 and imageUrlSharpTest2
         if (
-          imageUrlContrastTest1 === "./greenface.svg" &&
-          imageUrlContrastTest2 === "./greenface.svg"
+          imageUrlSharpTest1 === "./greenface.svg" &&
+          imageUrlSharpTest2 === "./greenface.svg"
         ) {
-          resultTextContrastTest =
-            "Vaše kontrastní vidění obou očí se zdá být vynikající."; // Both are green
+          resultTextSharpTest =
+            "Vaše zraková ostrost obou očí se zdá být vynikající."; // Both are green
         } else if (
-          imageUrlContrastTest1 === "./redface.svg" &&
-          imageUrlContrastTest2 === "./redface.svg"
+          imageUrlSharpTest1 === "./redface.svg" &&
+          imageUrlSharpTest2 === "./redface.svg"
         ) {
-          resultTextContrastTest =
-            "Vaše kontrastní vidění obou očí se zdá být omezené."; // Both are red
+          resultTextSharpTest =
+            "Vaše zraková ostrost obou očí se zdá být omezená."; // Both are red
         } else if (
-          imageUrlContrastTest1 === "./yellowface.svg" &&
-          imageUrlContrastTest2 === "./yellowface.svg"
+          imageUrlSharpTest1 === "./yellowface.svg" &&
+          imageUrlSharpTest2 === "./yellowface.svg"
         ) {
-          resultTextContrastTest =
-            "Vaše kontrastní vidění obou očí se zdá být v pořádku."; // Both are yellow
+          resultTextSharpTest =
+            "Vaše zraková ostrost obou očí se zdá být v pořádku."; // Both are yellow
         } else if (
-          imageUrlContrastTest1 === "./redface.svg" ||
-          imageUrlContrastTest2 === "./redface.svg"
+          imageUrlSharpTest1 === "./redface.svg" ||
+          imageUrlSharpTest2 === "./redface.svg"
         ) {
-          resultTextContrastTest =
-            "Vaše kontrastní vidění jednoho oka se zdá být omezené."; // At least one is red
+          resultTextSharpTest =
+            "Vaše zraková ostrost jednoho oka se zdá být omezená."; // At least one is red
         } else if (
-          imageUrlContrastTest1 === "./yellowface.svg" ||
-          imageUrlContrastTest2 === "./yellowface.svg"
+          imageUrlSharpTest1 === "./yellowface.svg" ||
+          imageUrlSharpTest2 === "./yellowface.svg"
         ) {
-          resultTextContrastTest =
-            "Vaše kontrastní vidění jednoho oka se zdá být v pořádku."; // At least one is yellow
+          resultTextSharpTest =
+            "Vaše zraková ostrost jednoho oka se zdá být v pořádku."; // At least one is yellow
         }
 
         if (isTestComplete) {
           dispatch(
             setTestResult({
-              testNameContrastTest: "Test kontrastního vidění",
-              resultTextContrastTest: resultTextContrastTest,
-              imageUrlContrastTest1: imageUrlContrastTest1,
-              imageUrlContrastTest2: imageUrlContrastTest2,
+              testNameSharpTest: "Test zrakové ostrosti",
+              resultTextSharpTest: resultTextSharpTest,
+              imageUrlSharpTest1: imageUrlSharpTest1,
+              imageUrlSharpTest2: imageUrlSharpTest2,
             })
           );
         }
@@ -550,16 +506,16 @@ const ContrastTest = () => {
             <CloseButton />
             <div className="eyes-result-container">
               <h1>
-                <b>Výsledek testu kontrastního vidění</b>
+                <b>Výsledek testu zrakové ostrosti</b>
               </h1>
-              <p>{resultTextContrastTest}</p>
+              <p>{resultTextSharpTest}</p>
               <div className="eyes-result">
                 <div className="eyes-result-images">
                   <div className="eyes-result-left">
-                    <img src={imageUrlContrastTest1} alt="ResultLeft" />
+                    <img src={imageUrlSharpTest1} alt="ResultLeft" />
                   </div>
                   <div className="eyes-result-right">
-                    <img src={imageUrlContrastTest2} alt="ResultRight" />
+                    <img src={imageUrlSharpTest2} alt="ResultRight" />
                   </div>
                 </div>
                 <div className="resultDescriptionLeft">
@@ -573,7 +529,7 @@ const ContrastTest = () => {
             <div className="next_test_buttons">
               <button
                 className="defaultButton"
-                onClick={() => navigate("/instrukce-test-barevneho-videni")}
+                onClick={() => navigate("/instrukce-test-kontrastniho-videni")}
               >
                 Pokračovat dalším testem
               </button>
@@ -604,11 +560,11 @@ const ContrastTest = () => {
         );
       default:
         // Handle any other cases or provide a default case
-        return null;
+        return <div>No content available for this case.</div>;
     }
   };
 
   return <div>{getContent(currentContent)}</div>;
 };
 
-export default ContrastTest;
+export default SharpTest;

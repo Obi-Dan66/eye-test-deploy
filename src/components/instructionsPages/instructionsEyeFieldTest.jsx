@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import CloseButton from "../components/CloseButton.jsx";
+import CloseButton from "../CloseButton.jsx";
 import { useSelector, useDispatch } from "react-redux";
-import { setSeenInstructions } from "../store/instructionsSlice";
-import { setSliderValue } from "../store/sliderSlice";
-const InstructionsSharpTest = () => {
+import { setSeenInstructions } from "../../store/instructionsSlice";
+import { setSliderValue } from "../../store/sliderSlice";
+const InstructionsEyeFieldTest = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [currentContent, setCurrentContent] = useState(0);
   const sliderValue = useSelector((state) => state.slider.sliderValue);
-  const [sliderChanged, setSliderChanged] = useState(false); // Update this line to track the state
-  const totalContents = 8;
+  const [sliderChanged, setSliderChanged] = useState(false);
+  const totalContents = 7;
+  const dispatch = useDispatch();
   const seenInstructions = useSelector(
     (state) => state.instructions.seenInstructions
   );
+
+  useEffect(() => {
+    if (seenInstructions) {
+      setCurrentContent(4); // Start from the first abbreviated content case
+    }
+  }, [seenInstructions]);
 
   const handleNext = () => {
     if (currentContent === 2 && sliderChanged) {
@@ -35,14 +41,8 @@ const InstructionsSharpTest = () => {
     });
   };
 
-  useEffect(() => {
-    if (seenInstructions) {
-      setCurrentContent(4); // Start from the first abbreviated content case
-    }
-  }, [seenInstructions]);
-
   const startTest = () => {
-    navigate("/test-zrakove-ostrosti");
+    navigate("/test-zorneho-pole");
     dispatch(setSeenInstructions(true)); // Ensure this dispatch is working correctly
   };
 
@@ -133,8 +133,8 @@ const InstructionsSharpTest = () => {
               </app-icon>
             </div>
             <h1>
-              Abyste dosáhli co nejpřesnějších výsledků{" "}
-              <b>,nastavte na svém zařízení jas obrazovky na maximum.</b>
+              Abyste dosáhli co nejpřesnějších výsledků,{" "}
+              <b>nastavte na svém zařízení jas obrazovky na maximum.</b>
             </h1>
 
             <button className="defaultButton" onClick={handleNext}>
@@ -220,9 +220,9 @@ const InstructionsSharpTest = () => {
               ></img>
             </div>
             <h1>
-              Budte připraveni. Nasadte si brýle nebo kontaktní čočky (pokud
-              nějaké nosíte).
+              <b>Budte připraveni.</b>
             </h1>
+            <p>Nasadte si brýle nebo kontaktní čočky (pokud nějaké nosíte).</p>
             <button className="defaultButton" onClick={handleNext}>
               Další krok
             </button>
@@ -359,29 +359,13 @@ const InstructionsSharpTest = () => {
               <path d="M26 51l6-6v12z" fill="#0072EF"></path>
               <path d="M80 51l-6 6V45z" fill="#0072EF"></path>
             </svg>
-            <h1>Nepřibližujte. Zařízení držte během testu na délku paže.</h1>
-            <button className="defaultButton" onClick={handleNext}>
-              Další krok
-            </button>
-          </div>
-        );
-      case 7:
-        return (
-          <div className="abbreviated">
-            <CloseButton />
-            <div>
-              <img
-                className="circle-image"
-                src="./imageCase6.svg"
-                width={200}
-                height={200}
-                alt="circle"
-              ></img>
-            </div>
             <h1>
-              <b>Označte bod.</b>
+              <b>Posuňte blíže.</b>
             </h1>
-            <p>Vidite horní kruh? Označte příslušný bod na spodním kruhu.</p>
+            <p>
+              Posuňte své zařízení trochu blíže - na půl délky paže nebo na
+              vzdálenost 30 cm.
+            </p>
             <button className="defaultButton" onClick={startTest}>
               Jsem připraven/a
             </button>
@@ -395,4 +379,4 @@ const InstructionsSharpTest = () => {
   return <div>{getContent(currentContent)}</div>;
 };
 
-export default InstructionsSharpTest;
+export default InstructionsEyeFieldTest;

@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import CloseButton from "../components/CloseButton";
+import CloseButton from "../CloseButton.jsx";
 
-const InfoColortest = () => {
+const InfoEyeFieldtest = () => {
   const navigate = useNavigate();
 
   const [dividerPosition, setDividerPosition] = useState(50); // Initial position of the divider
@@ -39,20 +39,19 @@ const InfoColortest = () => {
   return (
     <div className="test-info-page" ref={containerRef}>
       <CloseButton />
-      <h1>Barevné vidění</h1>
+      <h1>Zorné pole</h1>
       <h2>
-        <b>Podívejte se na duhu.</b>
+        <b>Sledujte bod.</b>
       </h2>
       <p>
-        Dokážete bez problémů vyjmenovat jednotlivé barvy? Náš test barevného
-        vidění prověří, jak jste na tom.
+        Tato kontrola zorného pole může objevit problémy vašeho zorného pole.
       </p>
       <div className="next_test_buttons">
         <button
           className="defaultButton"
-          onClick={() => navigate("/instrukce-test-barevneho-videni")}
+          onClick={() => navigate("/instrukce-test-zorneho-pole")}
         >
-          Spuštění testu barevného vidění
+          Spustit kontrolu zorného pole
         </button>
         <button
           className="defaultButton"
@@ -63,15 +62,16 @@ const InfoColortest = () => {
       </div>
       <div className="info-sharp-decription">
         <h2>
-          <b>Proč byste měli kontrolovat své barevné vidění?</b>
+          <b>Proč je třeba, abych si kontroloval/a zorného pole?</b>
         </h2>
         <p>
-          Barevné vidění &#40;schopnost rozpoznat různé barvy a odstíny&#41;
-          patří mezi nejdůležitější principy lidského vidění. "Barvoslepost" je
-          termínem často používaným k popisu nedostatků barevného vidění.
-          Pozvolné změny barevného vidění jsou často dědičné. Dobré barevné
-          vidění je důležité a může mít dopad na mnoho každodenních aspektů,
-          jako je vzdělání, výsledky zkoušek a volba kariéry.
+          Zorné pole je definováno jako prostor, ve kterém vnímáme světlo a
+          rozpoznáváme předměty. Tento prostor může být omezený různými očními
+          onemocněními nebo neurologickými příčinami a v průběhu času se může
+          zhoršovat. Normální centrální zorní pole je důležité při provádění
+          mnoha každodenních činností, jako je čtení nebo práce v kanceláři.
+          Naše periferní zorné pole nám poskytuje důležité vjemy, pokud se
+          díváme do dálky a řídíme například automobil.
         </p>
 
         <div
@@ -79,17 +79,17 @@ const InfoColortest = () => {
           style={{ position: "relative", width: "100%", height: "425px" }}
         >
           <img
-            src="./infoColor1.jpg"
+            src="./infoEyeField1.jpg"
             style={{
               position: "absolute",
               width: "100%",
               height: "100%",
               zIndex: 1,
             }}
-            alt="Normální barevné vidění"
+            alt="Normální vidění"
           />
           <img
-            src="./infoColor2.jpg"
+            src="./infoEyeField2.jpg"
             style={{
               position: "absolute",
               width: "100%",
@@ -97,7 +97,7 @@ const InfoColortest = () => {
               clipPath: `inset(0 ${100 - dividerPosition}% 0 0)`,
               zIndex: 2,
             }}
-            alt="Barevné anomálie (protanopie)"
+            alt="Vidění s vadou zorného pole"
           />
           <div
             className="divider"
@@ -131,23 +131,23 @@ const InfoColortest = () => {
       </div>
       <div className="info-sharp-decription">
         <h2>
-          <b>Jak barevné vidění testujeme?</b>
+          <b>Jak kontrolujeme vaše zorné pole?</b>
         </h2>
         <p>
-          Test barevného vidění je vyšetření vycházející z klinicky prověřené
-          práce doktora Shinobu Ishihary. Lidé s neporušeným viděním budou
-          schopni přečíst čísla na Isiharových barevných destičkách bez
-          problémů, ale ti s nějakým problémem je neuvidí ostře. Provádějí se
-          oběma očima najednou, jelikož jednostranné vady jsou vzácné.
+          Naše kontrola zorného pole probíhá s pomocí mřížky a vychází z
+          klinicky proveřeného Amslerova testu. Během kontroly vás požádáme,
+          abyste se zaměřili na středový bod a zjistili, zda vidíte všechny
+          části mřížky stejně. Nepravidelnosti se mohou jevit jako narušené nebo
+          neviditelné linie.
         </p>
 
         <p>
-          Náš test je dobrým indikátorem, ale nemůže nahradit plnohodnotné
-          vyšetření očním lékařem.
+          Pokud používáte telefon nebo malou obrazovku, Amslerova mřížka se může
+          zmenšit na menší než doporučenou velikost.
         </p>
       </div>
     </div>
   );
 };
 
-export default InfoColortest;
+export default InfoEyeFieldtest;
