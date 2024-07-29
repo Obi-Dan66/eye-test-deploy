@@ -22,6 +22,7 @@ import GoogleLogin from "./components/authPages/googleLogin.jsx";
 import AfterLogin from "./components/authPages/afterLogin.jsx";
 import Map from "./components/utilPages/map.jsx";
 import HomePage from "./components/utilPages/HomePage.jsx";
+import AddLocationForm from "./components/utilPages/AddLocationForm.jsx";
 
 const AppRouter = () => {
   return (
@@ -32,6 +33,7 @@ const AppRouter = () => {
         <Route path="/o-spolecnosti" element={<GeneralInfo />} />
         <Route path="/auth" element={<GoogleLogin />} />
         <Route path="/auth/callback" element={<AfterLogin />} />
+        <Route path="/manualni-pridani" element={<AddLocationForm />} />
         <Route
           path="/instrukce-test-kontrastniho-videni"
           element={<InstructionsContrastTest />}

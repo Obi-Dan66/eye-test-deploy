@@ -13,7 +13,6 @@ const AfterLogin = () => {
   const navigate = useNavigate();
   const { isAuthenticated, token } = useAuth();
   const [businessListings, setBusinessListings] = useState(null);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchBusinessListings = async (accountId, token) => {
@@ -32,7 +31,6 @@ const AfterLogin = () => {
         setBusinessListings(data.locations);
       } catch (error) {
         console.error("Error fetching business listings:", error);
-        setError(error.message || "Error fetching business listings");
       }
     };
 
@@ -51,46 +49,7 @@ const AfterLogin = () => {
     };
   }, []);
 
-  if (isAuthenticated) {
-    if (businessListings) {
-      return (
-        <div className="after-login-container">
-          <h1>
-            Verifikace byla úspěšná, prosím vyberte si pobočku, kterou chcete
-            zaregistrovat do našeho partnerského prostředí a mapy.
-          </h1>
-          <ul>
-            {businessListings.map((listing) => (
-              <li key={listing.name}>{listing.name}</li>
-            ))}
-          </ul>
-        </div>
-      );
-    } else if (error) {
-      return (
-        <div className="after-login-container">
-          <h1>Error</h1>
-          <p>{error}</p>
-        </div>
-      );
-    } else {
-      return (
-        <div className="after-login-container">
-          <h1>
-            Verifikace byla úspěšná, prosím vyberte si pobočku, kterou chcete
-            zaregistrovat do našeho partnerského prostředí a mapy.
-          </h1>
-          <p>
-            Pokud se Vám pobočky nenačetly z Vašeho Google účtu, využijte
-            možnost manuálního přidání pomocí formuláře.
-          </p>
-          <button className="defaultButton" onClick={() => navigate("/auth")}>
-            Manuální přidání pobočky
-          </button>
-        </div>
-      );
-    }
-  } else {
+  if (!isAuthenticated) {
     return (
       <div>
         <h1>Nejste přihlášeni</h1>
@@ -100,6 +59,45 @@ const AfterLogin = () => {
       </div>
     );
   }
+
+  if (businessListings) {
+    return (
+      <div className="after-login-container">
+        <h1>
+          Verifikace byla úspěšná, prosím vyberte si pobočku, kterou chcete
+          zaregistrovat do našeho partnerského prostředí a mapy.
+        </h1>
+        <p>Můžete také využít možnost manuálního přidání pobočky.</p>
+        <button
+          className="defaultButton"
+          onClick={() => navigate("/manualni-pridani")}
+        >
+          Manuální přidání pobočky
+        </button>
+        <ul>
+          {businessListings.map((listing) => (
+            <li key={listing.name}>{listing.name}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+
+  return (
+    <div className="after-login-container">
+      <h1>Verifikace byla úspěšná.</h1>
+      <p>
+        Bohužel se nepodařilo načíst pobočky z Vašeho profilu, prosím využijte
+        možnost manuálního přidání skrze formulář.
+      </p>
+      <button
+        className="defaultButton"
+        onClick={() => navigate("/manualni-pridani")}
+      >
+        Manuální přidání pobočky
+      </button>
+    </div>
+  );
 };
 
 export default AfterLogin;
