@@ -6,21 +6,19 @@ const AddLocationForm = () => {
   const [address, setAddress] = useState("");
   const [googleProfileLink, setGoogleProfileLink] = useState("");
   const [message, setMessage] = useState("");
+  const [showButton, setShowButton] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Create a JSON object with the form data
-    const formData = JSON.stringify({
-      name,
-      address,
-      googleProfileLink,
-    });
-
     try {
       const response = await axios.post(
         "/eye-test-deploy/proxy", // Use Vite proxy
-        formData,
+        {
+          name,
+          address,
+          googleProfileLink,
+        },
         {
           headers: {
             "Content-Type": "application/json",
@@ -29,29 +27,36 @@ const AddLocationForm = () => {
         }
       );
 
-      console.log("Response:", response.data);
-      setMessage("Location added successfully");
-      setName("");
-      setAddress("");
-      setGoogleProfileLink("");
+      if (response.data.result === "success") {
+        setMessage(
+          "Lokace byla úspěšně přidána do naší databáze. Pro přidání do naší mapy a partnerského programu klikněte na tlačítko níže."
+        );
+        setShowButton(true);
+        setName("");
+        setAddress("");
+        setGoogleProfileLink("");
+      } else {
+        setMessage("Error adding location: Unexpected response");
+        setShowButton(false);
+      }
     } catch (error) {
       console.error("Error:", error);
       if (error.response) {
-        // Server responded with a status other than 200 range
-        console.error("Error adding location:", error.response.data);
         setMessage(
           "Error adding location: " + JSON.stringify(error.response.data)
         );
       } else if (error.request) {
-        // Request was made but no response received
-        console.error("Network error:", error.request);
         setMessage("Network error: Please check your server.");
       } else {
-        // Something else happened
-        console.error("Error:", error.message);
         setMessage("Error: " + error.message);
       }
+      setShowButton(false);
     }
+  };
+
+  const handleButtonClick = () => {
+    // Add your logic here for what should happen when the button is clicked
+    console.log("Button clicked!");
   };
 
   return (
@@ -94,6 +99,11 @@ const AddLocationForm = () => {
         <button type="submit">Add Location</button>
       </form>
       {message && <p>{message}</p>}
+      {showButton && (
+        <button onClick={handleButtonClick}>
+          Přidat do mapy a partnerského programu
+        </button>
+      )}
     </div>
   );
 };
