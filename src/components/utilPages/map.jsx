@@ -33,6 +33,12 @@ const Map = () => {
               center: { lat: 49.8175, lng: 15.473 }, // Center of Czechia
               zoom: 8,
               mapId: import.meta.env.VITE_MAP_ID,
+              streetViewControl: false,
+              fullscreenControl: false,
+              mapTypeControl: false,
+              zoomControlOptions: {
+                position: window.google.maps.ControlPosition.TOP_RIGHT,
+              },
             }
           );
           setMapInstance(map);
