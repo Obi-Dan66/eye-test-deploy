@@ -7,6 +7,7 @@ const AddLocationForm = () => {
   const [googleProfileLink, setGoogleProfileLink] = useState("");
   const [message, setMessage] = useState("");
   const [showButton, setShowButton] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,6 +33,7 @@ const AddLocationForm = () => {
           "Lokace byla úspěšně přidána do naší databáze. Pro přidání do naší mapy a partnerského programu klikněte na tlačítko níže."
         );
         setShowButton(true);
+        setFormSubmitted(true);
         setName("");
         setAddress("");
         setGoogleProfileLink("");
@@ -62,47 +64,52 @@ const AddLocationForm = () => {
   return (
     <div>
       <h2>Add Location</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Name:
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Address:
-            <input
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              required
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Google Profile Link:
-            <input
-              type="text"
-              value={googleProfileLink}
-              onChange={(e) => setGoogleProfileLink(e.target.value)}
-              required
-            />
-          </label>
-        </div>
-        <button type="submit">Add Location</button>
-      </form>
-      {message && <p>{message}</p>}
-      {showButton && (
-        <button onClick={handleButtonClick}>
-          Přidat do mapy a partnerského programu
-        </button>
+      {!formSubmitted ? (
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>
+              Name:
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              Address:
+              <input
+                type="text"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                required
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              Google Profile Link:
+              <input
+                type="text"
+                value={googleProfileLink}
+                onChange={(e) => setGoogleProfileLink(e.target.value)}
+                required
+              />
+            </label>
+          </div>
+          <button type="submit">Add Location</button>
+        </form>
+      ) : (
+        <>
+          {message && <p>{message}</p>}
+          {showButton && (
+            <button onClick={handleButtonClick}>
+              Přidat do mapy a partnerského programu
+            </button>
+          )}
+        </>
       )}
     </div>
   );
