@@ -22,7 +22,7 @@ const Map = () => {
       return new Promise((resolve, reject) => {
         const googleMapScript = document.createElement("script");
         const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "";
-        googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initMap&loading=async`;
+        googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places,marker&callback=initMap&loading=async`;
         googleMapScript.async = true;
 
         window.initMap = () => {
@@ -31,17 +31,7 @@ const Map = () => {
             {
               center: { lat: 49.8175, lng: 15.473 }, // Center of Czechia
               zoom: 8,
-              mapId: import.meta.env.VITE_MAP_ID || "",
-              styles: [
-                {
-                  featureType: "poi",
-                  stylers: [{ visibility: "off" }],
-                },
-                {
-                  featureType: "transit",
-                  stylers: [{ visibility: "off" }],
-                },
-              ],
+              mapId: import.meta.env.VITE_MAP_ID,
             }
           );
           setMapInstance(map);
@@ -62,7 +52,7 @@ const Map = () => {
   }, [fetchLocations]);
 
   useEffect(() => {
-    if (mapInstance && locations.length > 0) {
+    if (mapInstance && locations.length > 0 && window.google.maps.marker) {
       // Clear existing markers
       mapInstance.data.forEach((feature) => {
         mapInstance.data.remove(feature);
@@ -71,6 +61,14 @@ const Map = () => {
       const bounds = new window.google.maps.LatLngBounds();
       const geocoder = new window.google.maps.Geocoder();
 
+      const createCustomPin = (fillColor = "#FF0000") => {
+        return `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="30" height="40">
+            <path fill="${fillColor}" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"/>
+          </svg>
+        `;
+      };
+
       locations.forEach((location) => {
         const address = `${location.googleProfileLink}, Czechia`;
 
@@ -78,32 +76,33 @@ const Map = () => {
           if (status === "OK" && results[0]) {
             const position = results[0].geometry.location;
 
-            const marker = new window.google.maps.Marker({
-              map: mapInstance,
-              position: position,
-              title: location.name,
-              icon: {
-                path: window.google.maps.SymbolPath.CIRCLE,
-                scale: 10,
-                fillColor: "#FF0000",
-                fillOpacity: 1,
-                strokeWeight: 0,
-              },
-            });
+            const pinSvg = createCustomPin();
+            const pinElement = new DOMParser().parseFromString(
+              pinSvg,
+              "image/svg+xml"
+            ).documentElement;
+
+            const markerView =
+              new window.google.maps.marker.AdvancedMarkerElement({
+                map: mapInstance,
+                position: position,
+                title: location.name,
+                content: pinElement,
+              });
 
             const infoWindow = new window.google.maps.InfoWindow({
               content: `<div><h3>${location.name}</h3><p>${location.address}</p></div>`,
             });
 
-            marker.addListener("click", () => {
-              infoWindow.open(mapInstance, marker);
+            markerView.addListener("click", () => {
+              infoWindow.open(mapInstance, markerView);
             });
 
-            marker.addListener("mouseover", () => {
-              infoWindow.open(mapInstance, marker);
+            markerView.addListener("mouseover", () => {
+              infoWindow.open(mapInstance, markerView);
             });
 
-            marker.addListener("mouseout", () => {
+            markerView.addListener("mouseout", () => {
               infoWindow.close();
             });
 
@@ -115,13 +114,6 @@ const Map = () => {
             );
           }
         });
-      });
-
-      // Adjust zoom level to show all markers without being too zoomed out
-      mapInstance.addListener("idle", () => {
-        if (mapInstance.getZoom() > 10) {
-          mapInstance.setZoom(10);
-        }
       });
     }
   }, [mapInstance, locations]);
