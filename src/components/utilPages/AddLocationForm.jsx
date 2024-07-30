@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const AddLocationForm = () => {
+const AddLocationForm = ({ onLocationAdded }) => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [googleProfileLink, setGoogleProfileLink] = useState("");
@@ -56,9 +56,18 @@ const AddLocationForm = () => {
     }
   };
 
-  const handleButtonClick = () => {
-    // Add your logic here for what should happen when the button is clicked
-    console.log("Button clicked!");
+  const handleButtonClick = async () => {
+    try {
+      await axios.post("/eye-test-deploy/proxy?action=addToMap", {});
+      setMessage("Locations successfully added to the map!");
+      setShowButton(false);
+      if (onLocationAdded) {
+        onLocationAdded();
+      }
+    } catch (error) {
+      console.error("Error adding locations to map:", error);
+      setMessage("Error adding locations to map. Please try again.");
+    }
   };
 
   return (

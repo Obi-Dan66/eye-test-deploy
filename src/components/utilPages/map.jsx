@@ -1,15 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 
 const Map = () => {
   const [mapInstance, setMapInstance] = useState(null);
   const [locations, setLocations] = useState([]);
 
+  const fetchLocations = useCallback(async () => {
+    try {
+      const response = await axios.get(
+        "/eye-test-deploy/proxy?action=getLocations"
+      );
+      setLocations(response.data);
+    } catch (error) {
+      console.error("Error fetching locations:", error);
+    }
+  }, []);
+
   useEffect(() => {
     const loadMapScript = () => {
       return new Promise((resolve, reject) => {
         const googleMapScript = document.createElement("script");
-        const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ""; // Access API key from environment variables
+        const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "";
         googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initMap&loading=async`;
         googleMapScript.async = true;
 
@@ -19,7 +30,7 @@ const Map = () => {
             {
               center: { lat: 49.8175, lng: 15.473 }, // Center of Czechia
               zoom: 8,
-              mapId: process.env.MAP_ID || "", // Custom map ID if available
+              mapId: import.meta.env.VITE_MAP_ID || "",
             }
           );
           setMapInstance(map);
@@ -35,34 +46,44 @@ const Map = () => {
     loadMapScript().catch((error) =>
       console.error("Error loading Google Maps script:", error)
     );
-  }, []);
-
-  useEffect(() => {
-    const fetchLocations = async () => {
-      try {
-        const response = await axios.get("/path-to-your-backend-endpoint"); // Replace with your backend endpoint to fetch locations
-        setLocations(response.data);
-      } catch (error) {
-        console.error("Error fetching locations:", error);
-      }
-    };
 
     fetchLocations();
-  }, []);
+  }, [fetchLocations]);
 
   useEffect(() => {
     if (mapInstance && locations.length > 0) {
       const bounds = new window.google.maps.LatLngBounds();
+      const geocoder = new window.google.maps.Geocoder();
+
       locations.forEach((location) => {
-        const { lat, lng, name } = location;
-        const marker = new window.google.maps.Marker({
-          position: { lat, lng },
-          map: mapInstance,
-          title: name,
-        });
-        bounds.extend(marker.position);
+        geocoder.geocode(
+          { address: location.googleProfileLink },
+          (results, status) => {
+            if (status === "OK") {
+              const marker = new window.google.maps.Marker({
+                position: results[0].geometry.location,
+                map: mapInstance,
+                title: location.name,
+              });
+
+              const infoWindow = new window.google.maps.InfoWindow({
+                content: `<div><h3>${location.name}</h3><p>${location.address}</p><a href="https://plus.codes/${location.googleProfileLink}" target="_blank">View on Google Maps</a></div>`,
+              });
+
+              marker.addListener("click", () => {
+                infoWindow.open(mapInstance, marker);
+              });
+
+              bounds.extend(results[0].geometry.location);
+              mapInstance.fitBounds(bounds);
+            } else {
+              console.error(
+                "Geocode was not successful for the following reason: " + status
+              );
+            }
+          }
+        );
       });
-      mapInstance.fitBounds(bounds);
     }
   }, [mapInstance, locations]);
 
