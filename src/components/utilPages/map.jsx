@@ -10,6 +10,7 @@ const Map = () => {
       const response = await axios.get(
         "/eye-test-deploy/proxy?action=getLocations"
       );
+      console.log("Fetched locations:", response.data);
       setLocations(response.data);
     } catch (error) {
       console.error("Error fetching locations:", error);
@@ -31,6 +32,16 @@ const Map = () => {
               center: { lat: 49.8175, lng: 15.473 }, // Center of Czechia
               zoom: 8,
               mapId: import.meta.env.VITE_MAP_ID || "",
+              styles: [
+                {
+                  featureType: "poi",
+                  stylers: [{ visibility: "off" }],
+                },
+                {
+                  featureType: "transit",
+                  stylers: [{ visibility: "off" }],
+                },
+              ],
             }
           );
           setMapInstance(map);
@@ -52,37 +63,65 @@ const Map = () => {
 
   useEffect(() => {
     if (mapInstance && locations.length > 0) {
+      // Clear existing markers
+      mapInstance.data.forEach((feature) => {
+        mapInstance.data.remove(feature);
+      });
+
       const bounds = new window.google.maps.LatLngBounds();
       const geocoder = new window.google.maps.Geocoder();
 
       locations.forEach((location) => {
-        geocoder.geocode(
-          { address: location.googleProfileLink },
-          (results, status) => {
-            if (status === "OK") {
-              const marker = new window.google.maps.Marker({
-                position: results[0].geometry.location,
-                map: mapInstance,
-                title: location.name,
-              });
+        const address = `${location.googleProfileLink}, Czechia`;
 
-              const infoWindow = new window.google.maps.InfoWindow({
-                content: `<div><h3>${location.name}</h3><p>${location.address}</p><a href="https://plus.codes/${location.googleProfileLink}" target="_blank">View on Google Maps</a></div>`,
-              });
+        geocoder.geocode({ address: address }, (results, status) => {
+          if (status === "OK" && results[0]) {
+            const position = results[0].geometry.location;
 
-              marker.addListener("click", () => {
-                infoWindow.open(mapInstance, marker);
-              });
+            const marker = new window.google.maps.Marker({
+              map: mapInstance,
+              position: position,
+              title: location.name,
+              icon: {
+                path: window.google.maps.SymbolPath.CIRCLE,
+                scale: 10,
+                fillColor: "#FF0000",
+                fillOpacity: 1,
+                strokeWeight: 0,
+              },
+            });
 
-              bounds.extend(results[0].geometry.location);
-              mapInstance.fitBounds(bounds);
-            } else {
-              console.error(
-                "Geocode was not successful for the following reason: " + status
-              );
-            }
+            const infoWindow = new window.google.maps.InfoWindow({
+              content: `<div><h3>${location.name}</h3><p>${location.address}</p></div>`,
+            });
+
+            marker.addListener("click", () => {
+              infoWindow.open(mapInstance, marker);
+            });
+
+            marker.addListener("mouseover", () => {
+              infoWindow.open(mapInstance, marker);
+            });
+
+            marker.addListener("mouseout", () => {
+              infoWindow.close();
+            });
+
+            bounds.extend(position);
+            mapInstance.fitBounds(bounds);
+          } else {
+            console.error(
+              "Geocode was not successful for the following reason: " + status
+            );
           }
-        );
+        });
+      });
+
+      // Adjust zoom level to show all markers without being too zoomed out
+      mapInstance.addListener("idle", () => {
+        if (mapInstance.getZoom() > 10) {
+          mapInstance.setZoom(10);
+        }
       });
     }
   }, [mapInstance, locations]);
