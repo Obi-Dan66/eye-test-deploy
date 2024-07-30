@@ -4,6 +4,7 @@ import axios from "axios";
 const Map = () => {
   const [mapInstance, setMapInstance] = useState(null);
   const [locations, setLocations] = useState([]);
+  const [openInfoWindow, setOpenInfoWindow] = useState(null);
 
   const fetchLocations = useCallback(async () => {
     try {
@@ -95,7 +96,11 @@ const Map = () => {
             });
 
             markerView.addListener("click", () => {
+              if (openInfoWindow && openInfoWindow !== infoWindow) {
+                openInfoWindow.close();
+              }
               infoWindow.open(mapInstance, markerView);
+              setOpenInfoWindow(infoWindow);
             });
 
             markerView.addListener("mouseover", () => {
@@ -116,7 +121,7 @@ const Map = () => {
         });
       });
     }
-  }, [mapInstance, locations]);
+  }, [mapInstance, locations, openInfoWindow]);
 
   return (
     <div>
