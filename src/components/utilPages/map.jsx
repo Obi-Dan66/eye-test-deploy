@@ -98,15 +98,36 @@ const Map = () => {
               });
 
             const infoWindow = new window.google.maps.InfoWindow({
-              content: `<div><h3>${location.name}</h3><p>${location.address}</p></div>`,
+              content: `<div><h1>${location.name}</h1><p>${location.address}</p></div>`,
+              pixelOffset: new window.google.maps.Size(0, -40), // Offset the InfoWindow above the pin
             });
 
             markerView.addListener("click", () => {
               if (openInfoWindow && openInfoWindow !== infoWindow) {
                 openInfoWindow.close();
               }
-              infoWindow.open(mapInstance, markerView);
-              setOpenInfoWindow(infoWindow);
+              // Store the current zoom level
+              const currentZoom = mapInstance.getZoom();
+
+              // Smooth pan to the new location without changing zoom
+              mapInstance.panTo(position);
+
+              // Add a one-time listener for the 'idle' event
+              const idleListener = mapInstance.addListener("idle", () => {
+                // Ensure the zoom level hasn't changed
+                mapInstance.setZoom(currentZoom);
+
+                // Open the info window after the camera has stopped moving
+                infoWindow.open({
+                  map: mapInstance,
+                  anchor: markerView,
+                  shouldFocus: false,
+                });
+                setOpenInfoWindow(infoWindow);
+
+                // Remove the listener after it's been triggered
+                window.google.maps.event.removeListener(idleListener);
+              });
             });
 
             markerView.addListener("mouseover", () => {
