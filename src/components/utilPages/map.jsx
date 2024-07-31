@@ -27,11 +27,15 @@ const Map = () => {
         googleMapScript.async = true;
 
         window.initMap = () => {
+          const pragueCenter = {
+            lat: 50.09113288663482,
+            lng: 14.43177035459569,
+          };
           const map = new window.google.maps.Map(
             document.getElementById("map"),
             {
-              center: { lat: 49.8175, lng: 15.473 }, // Center of Czechia
-              zoom: 8,
+              center: pragueCenter,
+              zoom: 12,
               mapId: import.meta.env.VITE_MAP_ID,
               streetViewControl: false,
               fullscreenControl: false,
@@ -42,6 +46,17 @@ const Map = () => {
             }
           );
           setMapInstance(map);
+
+          console.log("Initial map center:", map.getCenter().toJSON());
+          console.log("Initial zoom level:", map.getZoom());
+
+          map.addListener("zoom_changed", () => {
+            console.log("Zoom changed to:", map.getZoom());
+          });
+
+          map.addListener("center_changed", () => {
+            console.log("Center changed to:", map.getCenter().toJSON());
+          });
         };
 
         googleMapScript.addEventListener("load", resolve);
@@ -60,12 +75,12 @@ const Map = () => {
 
   useEffect(() => {
     if (mapInstance && locations.length > 0 && window.google.maps.marker) {
-      // Clear existing markers
+      console.log("Creating markers for locations:", locations);
+
       mapInstance.data.forEach((feature) => {
         mapInstance.data.remove(feature);
       });
 
-      const bounds = new window.google.maps.LatLngBounds();
       const geocoder = new window.google.maps.Geocoder();
 
       const createCustomPin = (fillColor = "#FF0000") => {
@@ -82,6 +97,10 @@ const Map = () => {
         geocoder.geocode({ address: address }, (results, status) => {
           if (status === "OK" && results[0]) {
             const position = results[0].geometry.location;
+            console.log(
+              `Geocoded position for ${location.name}:`,
+              position.toJSON()
+            );
 
             const pinSvg = createCustomPin();
             const pinElement = new DOMParser().parseFromString(
@@ -99,47 +118,47 @@ const Map = () => {
 
             const infoWindow = new window.google.maps.InfoWindow({
               content: `<div><h1>${location.name}</h1><p>${location.address}</p></div>`,
-              pixelOffset: new window.google.maps.Size(0, -40), // Offset the InfoWindow above the pin
+              pixelOffset: new window.google.maps.Size(0, -40),
             });
 
             markerView.addListener("click", () => {
-              if (openInfoWindow && openInfoWindow !== infoWindow) {
+              console.log(`Pin clicked: ${location.name}`);
+              console.log("Current zoom level:", mapInstance.getZoom());
+              console.log("Current center:", mapInstance.getCenter().toJSON());
+
+              if (openInfoWindow) {
                 openInfoWindow.close();
               }
-              // Store the current zoom level
-              const currentZoom = mapInstance.getZoom();
 
-              // Smooth pan to the new location without changing zoom
               mapInstance.panTo(position);
+              console.log("Panning to:", position.toJSON());
 
-              // Add a one-time listener for the 'idle' event
-              const idleListener = mapInstance.addListener("idle", () => {
-                // Ensure the zoom level hasn't changed
-                mapInstance.setZoom(currentZoom);
+              infoWindow.open({
+                map: mapInstance,
+                anchor: markerView,
+                shouldFocus: false,
+              });
+              console.log("InfoWindow opened");
+              setOpenInfoWindow(infoWindow);
+            });
 
-                // Open the info window after the camera has stopped moving
+            markerView.addListener("mouseover", () => {
+              if (!openInfoWindow || openInfoWindow !== infoWindow) {
                 infoWindow.open({
                   map: mapInstance,
                   anchor: markerView,
                   shouldFocus: false,
                 });
-                setOpenInfoWindow(infoWindow);
-
-                // Remove the listener after it's been triggered
-                window.google.maps.event.removeListener(idleListener);
-              });
-            });
-
-            markerView.addListener("mouseover", () => {
-              infoWindow.open(mapInstance, markerView);
+                console.log(`InfoWindow opened on mouseover: ${location.name}`);
+              }
             });
 
             markerView.addListener("mouseout", () => {
-              infoWindow.close();
+              if (!openInfoWindow || openInfoWindow !== infoWindow) {
+                infoWindow.close();
+                console.log(`InfoWindow closed on mouseout: ${location.name}`);
+              }
             });
-
-            bounds.extend(position);
-            mapInstance.fitBounds(bounds);
           } else {
             console.error(
               "Geocode was not successful for the following reason: " + status
