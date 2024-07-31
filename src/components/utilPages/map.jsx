@@ -11,12 +11,37 @@ const Map = () => {
       const response = await axios.get(
         "/eye-test-deploy/proxy?action=getLocations"
       );
-      console.log("Fetched locations:", response.data);
       setLocations(response.data);
     } catch (error) {
       console.error("Error fetching locations:", error);
     }
   }, []);
+
+  const smoothPan = (map, endPosition, duration = 1000) => {
+    const startPosition = map.getCenter();
+    const startLat = startPosition.lat();
+    const startLng = startPosition.lng();
+    const endLat = endPosition.lat();
+    const endLng = endPosition.lng();
+    const latDiff = endLat - startLat;
+    const lngDiff = endLng - startLng;
+    const startTime = new Date().getTime();
+
+    const animate = () => {
+      const now = new Date().getTime();
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = 0.5 - Math.cos(progress * Math.PI) / 2;
+      const newLat = startLat + latDiff * easedProgress;
+      const newLng = startLng + lngDiff * easedProgress;
+      map.setCenter({ lat: newLat, lng: newLng });
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    animate();
+  };
 
   useEffect(() => {
     const loadMapScript = () => {
@@ -46,17 +71,6 @@ const Map = () => {
             }
           );
           setMapInstance(map);
-
-          console.log("Initial map center:", map.getCenter().toJSON());
-          console.log("Initial zoom level:", map.getZoom());
-
-          map.addListener("zoom_changed", () => {
-            console.log("Zoom changed to:", map.getZoom());
-          });
-
-          map.addListener("center_changed", () => {
-            console.log("Center changed to:", map.getCenter().toJSON());
-          });
         };
 
         googleMapScript.addEventListener("load", resolve);
@@ -75,8 +89,6 @@ const Map = () => {
 
   useEffect(() => {
     if (mapInstance && locations.length > 0 && window.google.maps.marker) {
-      console.log("Creating markers for locations:", locations);
-
       mapInstance.data.forEach((feature) => {
         mapInstance.data.remove(feature);
       });
@@ -97,10 +109,6 @@ const Map = () => {
         geocoder.geocode({ address: address }, (results, status) => {
           if (status === "OK" && results[0]) {
             const position = results[0].geometry.location;
-            console.log(
-              `Geocoded position for ${location.name}:`,
-              position.toJSON()
-            );
 
             const pinSvg = createCustomPin();
             const pinElement = new DOMParser().parseFromString(
@@ -116,30 +124,93 @@ const Map = () => {
                 content: pinElement,
               });
 
+            const infoWindowContent = `
+              <div style="
+                padding: 10px;
+                max-width: 300px;
+                min-width: 150px;
+                position: relative;
+              ">
+                <h3 style="
+                  margin: 0 0 5px;
+                  font-size: 16px;
+                  color: #333;
+                  padding-right: 20px;
+                ">${location.name}</h3>
+                <p style="
+                  margin: 0;
+                  font-size: 14px;
+                  color: #666;
+                ">${location.address}</p>
+              </div>
+            `;
+
             const infoWindow = new window.google.maps.InfoWindow({
-              content: `<div><h1>${location.name}</h1><p>${location.address}</p></div>`,
+              content: infoWindowContent,
               pixelOffset: new window.google.maps.Size(0, -40),
             });
 
-            markerView.addListener("click", () => {
-              console.log(`Pin clicked: ${location.name}`);
-              console.log("Current zoom level:", mapInstance.getZoom());
-              console.log("Current center:", mapInstance.getCenter().toJSON());
+            infoWindow.addListener("domready", () => {
+              const iwOuter = document.querySelector(".gm-style-iw-c");
+              if (!iwOuter) return;
 
+              iwOuter.style.padding = "20";
+              iwOuter.style.boxShadow = "0 1px 6px rgba(0, 0, 0, 0.3)";
+              iwOuter.style.borderRadius = "8px";
+
+              const iwContent = iwOuter.querySelector(".gm-style-iw-d");
+              if (iwContent) {
+                iwContent.style.padding = "0";
+                iwContent.style.overflow = "hidden";
+              }
+
+              const closeButton = iwOuter.querySelector(
+                "button.gm-ui-hover-effect"
+              );
+              if (closeButton) {
+                closeButton.style.top = "0";
+                closeButton.style.right = "0";
+                closeButton.style.width = "30px";
+                closeButton.style.height = "30px";
+                closeButton.style.opacity = "1";
+                closeButton.style.background = "white";
+                closeButton.style.borderRadius = "0 8px 0 0";
+                closeButton.style.boxShadow = "none";
+                closeButton.style.border = "none";
+
+                const xIcon = closeButton.querySelector("img");
+                if (xIcon) {
+                  xIcon.style.width = "16px";
+                  xIcon.style.height = "16px";
+                  xIcon.style.marginTop = "5px";
+                  xIcon.style.marginRight = "40px";
+                  xIcon.style.marginBottom = "9px";
+                  xIcon.style.marginLeft = "7px";
+                  xIcon.style.position = "absolute";
+                }
+              }
+
+              const iwBackground = iwOuter.previousElementSibling;
+              if (iwBackground) {
+                iwBackground.style.display = "none";
+              }
+            });
+
+            markerView.addListener("click", () => {
               if (openInfoWindow) {
                 openInfoWindow.close();
               }
 
-              mapInstance.panTo(position);
-              console.log("Panning to:", position.toJSON());
+              smoothPan(mapInstance, position, 1000);
 
-              infoWindow.open({
-                map: mapInstance,
-                anchor: markerView,
-                shouldFocus: false,
-              });
-              console.log("InfoWindow opened");
-              setOpenInfoWindow(infoWindow);
+              setTimeout(() => {
+                infoWindow.open({
+                  map: mapInstance,
+                  anchor: markerView,
+                  shouldFocus: false,
+                });
+                setOpenInfoWindow(infoWindow);
+              }, 500);
             });
 
             markerView.addListener("mouseover", () => {
@@ -149,14 +220,12 @@ const Map = () => {
                   anchor: markerView,
                   shouldFocus: false,
                 });
-                console.log(`InfoWindow opened on mouseover: ${location.name}`);
               }
             });
 
             markerView.addListener("mouseout", () => {
               if (!openInfoWindow || openInfoWindow !== infoWindow) {
                 infoWindow.close();
-                console.log(`InfoWindow closed on mouseout: ${location.name}`);
               }
             });
           } else {
