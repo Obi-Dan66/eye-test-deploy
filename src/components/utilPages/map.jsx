@@ -21,8 +21,14 @@ const Map = () => {
     const startPosition = map.getCenter();
     const startLat = startPosition.lat();
     const startLng = startPosition.lng();
-    const endLat = endPosition.lat();
-    const endLng = endPosition.lng();
+    const endLat =
+      typeof endPosition.lat === "function"
+        ? endPosition.lat()
+        : endPosition.lat;
+    const endLng =
+      typeof endPosition.lng === "function"
+        ? endPosition.lng()
+        : endPosition.lng;
     const latDiff = endLat - startLat;
     const lngDiff = endLng - startLng;
     const startTime = new Date().getTime();
@@ -41,6 +47,22 @@ const Map = () => {
     };
 
     animate();
+  };
+
+  const createCustomPin = (fillColor = "#FF0000") => {
+    return `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="30" height="40">
+        <path fill="${fillColor}" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"/>
+      </svg>
+    `;
+  };
+
+  const createBlueDot = () => {
+    return `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15">
+        <circle cx="12" cy="12" r="10" fill="#0000FF" />
+      </svg>
+    `;
   };
 
   useEffect(() => {
@@ -62,50 +84,86 @@ const Map = () => {
               center: pragueCenter,
               zoom: 12,
               mapId: import.meta.env.VITE_MAP_ID,
+              mapTypeControl: false,
               streetViewControl: false,
               fullscreenControl: false,
-              mapTypeControl: false,
               zoomControlOptions: {
                 position: window.google.maps.ControlPosition.TOP_RIGHT,
               },
             }
           );
           setMapInstance(map);
+          resolve(map);
         };
 
-        googleMapScript.addEventListener("load", resolve);
+        googleMapScript.addEventListener("load", () => {});
         googleMapScript.addEventListener("error", reject);
 
         document.body.appendChild(googleMapScript);
       });
     };
 
-    loadMapScript().catch((error) =>
-      console.error("Error loading Google Maps script:", error)
-    );
-
-    fetchLocations();
+    loadMapScript()
+      .then(() => {
+        fetchLocations();
+      })
+      .catch((error) =>
+        console.error("Error loading Google Maps script:", error)
+      );
   }, [fetchLocations]);
 
   useEffect(() => {
-    if (mapInstance && locations.length > 0 && window.google.maps.marker) {
-      mapInstance.data.forEach((feature) => {
-        mapInstance.data.remove(feature);
-      });
+    if (mapInstance) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const userLocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+            smoothPan(mapInstance, userLocation, 1000);
+            mapInstance.setZoom(12);
 
+            const geocoder = new window.google.maps.Geocoder();
+            geocoder.geocode({ location: userLocation }, (results, status) => {
+              if (status === "OK" && results[0]) {
+                console.log("User's address:", results[0].formatted_address);
+              } else {
+                console.error(
+                  "Geocode was not successful for the following reason:",
+                  status
+                );
+              }
+            });
+
+            const blueDotSvg = createBlueDot();
+            const blueDotElement = new DOMParser().parseFromString(
+              blueDotSvg,
+              "image/svg+xml"
+            ).documentElement;
+
+            new window.google.maps.marker.AdvancedMarkerElement({
+              map: mapInstance,
+              position: userLocation,
+              content: blueDotElement,
+              title: "Vaše lokace",
+            });
+          },
+          (error) => {
+            console.error("Error getting user location:", error);
+          }
+        );
+      } else {
+        console.error("Geolocation is not supported by this browser.");
+      }
+    }
+  }, [mapInstance]);
+
+  useEffect(() => {
+    if (mapInstance) {
       const geocoder = new window.google.maps.Geocoder();
-
-      const createCustomPin = (fillColor = "#FF0000") => {
-        return `
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="30" height="40">
-            <path fill="${fillColor}" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"/>
-          </svg>
-        `;
-      };
-
       locations.forEach((location) => {
-        const address = `${location.googleProfileLink}, Czechia`;
-
+        const address = location.address;
         geocoder.geocode({ address: address }, (results, status) => {
           if (status === "OK" && results[0]) {
             const position = results[0].geometry.location;
