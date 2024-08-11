@@ -5,6 +5,8 @@ const AddLocationForm = ({ onLocationAdded }) => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [googleProfileLink, setGoogleProfileLink] = useState("");
+  const [openingHours, setOpeningHours] = useState("");
+  const [webLink, setWebLink] = useState("");
   const [message, setMessage] = useState("");
   const [showButton, setShowButton] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -19,6 +21,8 @@ const AddLocationForm = ({ onLocationAdded }) => {
           name,
           address,
           googleProfileLink,
+          openingHours,
+          webLink,
         },
         {
           headers: {
@@ -37,6 +41,8 @@ const AddLocationForm = ({ onLocationAdded }) => {
         setName("");
         setAddress("");
         setGoogleProfileLink("");
+        setOpeningHours("");
+        setWebLink("");
       } else {
         setMessage("Error adding location: Unexpected response");
         setShowButton(false);
@@ -72,43 +78,70 @@ const AddLocationForm = ({ onLocationAdded }) => {
 
   return (
     <div>
-      <h2>Add Location</h2>
+      <h2>Přidat pobočku</h2>
       {!formSubmitted ? (
         <form onSubmit={handleSubmit}>
           <div>
             <label>
-              Name:
+              Název pobočky:
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                placeholder="Optika"
                 required
               />
             </label>
           </div>
           <div>
             <label>
-              Address:
+              Adresa pobočky:
               <input
                 type="text"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
+                placeholder="Václavské náměstí 846/1, 110 00 Praha 1 - Nové Město, Česko"
                 required
               />
             </label>
           </div>
           <div>
             <label>
-              Google Profile Link:
+              Plus kód pobočky:
               <input
                 type="text"
                 value={googleProfileLink}
                 onChange={(e) => setGoogleProfileLink(e.target.value)}
+                placeholder="3CC4+W9 Praha"
                 required
               />
             </label>
           </div>
-          <button type="submit">Add Location</button>
+          <div>
+            <label>
+              Otevírací doba:
+              <input
+                type="text"
+                value={openingHours}
+                onChange={(e) => setOpeningHours(e.target.value)}
+                placeholder="PO-ČT: 10-19:00 / PÁ: 10-17:30"
+                required
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              Odkaz na web:
+              <input
+                type="text"
+                value={webLink}
+                onChange={(e) => setWebLink(e.target.value)}
+                placeholder="https://www.example.com/"
+                required
+              />
+            </label>
+          </div>
+          <button type="submit">Přidat pobočku</button>
         </form>
       ) : (
         <>

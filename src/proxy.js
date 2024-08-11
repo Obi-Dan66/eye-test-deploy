@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxVCy8D0cibmK6UfcDwnoznFGwZv0xUQ3eyLRgf3__GBCCkBzX2eNEPt6yw1osPSLvP/exec";
+  "https://script.google.com/macros/s/AKfycbzq1vXutVZGfphaW0oC5-0uzS15Pjo15-NI3pcOpUzJLWRkhi6hOSHoxG1U_Gz86FKs/exec";
 
 app.post("/proxy", async (req, res) => {
   console.log("Received POST request at /proxy");

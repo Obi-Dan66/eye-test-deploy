@@ -24,3 +24,5 @@ env.js
 *.njsproj
 *.sln
 *.sw?
+
+src/proxy.js

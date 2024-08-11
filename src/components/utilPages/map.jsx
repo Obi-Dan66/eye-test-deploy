@@ -1,10 +1,14 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import axios from "axios";
+import Sidebar from "../MapSidebar";
 
 const Map = () => {
   const [mapInstance, setMapInstance] = useState(null);
   const [locations, setLocations] = useState([]);
+  const [userLocation, setUserLocation] = useState(null);
   const [openInfoWindow, setOpenInfoWindow] = useState(null);
+  const [error, setError] = useState(null);
+  const mapInstanceRef = useRef(null);
 
   const fetchLocations = useCallback(async () => {
     try {
@@ -57,12 +61,30 @@ const Map = () => {
     `;
   };
 
-  const createBlueDot = () => {
-    return `
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15">
-        <circle cx="12" cy="12" r="10" fill="#0000FF" />
-      </svg>
-    `;
+  const handleAddressSubmit = (address) => {
+    // Logic to move the map camera to the inputted address
+    if (mapInstanceRef.current) {
+      const geocoder = new window.google.maps.Geocoder();
+      geocoder.geocode({ address: address }, (results, status) => {
+        if (status === "OK" && results[0]) {
+          const position = results[0].geometry.location;
+          mapInstanceRef.current.setCenter(position);
+          mapInstanceRef.current.setZoom(15);
+        } else {
+          console.error(
+            "Geocode was not successful for the following reason:",
+            status,
+            "Address:",
+            address
+          );
+          if (status === "INVALID_REQUEST") {
+            setError(
+              "Invalid address request. Please check the address format."
+            );
+          }
+        }
+      });
+    }
   };
 
   useEffect(() => {
@@ -93,6 +115,9 @@ const Map = () => {
             }
           );
           setMapInstance(map);
+          if (mapInstanceRef) {
+            mapInstanceRef.current = map;
+          }
           resolve(map);
         };
 
@@ -114,56 +139,13 @@ const Map = () => {
 
   useEffect(() => {
     if (mapInstance) {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const userLocation = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            };
-            smoothPan(mapInstance, userLocation, 1000);
-            mapInstance.setZoom(12);
-
-            const geocoder = new window.google.maps.Geocoder();
-            geocoder.geocode({ location: userLocation }, (results, status) => {
-              if (status === "OK" && results[0]) {
-                console.log("User's address:", results[0].formatted_address);
-              } else {
-                console.error(
-                  "Geocode was not successful for the following reason:",
-                  status
-                );
-              }
-            });
-
-            const blueDotSvg = createBlueDot();
-            const blueDotElement = new DOMParser().parseFromString(
-              blueDotSvg,
-              "image/svg+xml"
-            ).documentElement;
-
-            new window.google.maps.marker.AdvancedMarkerElement({
-              map: mapInstance,
-              position: userLocation,
-              content: blueDotElement,
-              title: "Vaše lokace",
-            });
-          },
-          (error) => {
-            console.error("Error getting user location:", error);
-          }
-        );
-      } else {
-        console.error("Geolocation is not supported by this browser.");
-      }
-    }
-  }, [mapInstance]);
-
-  useEffect(() => {
-    if (mapInstance) {
       const geocoder = new window.google.maps.Geocoder();
       locations.forEach((location) => {
         const address = location.address;
+        if (!address) {
+          console.error("Invalid address:", address);
+          return;
+        }
         geocoder.geocode({ address: address }, (results, status) => {
           if (status === "OK" && results[0]) {
             const position = results[0].geometry.location;
@@ -171,8 +153,8 @@ const Map = () => {
             const pinSvg = createCustomPin();
             const pinElement = new DOMParser().parseFromString(
               pinSvg,
-              "image/svg+xml"
-            ).documentElement;
+              "text/html"
+            ).body.firstChild;
 
             const markerView =
               new window.google.maps.marker.AdvancedMarkerElement({
@@ -185,13 +167,13 @@ const Map = () => {
             const infoWindowContent = `
               <div style="
                 padding: 10px;
-                max-width: 300px;
-                min-width: 150px;
-                position: relative;
+                max-width: 200px;
+                font-family: Arial, sans-serif;
               ">
                 <h3 style="
-                  margin: 0 0 5px;
+                  margin: 0;
                   font-size: 16px;
+                  font-weight: bold;
                   color: #333;
                   padding-right: 20px;
                 ">${location.name}</h3>
@@ -288,17 +270,46 @@ const Map = () => {
             });
           } else {
             console.error(
-              "Geocode was not successful for the following reason: " + status
+              "Geocode was not successful for the following reason: " + status,
+              "Address:",
+              address
             );
+            if (status === "INVALID_REQUEST") {
+              setError(
+                "Invalid address request. Please check the address format."
+              );
+            }
           }
         });
       });
     }
   }, [mapInstance, locations, openInfoWindow]);
 
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setUserLocation({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        });
+      },
+      (error) => {
+        console.error("Error getting user location:", error);
+      }
+    );
+  }, []);
+
   return (
-    <div>
-      <div id="map" style={{ width: "100%", height: "600px" }}></div>
+    <div style={{ display: "flex" }}>
+      <Sidebar
+        onAddressSubmit={handleAddressSubmit}
+        locations={locations}
+        userLocation={userLocation}
+      />
+      <div style={{ flex: 1 }}>
+        {error && <p>{error}</p>}
+        <div id="map" style={{ width: "100%", height: "600px" }}></div>
+      </div>
     </div>
   );
 };
