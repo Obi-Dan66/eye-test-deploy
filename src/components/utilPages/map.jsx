@@ -316,6 +316,29 @@ const Map = () => {
     }
   }, [mapInstance]);
 
+  useEffect(() => {
+    if (mapInstance && userLocation) {
+      const userPinSvg = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15">
+          <circle cx="12" cy="12" r="10" fill="#ef0600" />
+        </svg>
+      `;
+      const userPinElement = new DOMParser().parseFromString(
+        userPinSvg,
+        "text/html"
+      ).body.firstChild;
+
+      new window.google.maps.marker.AdvancedMarkerElement({
+        map: mapInstance,
+        position: userLocation,
+        title: "Vaše poloha",
+        content: userPinElement,
+      });
+
+      mapInstance.setCenter(userLocation);
+    }
+  }, [mapInstance, userLocation]);
+
   return (
     <div style={{ display: "flex" }}>
       <Sidebar
