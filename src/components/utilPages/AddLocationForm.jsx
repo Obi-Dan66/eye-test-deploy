@@ -77,8 +77,9 @@ const AddLocationForm = ({ onLocationAdded }) => {
   };
 
   return (
-    <div>
+    <div className="add-location-form">
       <h2>Přidat pobočku</h2>
+
       {!formSubmitted ? (
         <form onSubmit={handleSubmit}>
           <div>
@@ -88,8 +89,9 @@ const AddLocationForm = ({ onLocationAdded }) => {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Optika"
+                placeholder="Název optiky"
                 required
+                className="form-input"
               />
             </label>
           </div>
@@ -102,18 +104,27 @@ const AddLocationForm = ({ onLocationAdded }) => {
                 onChange={(e) => setAddress(e.target.value)}
                 placeholder="Václavské náměstí 846/1, 110 00 Praha 1 - Nové Město, Česko"
                 required
+                className="form-input"
               />
             </label>
           </div>
           <div>
             <label>
-              Plus kód pobočky:
+              <a
+                href="https://support.google.com/maps/answer/7047426?hl=cs&co=GENIE.Platform%3DAndroid&oco=0"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Jak zjistit Plus kód?"
+              >
+                Plus kód pobočky:
+              </a>
               <input
                 type="text"
                 value={googleProfileLink}
                 onChange={(e) => setGoogleProfileLink(e.target.value)}
                 placeholder="3CC4+W9 Praha"
                 required
+                className="form-input"
               />
             </label>
           </div>
@@ -126,6 +137,7 @@ const AddLocationForm = ({ onLocationAdded }) => {
                 onChange={(e) => setOpeningHours(e.target.value)}
                 placeholder="PO-ČT: 10-19:00 / PÁ: 10-17:30"
                 required
+                className="form-input"
               />
             </label>
           </div>
@@ -138,16 +150,19 @@ const AddLocationForm = ({ onLocationAdded }) => {
                 onChange={(e) => setWebLink(e.target.value)}
                 placeholder="https://www.example.com/"
                 required
+                className="form-input"
               />
             </label>
           </div>
-          <button type="submit">Přidat pobočku</button>
+          <button type="submit" className="defaultButton">
+            Přidat pobočku
+          </button>
         </form>
       ) : (
         <>
           {message && <p>{message}</p>}
           {showButton && (
-            <button onClick={handleButtonClick}>
+            <button onClick={handleButtonClick} className="defaultButton">
               Přidat do mapy a partnerského programu
             </button>
           )}
