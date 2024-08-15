@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
+import loadGoogleMapsApi from "./loadGoogleMapsApi";
 
 const Sidebar = ({ onAddressSubmit, locations, userLocation }) => {
   const [input, setInput] = useState("");
@@ -7,16 +7,35 @@ const Sidebar = ({ onAddressSubmit, locations, userLocation }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [markers, setMarkers] = useState({});
   const [openInfoWindow, setOpenInfoWindow] = useState(null);
+  const [autocompleteService, setAutocompleteService] = useState(null);
 
-  const handleInputChange = async (e) => {
+  useEffect(() => {
+    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY; // Replace with your actual API key
+    loadGoogleMapsApi(apiKey)
+      .then((google) => {
+        console.log("Google Maps JavaScript API loaded successfully.");
+        setAutocompleteService(new google.maps.places.AutocompleteService());
+      })
+      .catch((error) => {
+        console.error("Error loading Google Maps JavaScript API:", error);
+      });
+  }, []);
+
+  const handleInputChange = (e) => {
     setInput(e.target.value);
-    if (e.target.value.length > 2) {
-      const response = await axios.get(
-        `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${
-          e.target.value
-        }&key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}`
+    if (e.target.value.length > 2 && autocompleteService) {
+      console.log("Requesting place predictions for:", e.target.value);
+      autocompleteService.getPlacePredictions(
+        { input: e.target.value },
+        (predictions, status) => {
+          if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+            console.log("Predictions received:", predictions);
+            setSuggestions(predictions);
+          } else {
+            console.error("Autocomplete service error:", status);
+          }
+        }
       );
-      setSuggestions(response.data.predictions);
     } else {
       setSuggestions([]);
     }
