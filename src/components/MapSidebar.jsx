@@ -24,12 +24,10 @@ const Sidebar = ({ onAddressSubmit, locations, userLocation }) => {
   const handleInputChange = (e) => {
     setInput(e.target.value);
     if (e.target.value.length > 2 && autocompleteService) {
-      console.log("Requesting place predictions for:", e.target.value);
       autocompleteService.getPlacePredictions(
         { input: e.target.value },
         (predictions, status) => {
           if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-            console.log("Predictions received:", predictions);
             setSuggestions(predictions);
           } else {
             console.error("Autocomplete service error:", status);
@@ -274,7 +272,12 @@ const Sidebar = ({ onAddressSubmit, locations, userLocation }) => {
           </form>
           <ul>
             {suggestions.map((suggestion) => (
-              <li key={suggestion.place_id}>{suggestion.description}</li>
+              <li
+                key={suggestion.place_id}
+                onClick={() => onAddressSubmit(suggestion.description)}
+              >
+                {suggestion.description}
+              </li>
             ))}
           </ul>
           <div>

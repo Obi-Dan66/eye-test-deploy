@@ -184,7 +184,7 @@ const Map = () => {
             fillOpacity: 0.35,
             map: mapInstance,
             center: userPos,
-            radius: 100,
+            radius: 200,
           });
         }
       },
@@ -240,8 +240,83 @@ const Map = () => {
     `;
   };
 
-  const handleAddressSubmit = () => {
-    // Implement the address submission logic here
+  const handleAddressSubmit = (address) => {
+    if (!googleMaps || !mapInstance) return;
+
+    const geocoder = new googleMaps.maps.Geocoder();
+    geocoder.geocode({ address: address }, (results, status) => {
+      if (status === "OK" && results[0]) {
+        const position = results[0].geometry.location;
+
+        const pinSvg = createCustomPin();
+        const pinElement = new DOMParser().parseFromString(pinSvg, "text/html")
+          .body.firstChild;
+
+        const markerView = new googleMaps.maps.marker.AdvancedMarkerElement({
+          map: mapInstance,
+          position: position,
+          title: address,
+          content: pinElement,
+        });
+
+        const infoWindowContent = `
+          <div style="
+            padding: 10px;
+            max-width: 200px;
+            font-family: Arial, sans-serif;
+          ">
+            <h3 style="
+              margin: 0;
+              font-size: 16px;
+              font-weight: bold;
+              color: #333;
+              padding-right: 20px;
+            ">${address}</h3>
+          </div>
+        `;
+
+        const infoWindow = new googleMaps.maps.InfoWindow({
+          content: infoWindowContent,
+          pixelOffset: new googleMaps.maps.Size(0, -40),
+        });
+
+        markerView.addListener("click", () => {
+          if (openInfoWindow) {
+            openInfoWindow.close();
+          }
+
+          infoWindow.open({
+            map: mapInstance,
+            anchor: markerView,
+            shouldFocus: false,
+          });
+
+          setOpenInfoWindow(infoWindow);
+
+          smoothPan(mapInstance, position, 1000);
+        });
+
+        // Save marker and infoWindow to state
+        setMarkers((prevMarkers) => ({
+          ...prevMarkers,
+          [address]: { markerView, infoWindow, position },
+        }));
+
+        // Open the info window immediately
+        infoWindow.open({
+          map: mapInstance,
+          anchor: markerView,
+          shouldFocus: false,
+        });
+
+        setOpenInfoWindow(infoWindow);
+        smoothPan(mapInstance, position, 1000);
+      } else {
+        console.error(
+          "Geocode was not successful for the following reason: " + status
+        );
+      }
+    });
   };
 
   const openInfoWindowForMarker = (locationId) => {
