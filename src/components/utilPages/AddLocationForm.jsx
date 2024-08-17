@@ -18,7 +18,7 @@ const AddLocationForm = () => {
 
     try {
       const response = await axios.post(
-        "/eye-test-deploy/proxy", // Use Vite proxy
+        "http://localhost:3000/proxy", // Use the correct server URL
         {
           name,
           address,
