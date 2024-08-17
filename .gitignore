@@ -10,7 +10,6 @@ lerna-debug.log*
 node_modules
 *.local
 .env
-env.js
 /dist
 /credentials
 
@@ -24,7 +23,3 @@ env.js
 *.njsproj
 *.sln
 *.sw?
-
-src/proxy.js
-src/serverPayments.js
-src/server.js
