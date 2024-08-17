@@ -26,7 +26,7 @@ const CheckoutForm = () => {
       try {
         // Create a payment intent on the server
         const paymentIntentResponse = await axios.post(
-          "http://localhost:3000/create-payment-intent",
+          "https://obi-dan66.github.io/eye-test-deploy/create-payment-intent",
           {
             payment_method: paymentMethod.id,
           }

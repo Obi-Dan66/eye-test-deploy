@@ -18,7 +18,7 @@ const AfterLogin = () => {
     const fetchBusinessListings = async (accountId, token) => {
       try {
         const response = await fetch(
-          `http://localhost:3000/business-listings?accountId=${accountId}&token=${token}`
+          `https://obi-dan66.github.io/eye-test-deploy/business-listings?accountId=${accountId}&token=${token}`
         );
 
         if (!response.ok) {

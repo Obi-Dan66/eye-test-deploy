@@ -18,7 +18,7 @@ const AddLocationForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/proxy", // Use the correct server URL
+        "https://obi-dan66.github.io/eye-test-deploy/proxy", // Use the correct server URL
         {
           name,
           address,
