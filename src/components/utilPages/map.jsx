@@ -184,7 +184,7 @@ const Map = () => {
             fillOpacity: 0.35,
             map: mapInstance,
             center: userPos,
-            radius: 200,
+            radius: 1300,
           });
         }
       },

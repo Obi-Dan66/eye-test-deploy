@@ -26,3 +26,5 @@ env.js
 *.sw?
 
 src/proxy.js
+src/serverPayments.js
+src/server.js

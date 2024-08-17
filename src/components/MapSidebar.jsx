@@ -4,7 +4,7 @@ import loadGoogleMapsApi from "./loadGoogleMapsApi";
 const Sidebar = ({ onAddressSubmit, locations, userLocation }) => {
   const [input, setInput] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  //const [isCollapsed, setIsCollapsed] = useState(false);
   const [markers, setMarkers] = useState({});
   const [openInfoWindow, setOpenInfoWindow] = useState(null);
   const [autocompleteService, setAutocompleteService] = useState(null);
@@ -13,7 +13,6 @@ const Sidebar = ({ onAddressSubmit, locations, userLocation }) => {
     const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY; // Replace with your actual API key
     loadGoogleMapsApi(apiKey)
       .then((google) => {
-        console.log("Google Maps JavaScript API loaded successfully.");
         setAutocompleteService(new google.maps.places.AutocompleteService());
       })
       .catch((error) => {
@@ -249,52 +248,55 @@ const Sidebar = ({ onAddressSubmit, locations, userLocation }) => {
     : locations;
 
   return (
-    <div className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
-      <button
+    //     <div className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
+    <div className={`sidebar`}>
+      {/*<button
         className="defaultButton"
         onClick={() => setIsCollapsed(!isCollapsed)}
       >
         {isCollapsed ? "Rozšířit" : "Skrýt"}
-      </button>
-      {!isCollapsed && (
-        <div>
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              value={input}
-              onChange={handleInputChange}
-              placeholder="Zadejte vaši polohu"
-              className="form-input"
-            />
-            <button className="defaultButton" type="submit">
+      </button>*/}
+      {/*{!isCollapsed && (*/}
+      <div>
+        <form onSubmit={handleSubmit} style={{ position: "relative" }}>
+          <input
+            type="text"
+            value={input}
+            onChange={handleInputChange}
+            placeholder="Zadejte vaši polohu"
+            className="form-input"
+          />
+          {/*<button className="defaultButton" type="submit">
               Vyhledat
-            </button>
-          </form>
-          <ul>
-            {suggestions.map((suggestion) => (
-              <li
-                key={suggestion.place_id}
-                onClick={() => onAddressSubmit(suggestion.description)}
-              >
-                {suggestion.description}
-              </li>
-            ))}
-          </ul>
-          <div>
-            {sortedLocations.map((location) => (
-              <div
-                key={location.id}
-                className="location-item"
-                onClick={() => handleLocationClick(location)}
-              >
-                <h3>{location.name}</h3>
-                <p>{location.address}</p>
-                <p>{location.distance} km</p>
-              </div>
-            ))}
-          </div>
+            </button>*/}
+          {suggestions.length > 0 && (
+            <ul className="suggestions-dropdown">
+              {suggestions.map((suggestion) => (
+                <li
+                  key={suggestion.place_id}
+                  onClick={() => onAddressSubmit(suggestion.description)}
+                >
+                  {suggestion.description}
+                </li>
+              ))}
+            </ul>
+          )}
+        </form>
+        <div>
+          {sortedLocations.map((location) => (
+            <div
+              key={location.id}
+              className="location-item"
+              onClick={() => handleLocationClick(location)}
+            >
+              <h3>{location.name}</h3>
+              <p>{location.address}</p>
+              <p>{location.distance} km</p>
+            </div>
+          ))}
         </div>
-      )}
+      </div>
+      {/*)}*/}
     </div>
   );
 };

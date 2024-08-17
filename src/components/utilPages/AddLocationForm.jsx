@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const AddLocationForm = ({ onLocationAdded }) => {
+const AddLocationForm = () => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [googleProfileLink, setGoogleProfileLink] = useState("");
@@ -10,6 +11,7 @@ const AddLocationForm = ({ onLocationAdded }) => {
   const [message, setMessage] = useState("");
   const [showButton, setShowButton] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,17 +65,7 @@ const AddLocationForm = ({ onLocationAdded }) => {
   };
 
   const handleButtonClick = async () => {
-    try {
-      await axios.post("/eye-test-deploy/proxy?action=addToMap", {});
-      setMessage("Locations successfully added to the map!");
-      setShowButton(false);
-      if (onLocationAdded) {
-        onLocationAdded();
-      }
-    } catch (error) {
-      console.error("Error adding locations to map:", error);
-      setMessage("Error adding locations to map. Please try again.");
-    }
+    navigate("/platebni-brana"); // Redirect to the Paywall component
   };
 
   return (
