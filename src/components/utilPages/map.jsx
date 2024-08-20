@@ -15,7 +15,7 @@ const Map = () => {
   const fetchLocations = useCallback(async () => {
     try {
       const response = await axios.get(
-        "https://obi-dan66.github.io/eye-test-deploy/proxy?action=getLocations" // Ensure this URL is correct
+        `${import.meta.env.VITE_API_CALL_ORIGIN}/proxy?action=getLocations`
       );
       setLocations(response.data);
     } catch (error) {

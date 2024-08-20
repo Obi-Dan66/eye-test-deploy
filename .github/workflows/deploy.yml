@@ -25,13 +25,23 @@ jobs:
       - name: Set environment variables
         run: |
           echo "VITE_GOOGLE_CLIENT_ID=${{ secrets.VITE_GOOGLE_CLIENT_ID }}" >> $GITHUB_ENV
-          echo "VITE_GOOGLE_MAPS_API_KEY=${{ secrets.REACT_APP_GOOGLE_MAPS_API_KEY }}" >> $GITHUB_ENV
+          echo "VITE_GOOGLE_MAPS_API_KEY=${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}" >> $GITHUB_ENV
+          echo "VITE_MAP_ID=${{ secrets.VITE_MAP_ID }}" >> $GITHUB_ENV
+          echo "VITE_DATABASE_SHEET_URL=${{ secrets.VITE_DATABASE_SHEET_URL }}" >> $GITHUB_ENV
+          echo "VITE_STRIPE_PUBLISHABLE_KEY=${{ secrets.VITE_STRIPE_PUBLISHABLE_KEY }}" >> $GITHUB_ENV
+          echo "VITE_STRIPE_SECRET_KEY=${{ secrets.VITE_STRIPE_SECRET_KEY }}" >> $GITHUB_ENV
+          echo "VITE_API_CALL_ORIGIN=${{ secrets.VITE_API_CALL_ORIGIN }}" >> $GITHUB_ENV
 
       - name: Build project
         run: npm run build
         env:
           VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
-          VITE_APP_GOOGLE_MAPS_API_KEY: ${{ secrets.REACT_APP_GOOGLE_MAPS_API_KEY }}
+          VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
+          VITE_MAP_ID: ${{ secrets.VITE_MAP_ID }}
+          VITE_DATABASE_SHEET_URL: ${{ secrets.VITE_DATABASE_SHEET_URL }}
+          VITE_STRIPE_PUBLISHABLE_KEY: ${{ secrets.VITE_STRIPE_PUBLISHABLE_KEY }}
+          VITE_STRIPE_SECRET_KEY: ${{ secrets.VITE_STRIPE_SECRET_KEY }}
+          VITE_API_CALL_ORIGIN: ${{ secrets.VITE_API_CALL_ORIGIN }}
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3

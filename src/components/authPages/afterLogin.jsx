@@ -18,7 +18,9 @@ const AfterLogin = () => {
     const fetchBusinessListings = async (accountId, token) => {
       try {
         const response = await fetch(
-          `https://obi-dan66.github.io/eye-test-deploy/business-listings?accountId=${accountId}&token=${token}`
+          `${
+            import.meta.env.VITE_API_CALL_ORIGIN
+          }/business-listings?accountId=${accountId}&token=${token}`
         );
 
         if (!response.ok) {
