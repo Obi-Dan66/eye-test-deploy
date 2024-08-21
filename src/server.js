@@ -11,6 +11,7 @@ dotenv.config();
 const app = express();
 const PORT = 3000;
 const stripe = new Stripe(process.env.VITE_STRIPE_SECRET_KEY); // Replace with your Stripe secret key
+const YOUR_DOMAIN = "http://localhost:5173/eye-test-deploy/#"; // Update with your frontend domain
 const GOOGLE_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbzq1vXutVZGfphaW0oC5-0uzS15Pjo15-NI3pcOpUzJLWRkhi6hOSHoxG1U_Gz86FKs/exec";
 
@@ -42,34 +43,51 @@ app.get("/business-listings", async (req, res) => {
   }
 });
 
-// Payment Intent Route
-app.post("/create-payment-intent", async (req, res) => {
-  const { payment_method } = req.body;
-
+// Create Checkout Session Route
+app.post("/create-checkout-session", async (req, res) => {
   try {
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: 1500, // Amount in cents (15 CZK)
-      currency: "czk",
-      payment_method,
-      confirmation_method: "manual",
-      confirm: true,
-      return_url: "http://localhost:5173/eye-test-deploy/payment-success", // Updated return URL
+    const returnUrl = `${YOUR_DOMAIN}/payment-success?session_id={CHECKOUT_SESSION_ID}`;
+    console.log(`Creating checkout session with return_url: ${returnUrl}`);
+
+    const session = await stripe.checkout.sessions.create({
+      ui_mode: "embedded",
+      line_items: [
+        {
+          // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+          price: "price_1PpzWADnEGKgYgS9JTENOYwO", // Replace with your price ID
+          quantity: 1,
+        },
+      ],
+      mode: "payment",
+      return_url: returnUrl,
     });
 
-    console.log("Payment Intent created:", paymentIntent);
+    console.log(`Checkout session created: ${session.id}`);
+    res.send({ clientSecret: session.client_secret });
+  } catch (error) {
+    console.error("Error creating checkout session:", error);
+    res.status(500).send({ error: error.message });
+  }
+});
+
+// Session Status Route
+app.get("/session-status", async (req, res) => {
+  try {
+    console.log(
+      `Retrieving session status for session_id: ${req.query.session_id}`
+    );
+    const session = await stripe.checkout.sessions.retrieve(
+      req.query.session_id
+    );
 
     res.send({
-      client_secret: paymentIntent.client_secret,
+      status: session.status,
+      payment_intent: session.payment_intent,
+      customer_email: session.customer_details.email,
     });
   } catch (error) {
-    console.error("Error creating payment intent:", error);
-    console.error(
-      "Error details:",
-      error.raw ? error.raw.message : error.message
-    );
-    res
-      .status(500)
-      .send({ error: error.raw ? error.raw.message : error.message });
+    console.error("Error retrieving session status:", error);
+    res.status(500).send({ error: error.message });
   }
 });
 
