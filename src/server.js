@@ -9,12 +9,10 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT; // Use the PORT environment variable or default to 3000
 const stripe = new Stripe(process.env.VITE_STRIPE_SECRET_KEY); // Replace with your Stripe secret key
-const YOUR_DOMAIN = "http://localhost:5173/eye-test-deploy/#"; // Update with your frontend domain
-const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbzq1vXutVZGfphaW0oC5-0uzS15Pjo15-NI3pcOpUzJLWRkhi6hOSHoxG1U_Gz86FKs/exec";
-
+const YOUR_DOMAIN = process.env.VITE_API_CALL_ORIGIN; // Update with your frontend domain
+const GOOGLE_SCRIPT_URL = process.env.VITE_DATABASE_SHEET_URL;
 // Enable CORS for all routes
 app.use(cors());
 app.use(bodyParser.json());

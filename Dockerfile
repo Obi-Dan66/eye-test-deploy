@@ -39,7 +39,7 @@ RUN npx vite build
 RUN npm install -g serve
 
 # Expose the port the app runs on
-EXPOSE 3000
+EXPOSE 8080
 
-# Start the app using serve command
-CMD ["serve", "-s", "dist"]
+# Start the backend server and the frontend using serve
+CMD ["sh", "-c", "node src/server.js & serve -s dist"]

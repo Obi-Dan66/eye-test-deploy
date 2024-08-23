@@ -14,7 +14,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/eye-test-deploy/proxy": {
-        target: "http://localhost:3000",
+        target: process.env.VITE_API_CALL_ORIGIN,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/eye-test-deploy\/proxy/, "/proxy"),
       },
