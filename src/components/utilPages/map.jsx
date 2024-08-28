@@ -15,7 +15,7 @@ const Map = () => {
   const fetchLocations = useCallback(async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_API_CALL_ORIGIN}/proxy?action=getLocations`
+        `${process.env.VITE_API_CALL_ORIGIN}/proxy?action=getLocations`
       );
       setLocations(response.data);
     } catch (error) {
@@ -24,7 +24,7 @@ const Map = () => {
   }, []);
 
   useEffect(() => {
-    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY; // Replace with your actual API key
+    const apiKey = process.env.VITE_GOOGLE_MAPS_API_KEY; // Replace with your actual API key
     loadGoogleMapsApi(apiKey)
       .then((google) => {
         setGoogleMaps(google); // Set Google Maps object
@@ -35,7 +35,7 @@ const Map = () => {
         const map = new google.maps.Map(document.getElementById("map"), {
           center: pragueCenter,
           zoom: 12,
-          mapId: import.meta.env.VITE_MAP_ID, // Replace with your actual Map ID
+          mapId: process.env.VITE_MAP_ID, // Replace with your actual Map ID
           mapTypeControl: false,
           streetViewControl: false,
           fullscreenControl: false,

@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -7,7 +8,9 @@ export default defineConfig({
   build: {
     outDir: "dist",
     rollupOptions: {
-      input: "index.html", // Ensure this points to the correct location
+      input: {
+        main: path.resolve(__dirname, "index.html"),
+      },
     },
   },
   base: "/eye-test-deploy/",
@@ -19,5 +22,7 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/eye-test-deploy\/proxy/, "/proxy"),
       },
     },
+    port: 8080,
+    host: "0.0.0.0",
   },
 });

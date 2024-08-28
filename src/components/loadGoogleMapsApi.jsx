@@ -3,7 +3,7 @@ let googleMapsPromise;
 const loadGoogleMapsApi = () => {
   if (!googleMapsPromise) {
     googleMapsPromise = new Promise((resolve, reject) => {
-      const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY; // Use environment variable for API key
+      const apiKey = process.env.VITE_GOOGLE_MAPS_API_KEY; // Use environment variable for API key
       if (!apiKey) {
         reject(
           new Error(

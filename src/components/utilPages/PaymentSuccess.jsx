@@ -12,9 +12,7 @@ const PaymentSuccess = () => {
     const fetchSessionStatus = async () => {
       try {
         const response = await fetch(
-          `${
-            import.meta.env.VITE_API_CALL_ORIGIN
-          }/session-status?session_id=${sessionId}`
+          `${process.env.VITE_API_CALL_ORIGIN}/session-status?session_id=${sessionId}`
         );
         const data = await response.json();
         setPaymentIntentId(data.payment_intent);

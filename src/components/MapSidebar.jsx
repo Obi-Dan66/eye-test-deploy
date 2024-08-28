@@ -10,7 +10,7 @@ const Sidebar = ({ onAddressSubmit, locations, userLocation }) => {
   const [autocompleteService, setAutocompleteService] = useState(null);
 
   useEffect(() => {
-    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY; // Replace with your actual API key
+    const apiKey = process.env.VITE_GOOGLE_MAPS_API_KEY; // Replace with your actual API key
     loadGoogleMapsApi(apiKey)
       .then((google) => {
         setAutocompleteService(new google.maps.places.AutocompleteService());

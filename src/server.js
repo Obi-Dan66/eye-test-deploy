@@ -4,18 +4,24 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import Stripe from "stripe";
 import dotenv from "dotenv";
-
+import path from "path";
 // Load environment variables from .env file
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT; // Use the PORT environment variable or default to 3000
-const stripe = new Stripe(process.env.VITE_STRIPE_SECRET_KEY); // Replace with your Stripe secret key
-const YOUR_DOMAIN = process.env.VITE_API_CALL_ORIGIN; // Update with your frontend domain
-const GOOGLE_SCRIPT_URL = process.env.VITE_DATABASE_SHEET_URL;
+const PORT = process.env.PORT || 8080; // Use the PORT environment variable or default to 5173
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY); // Replace with your Stripe secret key
+const YOUR_DOMAIN = process.env.API_CALL_ORIGIN; // Update with your frontend domain
+const GOOGLE_SCRIPT_URL = process.env.DATABASE_SHEET_URL;
 // Enable CORS for all routes
 app.use(cors());
 app.use(bodyParser.json());
+
+// Define __dirname for ES modules
+const __dirname = path.resolve();
+
+// Serve static files from the 'dist' directory
+app.use(express.static(path.join(__dirname, "dist")));
 
 // Business Listings Route
 app.get("/business-listings", async (req, res) => {
@@ -125,6 +131,16 @@ app.get("/proxy", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+// Handle root URL
+// Handle root URL
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
+
+app
+  .listen(PORT, "0.0.0.0", () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+  })
+  .on("error", (err) => {
+    console.error("Failed to start server:", err);
+  });
