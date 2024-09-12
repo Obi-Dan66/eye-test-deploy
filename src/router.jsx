@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import InstructionsSharpTest from "./components/instructionsPages/instructionsSharpTest.jsx";
 import InstructionsContrastTest from "./components/instructionsPages/instructionsContrastTest.jsx";
 import InstructionsAstigmatismTest from "./components/instructionsPages/instructionsAstigmatismTest.jsx";

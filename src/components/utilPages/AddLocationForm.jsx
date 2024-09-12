@@ -18,7 +18,7 @@ const AddLocationForm = () => {
 
     try {
       const response = await axios.post(
-        `${process.env.VITE_API_CALL_ORIGIN}/proxy`, // Use the correct server URL
+        `${import.meta.env.VITE_API_CALL_ORIGIN}/proxy`, // Use the correct server URL
         {
           name,
           address,

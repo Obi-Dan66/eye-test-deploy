@@ -6,13 +6,13 @@ import {
 } from "@stripe/react-stripe-js";
 
 // Initialize Stripe
-const stripePromise = loadStripe(process.env.VITE_STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const CheckoutForm = () => {
   const fetchClientSecret = useCallback(() => {
     // Create a Checkout Session
     return fetch(
-      `${process.env.VITE_API_CALL_ORIGIN}/create-checkout-session`,
+      `${import.meta.env.VITE_API_CALL_ORIGIN}/create-checkout-session`,
       {
         method: "POST",
       }
