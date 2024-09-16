@@ -15,6 +15,7 @@ node_modules
 
 # Build output
 /credentials
+/backend
 
 # Editor directories and files
 .vscode/*
@@ -26,3 +27,6 @@ node_modules
 *.njsproj
 *.sln
 *.sw?
+
+# Exclude docker-compose.yml
+docker-compose.yml

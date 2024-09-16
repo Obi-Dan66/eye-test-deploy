@@ -11,13 +11,10 @@ COPY package*.json ./
 RUN npm install
 
 # Copy the rest of the application code
-COPY . .
-
-# Build the application
-RUN npm run build
+COPY server.js ./
 
 # Expose the port the app runs on
 EXPOSE 8080
 
-# Serve the frontend
-CMD [ "npx", "vite", "preview" ]
+# Define the command to run the application
+CMD [ "node", "server.js" ]
