@@ -1,2 +1,20 @@
-   node_modules
-   *.log
+*.log
+node_modules
+credentials
+.vscode
+.github
+.env
+public
+dist
+Dockerfile
+README.md
+.dockerignore
+.gitignore
+.eslintrc.cjs
+docker-compose.yml
+requirements.txt
+tsconfig.json
+tsconfig.node.json
+vite.config.ts
+src
+frontend

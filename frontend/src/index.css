@@ -1,0 +1,1333 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.2;
+  font-weight: 200;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #ecf0f4;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.test-selection-wrapper {
+  width: 100%;
+  margin: auto;
+}
+
+/* Base styles for .test-selection-container */
+.test-selection-container {
+  display: flex; /* Ensure the container uses flexbox */
+  flex-direction: column; /* Align children vertically */
+  justify-content: center; /* Center-align items vertically */
+  align-items: center; /* Center-align items horizontally */
+  padding: 20px; /* Add padding for spacing */
+}
+
+/* Mobile devices (up to 767px) */
+@media (max-width: 767px) {
+  .test-selection-container {
+    flex-direction: column; /* Stack children vertically */
+  }
+}
+
+/* Tablets (from 768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .test-selection-container {
+    flex-direction: column; /* Stack children vertically */
+  }
+}
+
+/* Desktops and larger screens (from 1024px) */
+@media (min-width: 1024px) {
+  .test-selection-container {
+    flex-direction: column; /* Align children in a row */
+  }
+}
+
+.test-selection {
+  background-color: white;
+  margin-top: 20px;
+  border-radius: 30px;
+  width: 90%; /* Default width for large screens */
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Mobile devices (up to 767px) */
+@media (max-width: 767px) {
+  .test-selection {
+    width: 100% !important; /* Full width for smaller screens */
+    margin-top: 10px; /* Less margin top */
+    padding: 20px; /* Slightly less padding */
+  }
+}
+
+/* Tablets (from 768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .test-selection {
+    width: 25%; /* Moderate width for tablets */
+    padding: 15px; /* Standard padding */
+    margin-top: 15px; /* Standard margin top */
+  }
+}
+
+/* Desktops and larger screens (from 1024px) */
+@media (min-width: 1024px) {
+  .test-selection {
+    width: 25%; /* Original width for desktops */
+    padding: 20px; /* More padding for larger screens */
+    margin-top: 20px; /* Original margin top */
+  }
+}
+
+@media (max-width: 1023px) {
+  .test-selection {
+    width: 50%; /* Adjust width to prevent overstretching */
+    flex-direction: column; /* Ensure content stacks vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+  }
+}
+
+.test-selection button {
+  margin-top: 10px;
+}
+
+.test-selection h2 {
+  color: #000000;
+}
+
+h2 {
+  color: #000000;
+}
+
+html,
+body {
+  background-color: #ecf0f4;
+  /*background-color: grey; */
+  border-radius: 10px;
+  margin: 0;
+}
+
+.consent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%; /* Adjust width as needed */
+  margin: auto;
+  padding: 20px;
+  height: 50%; /* Set the height to 50% of the viewport height */
+  text-align: center;
+}
+
+.consent h1 {
+  font-size: 2rem; /* Large font size for the header */
+  color: #333; /* Dark grey color for text */
+  margin-bottom: 20px; /* Space below the header */
+}
+
+.consent p {
+  font-size: 1rem; /* Regular font size for the paragraph */
+  color: #666; /* Lighter grey color for paragraph text */
+  line-height: 1.5; /* Spacing between lines */
+}
+
+.consent button {
+  margin-top: 20px;
+  width: 100%;
+  background-color: transparent;
+  color: #0055ab;
+  border-width: 2px;
+  border-color: #0055ab;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.consent button:hover {
+  background-color: #002ead;
+
+  color: white;
+}
+
+@media (max-width: 767px) {
+  .consent {
+    width: 90%; /* Increase width for small screens */
+    padding: 15px; /* Adjust padding */
+  }
+
+  .consent h1 {
+    font-size: 1.5rem; /* Adjust font size for smaller screens */
+  }
+
+  .consent p {
+    font-size: 0.9rem; /* Adjust font size for smaller screens */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .consent {
+    width: 70%; /* Adjust width for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .consent {
+    width: 50%; /* Maintain default width for large screens */
+  }
+}
+
+.home-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin: auto;
+  width: 80%; /* Default width */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .home-wrapper {
+    width: 95%; /* Increase width for small screens */
+    padding: 15px; /* Adjust padding */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .home-wrapper {
+    width: 90%; /* Adjust width for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .home-wrapper {
+    width: 70%; /* Maintain a narrower width for large screens */
+  }
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 2rem; /* Adjust top margin */
+  width: 100%; /* Default width */
+  margin: auto; /* Center the div */
+  box-sizing: border-box;
+}
+
+/* Ensure images are not causing any overflow */
+.home img {
+  max-width: 100%; /* Limit image width to prevent overflow */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Adjust button styling to ensure they are centered and have consistent spacing */
+.home button {
+  width: 90%; /* Slightly less than full width for aesthetics */
+  margin: 10px 0; /* Add top and bottom margin for spacing */
+  padding: 12px 0; /* Sufficient padding for tap targets */
+}
+
+/* Remove any specific left or right margins that might be affecting centering */
+.home button {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 767px) {
+  .home {
+    padding: 15px; /* Adjust padding */
+  }
+  .home button {
+    width: 100%; /* Full width buttons on smaller devices */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .home {
+    width: 90%; /* Adjust width for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .home {
+    width: 70%; /* Maintain a narrower width for large screens */
+  }
+}
+
+.homePage {
+  width: 50%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .homePage {
+    width: 90%; /* Increase width for small screens */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .homePage {
+    width: 70%; /* Adjust width for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .homePage {
+    width: 60%; /* Slightly reduce width for large screens */
+  }
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 1.1;
+  font-weight: 200;
+  color: black;
+}
+
+p {
+  display: block; /* Ensure the <p> tag is displayed as a block element */
+  margin: 10px 0; /* Add margin for spacing */
+  color: #333; /* Set text color */
+  font-size: 1.5rem;
+}
+
+#pg {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12px;
+}
+
+.defaultButton {
+  background-color: #0072ef;
+  border-width: 0px;
+  border-radius: 5px;
+  margin-right: 5px;
+  padding: 10px 20px; /* Default padding */
+  width: auto; /* Default width based on content */
+  color: white;
+}
+
+/* Mobile devices (up to 767px) */
+@media (max-width: 767px) {
+  .defaultButton {
+    width: 50%; /* Full width for better usability on small screens */
+    margin-right: 10px; /* Adjust margin to fit mobile layout */
+    padding: 10px 10px 10px 10px; /* Increase padding for better touch target size */
+    margin-bottom: 10px; /* Adjust margin for better spacing */
+  }
+}
+
+/* Tablets (from 768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .defaultButton {
+    width: 50%; /* Adjust width for tablet screens */
+    margin-right: 5px; /* Standard margin */
+    padding: 15px 0; /* Slightly larger padding */
+    margin-bottom: 10px; /* Adjust margin for better spacing */
+  }
+}
+
+/* Desktops and larger screens (from 1024px) */
+@media (min-width: 1024px) {
+  .defaultButton {
+    width: 200px; /* Original width for desktops */
+    margin-right: 5px; /* Original margin */
+    padding: 10px 20px; /* Standard padding */
+  }
+}
+
+.defaultButton:hover {
+  background-color: #002ead;
+}
+
+.testBegin,
+.selectTest {
+  width: 200px;
+  background-color: #0072ef;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 5px; /* Adjusted margin for better spacing */
+}
+
+.testBegin {
+  color: white;
+}
+
+.selectTest {
+  background-color: transparent;
+  border: black solid;
+  color: black;
+}
+
+.testBegin:hover,
+.selectTest:hover {
+  background-color: #0055ab;
+}
+
+/* Mobile devices (up to 767px) */
+@media (max-width: 767px) {
+  .testBegin,
+  .selectTest {
+    width: 100%; /* Full width for better usability on small screens */
+    margin: 10px 0; /* Increased margin for better spacing */
+    padding: 12px 0; /* Increased padding for a better touch target */
+  }
+}
+
+/* Tablets (from 768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .testBegin,
+  .selectTest {
+    width: 50%; /* Adjust width for tablet screens */
+    margin: 5px; /* Standard margin */
+    padding: 15px 20px; /* Slightly larger padding */
+  }
+}
+
+/* Desktops and larger screens (from 1024px) */
+@media (min-width: 1024px) {
+  .testBegin,
+  .selectTest {
+    width: 200px; /* Original width for desktops */
+    margin: 5px; /* Original margin */
+    padding: 10px 20px; /* Standard padding */
+  }
+}
+
+.testBegin:hover {
+  background-color: #002ead;
+  transition: 0.7s;
+}
+
+.selectTest:hover {
+  color: white;
+  background-color: #002ead;
+  transition: 0.7s;
+  border: none;
+}
+
+/*.sharp {
+  height: 80px;
+  width: 100px;
+  clip-path: polygon(16.5% 50%, 83.5% 50%, 100% 0, 0 0);
+  transform-origin: 0 0;
+  background-color: black;
+  padding-bottom: 40px;
+}*/
+
+/*.sharpButtonsDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+}*/
+
+.circle1 {
+  width: 260px;
+  height: 260px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle1 svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(0deg) /*translateX(85px) translateY(-30px)*/;
+  margin: auto;
+  margin-top: 10px;
+}
+
+/* Enhancements and responsive adjustments for .sharpTestContainer */
+.sharpTestContainer {
+  background-color: white; /* Consistent with existing color schemes */
+  border-radius: 30px; /* Soften edges */
+  padding: 20px; /* Adequate padding for content */
+  padding-bottom: 50px;
+  margin-right: 10px; /* Centering the container */
+  width: 80%; /* Starting width, but will adjust for responsiveness */
+  display: flex; /* Using flex to align children */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  transition: all 0.3s ease; /* Smooth transitions for layout changes */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .sharpTestContainer {
+    width: 100%; /* Increase width to use more of the small screen */
+    padding: 15px; /* Adjust padding to fit smaller screens */
+    padding-bottom: 40px; /* Adjust padding to fit smaller screens */
+  }
+}
+
+@media (max-width: 337px) {
+  .sharpTestContainer {
+    width: 100%; /* Increase width to use more of the small screen */
+    padding-bottom: 40px; /* Adjust padding to fit smaller screens */
+    padding-right: 30px;
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .sharpTestContainer {
+    width: 90%; /* Optimal width for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .sharpTestContainer {
+    width: 70%; /* Reduce width to prevent overstretching on large screens */
+  }
+}
+
+.sharpTestCircleSmall {
+  position: relative; /* Needed to position children absolutely within it */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.app-icon-container {
+  width: 216px;
+  height: 172px;
+}
+
+.left-hand {
+  margin-left: -110px;
+  animation: move 3s linear infinite alternate; /* Adjusted duration to account for pause */
+}
+
+@keyframes move {
+  0%,
+  20% {
+    transform: translateY(0);
+  }
+  40%,
+  60% {
+    transform: translateY(-40px);
+  }
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.right-hand {
+  margin-left: 110px;
+  animation: move 3s linear infinite alternate; /* Adjusted duration to account for pause */
+}
+
+@keyframes move {
+  0%,
+  20% {
+    transform: translateY(0);
+  }
+  40%,
+  60% {
+    transform: translateY(-40px);
+  }
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.a {
+  fill: white; /* Example fill color */
+}
+
+.b {
+  fill: white; /* Example fill color */
+  stroke: #000000; /* Example stroke color */
+  stroke-width: 1; /* Example stroke width */
+}
+
+.rect-separator {
+  fill: #000000; /* Fill color for the rectangle */
+  transform: translate(117.074px, 58.91px) rotate(-65deg); /* Transformation properties */
+}
+
+.card {
+  position: relative;
+  width: 320px;
+  height: 200px;
+  background-color: white;
+  border: 2px dashed grey;
+  border-radius: 10px;
+  transform-origin: bottom right;
+  padding: 10px;
+  margin: 10px;
+}
+
+.card p {
+  padding-top: 8%;
+  font-size: 13px;
+}
+
+.slider {
+  writing-mode: vertical-lr;
+  direction: rtl;
+  width: 20px;
+  height: 200px;
+  background-color: grey;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: blue;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .card {
+    transform-origin: top right; /* Sets the pivot point to the center of the card */
+    width: 200px; /* Adjusts the width for mobile view */
+    height: 320px; /* Makes height responsive */
+    background-color: white; /* Sets the background color */
+    border: 2px dashed grey; /* Styles the border */
+    border-radius: 10px; /* Rounds the corners */
+    transition: transform 0.3s ease-in-out; /* Smooth transition for rotation */
+  }
+
+  .page-container {
+    margin-bottom: 30px;
+  }
+
+  .card-container-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100% !important;
+  }
+}
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh; /* Set the height to 100% of the viewport height */
+  padding-left: 25%;
+}
+
+/* colorTest */
+.colorTestBtn {
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin-left: 5px;
+  min-height: 3rem;
+  padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
+  margin-top: 30px;
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.colorTestBtn:hover,
+.colorTestBtn:focus {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.colorTestBtn:hover {
+  transform: translateY(-1px);
+}
+
+.colorTestBtn:active {
+  background-color: #f0f0f1;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
+}
+
+.colorTestCard {
+  background-color: #f0f0f1;
+  border-radius: 30px;
+  padding: 20px;
+  margin: auto;
+  width: 25%;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .colorTestCard {
+    width: 90%; /* Adjust width for smaller screens */
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .colorTestCard {
+    width: 50%; /* Adjust width for tablets */
+    padding: 18px; /* Adjust padding for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .colorTestCard {
+    width: 40%; /* Adjust width for large desktops */
+    padding: 25px; /* Adjust padding for large desktops */
+  }
+}
+
+.color-image {
+  margin-top: 30px;
+}
+
+.media-space-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin: auto;
+  width: 80%; /* Default width */
+}
+
+.media-space {
+  padding: 15px;
+  border-radius: 8px;
+  width: 100%; /* Full width within the container */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .media-space-container {
+    width: 95%; /* Increase width for small screens */
+    padding: 10px; /* Adjust padding */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .media-space-container {
+    width: 90%; /* Adjust width for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .media-space-container {
+    width: 70%; /* Maintain a narrower width for large screens */
+  }
+}
+
+.media-space-container h1 {
+  font-size: 2rem;
+}
+
+.card-container-wrapper {
+  margin: auto;
+  width: 50%;
+  margin-top: 100px;
+}
+.card-container-wrapper h1 {
+  margin-top: 50px;
+}
+
+.slider-no-change {
+  margin: auto;
+  width: 50%;
+  text-align: left;
+}
+
+.slider-no-change-button {
+  width: 100%;
+  background-color: transparent;
+  color: #0055ab;
+  border-width: 2px;
+  border-color: #0055ab;
+  height: 50px;
+  border-width: 2px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+.slider-no-change-button:hover {
+  background-color: #002ead;
+  transition: 0.7s;
+  color: white;
+}
+
+.slider-next {
+  width: 100%;
+}
+
+.be-ready {
+  margin: auto;
+  width: 70%;
+}
+@media (max-width: 767px) {
+  .be-ready {
+    width: 100%;
+  }
+}
+
+.be-ready-svgs {
+  padding: 0px;
+  margin: 0px;
+}
+
+.be-ready-svgs svg {
+  width: auto;
+  height: 100px;
+}
+
+.be-ready-svgs :nth-child(2) {
+  width: auto;
+  height: 100px;
+}
+
+svg path:hover {
+  fill: #cccccc; /* Change color on hover */
+  cursor: pointer; /* Change cursor to indicate clickable area */
+}
+
+.eyes-result-container {
+  background-color: white;
+  border-radius: 30px;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .eyes-result-container {
+    width: 90%; /* Adjust width for smaller screens */
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
+}
+
+/* Responsive adjustments for very small screens */
+@media (max-width: 547px) {
+  .eyes-result-container {
+    width: 95%; /* Adjust width for very small screens */
+    padding: 10px; /* Adjust padding for very small screens */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .eyes-result-container {
+    width: 70%; /* Adjust width for tablets */
+    padding: 20px; /* Adjust padding for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .eyes-result-container {
+    width: 60%; /* Adjust width for large desktops */
+    padding: 25px; /* Adjust padding for large desktops */
+  }
+}
+
+.eyes-result {
+  justify-content: space-between;
+}
+
+.eyes-result-images {
+  display: flex;
+  justify-content: center;
+}
+
+.eyes-result-left {
+  margin-right: 10px;
+}
+
+.eyes-result-right {
+  margin-left: 10px;
+}
+
+.resultDescriptionLeft {
+  display: flex;
+  justify-content: center;
+  margin-right: 0px;
+}
+
+.resultDescriptionRight {
+  display: flex;
+  justify-content: center;
+  margin-left: 66px;
+}
+
+.result-map {
+  background-color: white;
+  border-radius: 30px;
+  margin: auto;
+  width: 50%;
+  margin-top: 80px;
+  padding: 10px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .result-map {
+    width: 90%; /* Adjust width for smaller screens */
+    margin-top: 60px; /* Adjust margin top for smaller screens */
+    padding: 8px; /* Adjust padding for smaller screens */
+  }
+  .result-map button {
+    padding: 10px;
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .result-map {
+    width: 70%; /* Adjust width for tablets */
+    margin-top: 70px; /* Adjust margin top for tablets */
+    padding: 12px; /* Adjust padding for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .result-map {
+    width: 60%; /* Adjust width for large desktops */
+    margin-top: 90px; /* Adjust margin top for large desktops */
+    padding: 15px; /* Adjust padding for large desktops */
+  }
+}
+
+.result-map button {
+  margin-top: 10px;
+}
+
+.test-info-page {
+  display: block;
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .test-info-page {
+    width: 95%; /* Adjust width for smaller screens */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .test-info-page {
+    width: 70%; /* Adjust width for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .test-info-page {
+    width: 60%; /* Adjust width for large desktops */
+  }
+}
+
+.info-sharp-decription {
+  text-align: left;
+}
+
+.tick-animation {
+  position: absolute;
+  top: 64%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: auto;
+  z-index: 10;
+  opacity: 0;
+  animation: fadeIn 0.8s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.correct::after,
+.wrong::after {
+  opacity: 0; /* Start hidden */
+  content: ""; /* No content by default */
+  color: transparent;
+  font-size: 1.2em;
+  display: inline-block;
+  margin-left: 5px;
+  transition: opacity 0.8s ease, color 0.8s ease; /* Smooth transition for opacity and color */
+}
+
+.correct::after {
+  content: "\2714"; /* Unicode for checkmark symbol */
+  color: green; /* Color of the checkmark */
+  opacity: 1; /* Make visible when class is applied */
+}
+
+.wrong::after {
+  content: "\2717"; /* Unicode for cross symbol */
+  color: red; /* Color of the cross */
+  opacity: 1; /* Make visible when class is applied */
+}
+
+.next_test_buttons {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .next_test_buttons {
+    flex-direction: column; /* Stack buttons vertically on small screens */
+    align-items: center; /* Center-align buttons */
+  }
+
+  .next_test_buttons button {
+    margin: 10px 0; /* Add vertical spacing between buttons */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .next_test_buttons {
+    margin-top: 30px; /* Adjust margin for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .next_test_buttons {
+    margin-top: 40px; /* Adjust margin for large screens */
+  }
+}
+
+.contrasttest-result-container {
+  margin-top: 50px;
+}
+
+.colortest-result-container {
+  margin-top: 50px;
+}
+
+.astigmatismtest-result-container {
+  margin-top: 50px;
+}
+
+.eyefieldtest-result-container {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+.sharptestCircle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  width: 80%; /* Default width */
+  max-width: 600px; /* Maximum width to maintain layout integrity */
+  transition: all 0.3s ease; /* Smooth transition for any changes */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .sharptestCircle {
+    width: 95%; /* Increase width for small screens */
+    padding: 15px; /* Adjust padding */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .sharptestCircle {
+    width: 90%; /* Adjust width for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .sharptestCircle {
+    width: 70%; /* Maintain a narrower width for large screens */
+  }
+}
+
+.svg-container {
+  position: relative;
+  width: 100%;
+}
+
+.icon-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.icon-overlay img {
+  width: 50px; /* Adjust size as needed */
+  height: auto;
+}
+
+.image-comparison-container {
+  position: relative;
+  width: 100%;
+  height: 425px; /* Default height */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .image-comparison-container {
+    height: 300px; /* Adjust height for smaller screens */
+  }
+}
+
+/* Responsive adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .image-comparison-container {
+    height: 350px; /* Adjust height for tablets */
+  }
+}
+
+/* Responsive adjustments for large desktops */
+@media (min-width: 1024px) {
+  .image-comparison-container {
+    height: 425px; /* Maintain default height for large screens */
+  }
+}
+
+@media (forced-colors: active) {
+  forced-color-adjust: none;
+}
+
+.login-container {
+  background-color: white;
+  border-radius: 30px;
+  width: 50%;
+  margin: auto;
+  height: 400px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Sidebar styles */
+.sidebar {
+  background-color: #ffffff; /* White background for the sidebar */
+  padding: 20px; /* Padding around the content */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  width: 300px; /* Fixed width for the sidebar */
+  height: 565px;
+  margin: 20px; /* Margin around the sidebar */
+  margin-top: 0px;
+  color: #000000; /* Black text color */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Custom scrollbar styles for WebKit browsers */
+.sidebar::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: #e6e6e6; /* Background color of the scrollbar track */
+  border-radius: 5px; /* Border radius of the scrollbar track */
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: #0072ef; /* Color of the scrollbar thumb */
+  border-radius: 5px; /* Border radius of the scrollbar thumb */
+  border: 3px solid #e6e6e6; /* Optional: Add a border to create some padding around the thumb */
+}
+
+/* Custom scrollbar styles for Firefox */
+.sidebar {
+  scrollbar-width: thin; /* Make the scrollbar thinner */
+  scrollbar-color: #0072ef #e6e6e6; /* Set the thumb and track colors */
+}
+
+/* Optional: Add border radius for Firefox */
+.sidebar::-webkit-scrollbar-thumb {
+  border-radius: 5px; /* Border radius of the scrollbar thumb */
+}
+
+/* Input field styles */
+.sidebar input[type="text"],
+.add-location-form .form-input {
+  width: 100%; /* Full width */
+  padding: 10px; /* Padding inside the input */
+  margin-bottom: 10px; /* Space below the input */
+  border: 1px solid #ccc; /* Light grey border */
+  border-radius: 5px; /* Rounded corners */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  font-size: 1rem; /* Font size */
+  color: white; /* Black text color */
+}
+
+/* Button styles */
+.sidebar button,
+.add-location-form .defaultButton {
+  width: 100%; /* Full width */
+  padding: 10px; /* Padding inside the button */
+  margin-bottom: 10px;
+  background-color: #0072ef; /* Blue background */
+  color: white; /* White text */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 1rem; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.sidebar button:hover,
+.add-location-form .defaultButton:hover {
+  background-color: #0055ab; /* Darker blue on hover */
+}
+
+/* Suggestions list styles */
+.sidebar ul {
+  list-style-type: none; /* Remove default list styling */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+.sidebar li {
+  padding: 10px; /* Padding inside each list item */
+  border-bottom: 1px solid #ccc; /* Light grey border below each item */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+  color: #000000; /* Black text color */
+}
+
+.sidebar li:hover {
+  background-color: #f0f0f0; /* Light grey background on hover */
+}
+
+/* Location item styles */
+.sidebar .location-item {
+  background-color: #f9f9f9; /* Light grey background */
+  padding: 10px; /* Padding inside the item */
+  margin-bottom: 10px; /* Space below the item */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  color: #000000; /* Black text color */
+}
+
+.sidebar .location-item h3 {
+  margin: 0 0 5px 0; /* Space below the heading */
+  font-size: 1.2rem; /* Font size */
+  color: #000000; /* Black text color */
+}
+
+.sidebar .location-item p {
+  margin: 0; /* No margin */
+  font-size: 1rem; /* Font size */
+  color: #666; /* Grey text color */
+}
+
+/* Form label styles */
+.add-location-form label {
+  color: #000000; /* Black text color */
+  display: block; /* Ensure labels are block elements */
+  margin-bottom: 5px; /* Space below the label */
+}
+
+/* Form container styles */
+.add-location-form {
+  background-color: #ffffff; /* White background for the form */
+  padding: 20px; /* Padding around the content */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin: 20px; /* Margin around the form */
+  color: #000000; /* Black text color */
+}
+
+.location-item {
+  cursor: pointer;
+}
+
+.suggestions-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.suggestions-dropdown li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestions-dropdown li:hover {
+  background-color: #f0f0f0;
+}
